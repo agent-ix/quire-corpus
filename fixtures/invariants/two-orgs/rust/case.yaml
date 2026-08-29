@@ -1,0 +1,12 @@
+id: two-orgs
+family: invariants
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The second run is the control: the same input under a different org, so any shared name is a name that ignored the org."
+comment: >-
+  The same tree extracted under two different organisations. Every name is
+  org-qualified, so the two runs must share no name at all - otherwise two
+  companies with a repository of the same name collide in one graph and each
+  silently overwrites the other's nodes. Only a comparison of two runs can
+  see this; a single extraction looks correct under either org.

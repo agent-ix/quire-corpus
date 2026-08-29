@@ -1,0 +1,8 @@
+org: agent-ix
+repo: unrelated-rust
+relation: identical_except
+# The added file's own records are allowed to differ, and nothing else is.
+except_names:
+- "agent-ix/unrelated-rust/src/unrelated.rs"
+- "agent-ix/unrelated-rust/src/unrelated.rs::Unrelated"
+- "agent-ix/unrelated-rust/src/unrelated.rs::Unrelated::untouched"

@@ -25,10 +25,12 @@ gate that will pass for the wrong reason later.
 | Functional Req | Acceptance Criteria | Test Cases | Coverage Status |
 |---|---|---|---|
 | FR-001 | FR-001-AC-1, FR-001-AC-2, FR-001-AC-3, FR-001-AC-4, FR-001-CON-2 | TC-005, TC-006, TC-007, TC-008, TC-009 | ✅ |
-| FR-002 | FR-002-AC-1, FR-002-AC-2, FR-002-AC-3, FR-002-AC-4, FR-002-AC-5, FR-002-CON-1 | TC-010, TC-011, TC-012, TC-013, TC-014, TC-015 | ✅ |
+| FR-002 | FR-002-AC-1, FR-002-AC-2, FR-002-AC-3, FR-002-AC-4, FR-002-AC-5, FR-002-CON-1 | TC-010, TC-011, TC-012, TC-013, TC-014, TC-015, TC-040 | ✅ |
 | FR-003 | FR-003-AC-1, FR-003-AC-2, FR-003-AC-3, FR-003-AC-4 | TC-016, TC-017, TC-018, TC-019 | ✅ |
-| FR-004 | FR-004-AC-5, FR-004-AC-1, FR-004-AC-2, FR-004-AC-3, FR-004-AC-4, FR-004-AC-6, FR-004-CON-1, FR-004-AC-7 | TC-003, TC-020, TC-021, TC-022, TC-023, TC-024, TC-025, TC-026 | ✅ |
+| FR-004 | FR-004-AC-5, FR-004-AC-1, FR-004-AC-2, FR-004-AC-3, FR-004-AC-4, FR-004-AC-6, FR-004-CON-1, FR-004-AC-7 | TC-003, TC-020, TC-021, TC-022, TC-023, TC-024, TC-025, TC-026, TC-042 | ✅ |
 | FR-005 | FR-005-AC-1, FR-005-AC-2, FR-005-AC-3, FR-005-CON-1, FR-005-AC-4, FR-005-AC-5, FR-005-AC-6, FR-005-AC-7 | TC-032, TC-033, TC-034, TC-035, TC-036, TC-037, TC-038 | ✅ |
+| FR-006 | FR-006-AC-2 | TC-039 | ✅ |
+| FR-007 | FR-007-AC-4 | TC-041 | ✅ |
 | NFR-001 | NFR-001-AC-1, NFR-001-AC-2, NFR-001-AC-3 | TC-027, TC-028, TC-029 | ✅ |
 | NFR-002 | NFR-002-AC-1, NFR-002-AC-2 | TC-004, TC-030, TC-031 | ✅ |
 | StR-001 | StR-001-VC-1, StR-001-VC-2, StR-001-VC-3, StR-001-VC-4 | TC-001, TC-002, TC-003, TC-004, TC-024, TC-030 | ✅ |
@@ -77,6 +79,10 @@ gate that will pass for the wrong reason later.
 | TC-036 | a required code or path that nothing carries is a finding | Unit | FR-005-AC-5 | ✅ |
 | TC-037 | two runs that disagree byte for byte are a finding | Unit | FR-005-AC-6 | ✅ |
 | TC-038 | a forbidden substring in the raw payload is a finding | Unit | FR-005-AC-7 | ✅ |
+| TC-039 | a declaration that moved keeps its identifier | Unit | FR-006-AC-2 | ✅ |
+| TC-040 | two orgs share no names | Unit | FR-002-AC-4 | ✅ |
+| TC-041 | an unrelated file leaves the others' records alone | Unit | FR-007-AC-4 | ✅ |
+| TC-042 | an unknown relation is reported, never treated as held | Unit | FR-004-AC-7 | ✅ |
 
 ---
 

@@ -1,0 +1,4 @@
+org: agent-ix
+repo: orgs-rust
+relation: disjoint_names
+variant_org: other-org

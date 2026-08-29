@@ -1,0 +1,13 @@
+id: parameter-type-changed
+family: invariants
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The variant is the control: one edit that must move one field and hold another."
+comment: >-
+  A parameter's type changed, which changes the signature and must not
+  change the identifier. The two facts pull in opposite directions and both
+  matter: the signature moving is what tells a consumer the export surface
+  changed and dependents must re-resolve, and the identifier holding is what
+  stops that being a delete plus an add. A producer that hashes the
+  signature into the id gets the first and loses the second.

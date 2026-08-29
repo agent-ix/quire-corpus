@@ -102,6 +102,12 @@ inventory:
     index-stem-specifier: [rust, typescript, python]
     re-export-barrel: [rust, typescript, python]
     re-export-same-name: [rust, typescript, python]
+  invariants:
+    declaration-moved: [rust]
+    parameter-type-changed: [rust]
+    private-helper-added: [rust]
+    two-orgs: [rust]
+    unrelated-file-added: [rust]
   links:
     ix-reference: [mixed]
     spec-code-test-links: [mixed]

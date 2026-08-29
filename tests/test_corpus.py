@@ -495,3 +495,57 @@ def test_a_forbidden_payload_substring_is_a_finding():
     assert any("/Users/" in f for f in result["findings"]), (
         "an absolute path is not a wrong edge, which is worse: it fails "
         "silently as drift between two machines that both look green")
+
+
+# ── relations between two extractions ────────────────────────────────────────
+
+def _payload(nodes, edges=()):
+    return {
+        "nodes": [
+            {"name": n, "object_type": "code_function", "id": i,
+             "data": {"kind": "function", "path": "src/lib.rs"}}
+            for n, i in nodes
+        ],
+        "edges": [
+            {"source_ref": s, "edge_type": t, "target_ref": g} for s, t, g in edges
+        ],
+    }
+
+
+# TC-039, FR-006-AC-2: a declaration that moved keeps its identifier.
+def test_ids_preserved_fails_when_an_identifier_moves():
+    before = _payload([("o/r/a.rs::f", "aaa")])
+    after = _payload([("o/r/a.rs::f", "bbb")])
+    assert score.compare_runs("ids_preserved", before, before, {}) == []
+    findings = score.compare_runs("ids_preserved", before, after, {})
+    assert any("changed identifier" in f for f in findings), (
+        "a node that moves is a modification; treating it as a delete plus an "
+        "add costs the consumer every edge that pointed at it")
+
+
+# TC-040, FR-002-AC-4: two orgs share no names.
+def test_disjoint_names_fails_on_a_shared_name():
+    first = _payload([("agent-ix/r/a.rs::f", "aaa")])
+    second = _payload([("other-org/r/a.rs::f", "bbb")])
+    assert score.compare_runs("disjoint_names", first, second, {}) == []
+    collided = _payload([("agent-ix/r/a.rs::f", "ccc")])
+    findings = score.compare_runs("disjoint_names", first, collided, {})
+    assert any("under both orgs" in f for f in findings)
+
+
+# TC-041, FR-007-AC-4: an unrelated file leaves the others' records alone.
+def test_identical_except_ignores_only_the_named_records():
+    first = _payload([("o/r/a.rs::f", "aaa")])
+    added = _payload([("o/r/a.rs::f", "aaa"), ("o/r/b.rs::g", "bbb")])
+    spec = {"except_names": ["o/r/b.rs::g"]}
+    assert score.compare_runs("identical_except", first, added, spec) == []
+    # The same addition, unexcused, is a difference the case did not allow.
+    findings = score.compare_runs("identical_except", first, added, {})
+    assert any("outside the changed file differ" in f for f in findings)
+
+
+# TC-042, FR-004-AC-7: an unknown relation is reported, never treated as held.
+def test_an_unknown_relation_is_reported():
+    findings = score.compare_runs("wishful", _payload([]), _payload([]), {})
+    assert any("unknown relation" in f for f in findings), (
+        "a relation nobody implemented must not read as a relation that held")

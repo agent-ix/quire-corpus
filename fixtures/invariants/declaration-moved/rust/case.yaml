@@ -1,0 +1,13 @@
+id: declaration-moved
+family: invariants
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The variant is the control: the same file with one change that identity must ignore."
+comment: >-
+  The same declarations, moved down the file by an added comment. Identity
+  is a pure function of `(object_type, qualified_name)`, so every identifier
+  must survive while the spans move. A producer that folds the line number
+  into the id turns every reformat into a delete-plus-add: the consumer
+  retires the old nodes, drops their edges, and writes new ones, so a
+  comment costs a repository its whole graph history.

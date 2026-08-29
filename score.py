@@ -78,10 +78,14 @@ class Tally:
 def run_producer(
     template: str, case_dir: pathlib.Path, expected: dict
 ) -> tuple[dict, str]:
+    # `case_dir` is the case root for an ordinary run and the variant root for
+    # the second run of a metamorphic case, so the input directory is resolved
+    # rather than assumed.
+    tree = case_dir if case_dir.name == "variant" else case_dir / "input"
     command = template.format(
         org=expected["org"],
         repo=expected["repo"],
-        input=str(case_dir / "input"),
+        input=str(tree),
     )
     proc = subprocess.run(
         command, shell=True, capture_output=True, text=True, cwd=ROOT
@@ -97,6 +101,78 @@ def run_producer(
         raise CorpusError(
             f"producer output on {case_dir.name} is not JSON: {exc}"
         ) from exc
+
+
+def compare_runs(relation: str, first: dict, second: dict, spec: dict) -> list[str]:
+    """Check the relation a metamorphic case declares between two extractions.
+
+    A fixture is otherwise one expectation about one run, which leaves every
+    invariant stated as *a relation between two runs* unreachable — that a
+    rename changes no identifier, that adding an unrelated file changes nothing
+    about the others, that two orgs share no names. Those are the properties a
+    consumer depends on and the ones a single-run comparison structurally
+    cannot see.
+    """
+    findings: list[str] = []
+
+    def names(payload: dict) -> set[str]:
+        return {n["name"] for n in payload.get("nodes", [])}
+
+    def ids(payload: dict) -> dict[str, str]:
+        return {n["name"]: n.get("id") for n in payload.get("nodes", [])}
+
+    def records(payload: dict) -> tuple:
+        return (
+            sorted((n["object_type"], n["name"]) for n in payload.get("nodes", [])),
+            sorted(_triple(e) for e in payload.get("edges", [])),
+        )
+
+    if relation == "identical":
+        if records(first) != records(second):
+            findings.append(
+                "the two extractions disagree, and the input difference between "
+                "them is not one the records may depend on"
+            )
+    elif relation == "identical_except":
+        exempt = set(spec.get("except_names", []))
+        first_nodes, first_edges = records(first)
+        second_nodes, second_edges = records(second)
+        kept = lambda pairs: [p for p in pairs if p[1] not in exempt]
+        kept_edges = lambda triples: [
+            t for t in triples if t[0] not in exempt and t[2] not in exempt
+        ]
+        if kept(first_nodes) != kept(second_nodes):
+            missing = set(map(tuple, kept(first_nodes))) ^ set(
+                map(tuple, kept(second_nodes))
+            )
+            findings.append(
+                f"records outside the changed file differ between the two runs: "
+                f"{sorted(missing)[:4]}"
+            )
+        if kept_edges(first_edges) != kept_edges(second_edges):
+            findings.append(
+                "edges outside the changed file differ between the two runs"
+            )
+    elif relation == "ids_preserved":
+        before, after = ids(first), ids(second)
+        for name in sorted(set(before) & set(after)):
+            if before[name] != after[name]:
+                findings.append(
+                    f"{name} changed identifier between the two runs; a node "
+                    "that moves is a modification, never a delete plus an add"
+                )
+        for name in sorted(set(before) - set(after)):
+            findings.append(f"{name} is absent from the second run")
+    elif relation == "disjoint_names":
+        shared = names(first) & names(second)
+        if shared:
+            findings.append(
+                f"{len(shared)} name(s) appear under both orgs, so two "
+                f"repositories collide in one graph: {sorted(shared)[:3]}"
+            )
+    else:
+        findings.append(f"unknown relation {relation!r}")
+    return findings
 
 
 def score_case(
@@ -452,6 +528,22 @@ def main() -> int:
         expected = yaml.safe_load((case_dir / "expected.yaml").read_text())
         produced, raw = run_producer(args.producer, case_dir, expected)
         result = score_case(meta, expected, produced, tally, raw)
+
+        relation = expected.get("relation")
+        if relation:
+            variant_expected = dict(expected)
+            variant_expected["org"] = expected.get("variant_org", expected["org"])
+            variant_dir = case_dir / "variant" if (case_dir / "variant").is_dir() else case_dir
+            second, _ = run_producer(args.producer, variant_dir, variant_expected)
+            relation_findings = compare_runs(
+                relation, produced, second, expected
+            )
+            result["relation"] = {"name": relation, "held": not relation_findings}
+            for finding in relation_findings:
+                tally.add("fp", language=meta["language"], axis_kind="relation")
+                result["findings"].append(finding)
+            if not relation_findings:
+                tally.add("tp", language=meta["language"], axis_kind="relation")
         result["pending"] = meta.get("pending")
         if expected.get("deterministic"):
             _, second = run_producer(args.producer, case_dir, expected)

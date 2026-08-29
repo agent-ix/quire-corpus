@@ -1,0 +1,5 @@
+org: agent-ix
+repo: sigchange-rust
+relation: ids_preserved
+signatures:
+  "agent-ix/sigchange-rust/src/lib.rs::Store::compute": "(self, u32) -> u32"

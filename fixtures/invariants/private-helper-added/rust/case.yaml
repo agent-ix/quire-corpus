@@ -1,0 +1,13 @@
+id: private-helper-added
+family: invariants
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The variant is the control: one added declaration that the export set must not notice."
+comment: >-
+  A non-exported declaration added to a file. Every identifier already
+  present must survive: FR-074's export-set tiering skips dependent re-
+  resolution when a file's exported symbols are unchanged, and it can only
+  do that if adding a private helper leaves the existing records alone. A
+  producer that renumbers or rehashes on any edit makes that optimisation
+  unsafe and every save re-resolves the repository.

@@ -1,0 +1,13 @@
+id: unrelated-file-added
+family: invariants
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two runs are each other's control: identical input plus one file that shares nothing with it."
+comment: >-
+  One file added to the batch, touching nothing the first file declares.
+  Every record of the original file must be identical across the two runs -
+  FR-008-CON-3 says resolution quality is a function of the supplied batch,
+  and FR-007-AC-4 says the healthy files' records do not depend on what else
+  is present. A producer whose output for one file shifts when an unrelated
+  file appears makes every incremental index a diff against noise.
