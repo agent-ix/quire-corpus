@@ -9,8 +9,8 @@
 #
 # Refresh with `make refresh-criteria PRODUCER_SPEC=<path-to-spec>`.
 producer: agent-ix/quire-code-rs
-revision: 184e145b57a99df2c207fe093904592cabf5dad0
-branch: fix/corpus-findings
+revision: 67244d1febf7e3065f7a026cc0a13ffdfc4a039a
+branch: main
 criteria:
 - FR-001-AC-1
 - FR-001-AC-10
