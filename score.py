@@ -112,7 +112,7 @@ def score_case(meta: dict, expected: dict, produced: dict, tally: Tally) -> dict
     # the grammar's node kind, so it is language-specific by construction —
     # TypeScript reports a class member as `method`, Rust reports the same
     # declaration as `function`, and no cross-language vocabulary is declared
-    # anywhere (agent-ix/quire-code-rs#10). Grading it would report a vocabulary
+    # anywhere (agent-ix/quire-code-rs#16). Grading it would report a vocabulary
     # difference as a correctness defect and bury the real recall gaps beneath
     # it. Every observed kind is censused below, so the difference stays visible
     # rather than being dropped.
