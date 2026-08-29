@@ -130,9 +130,15 @@ def score_case(
         for name, object_type in sorted(want - got):
             tally.add("fn", language=language, object_type=object_type, axis_kind="node")
             findings.append(f"missing node {object_type} {name}")
-        for name, object_type in sorted(got - want):
-            tally.add("fp", language=language, object_type=object_type, axis_kind="node")
-            findings.append(f"unexpected node {object_type} {name}")
+        # Exhaustive by default, because most of these trees are small enough to
+        # name every declaration and an unexhaustive default would let a producer
+        # mint anything it liked. A case opts out where the point is *which*
+        # declarations exist rather than how many.
+        if expected.get("exhaustive_nodes", True):
+            for name, object_type in sorted(got - want):
+                tally.add("fp", language=language, object_type=object_type,
+                          axis_kind="node")
+                findings.append(f"unexpected node {object_type} {name}")
         for name, object_type in sorted(want & got):
             tally.add("tp", language=language, object_type=object_type, axis_kind="node")
 
@@ -152,6 +158,18 @@ def score_case(
                     f"{count} nodes share the name {name} ({object_type}); a "
                     "consumer keying on identity keeps one of them"
                 )
+
+    # A name that must not be minted. Distinct from `forbidden_node_kinds`:
+    # a generic's type parameter is not a *kind* of declaration, it is a
+    # specific name that is not a declaration at all.
+    for name in expected.get("forbidden_node_names", []):
+        if name in by_name:
+            tally.add("fp", language=language, axis_kind="node")
+            findings.append(
+                f"forbidden node minted: {name} is not a declaration"
+            )
+        else:
+            tally.add("tp", language=language, axis_kind="node")
 
     for kind in expected.get("forbidden_node_kinds", []):
         for node in nodes:

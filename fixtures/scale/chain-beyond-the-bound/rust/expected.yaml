@@ -1,0 +1,11 @@
+org: agent-ix
+repo: deep-rust
+# Deliberately not asserting whether the chain resolves. Degrading to fewer
+# edges is explicitly allowed, so an absent edge is correct and a present one
+# to `Store` is correct; only the decoy is wrong, and so is not finishing.
+forbidden_edges:
+- source: "agent-ix/deep-rust/src/lib.rs::drive"
+  type: calls
+  target: "agent-ix/deep-rust/src/lib.rs::Decoy::upsert"
+stats:
+  files: 1

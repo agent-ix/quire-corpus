@@ -1,0 +1,21 @@
+org: agent-ix
+repo: resame-ru
+# The import edges are owed and specified. The call is the open question
+# (agent-ix/quire-code-rs#20), and the conservative answer is what
+# FR-008-CON-1 requires when narrowing does not certainly succeed.
+edges:
+- source: "agent-ix/resame-ru/src/driver.rs"
+  type: imports
+  target: "agent-ix/resame-ru/src/barrel.rs"
+  reason: path-resolved
+- source: "agent-ix/resame-ru/src/barrel.rs"
+  type: imports
+  target: "agent-ix/resame-ru/src/other.rs"
+  reason: path-resolved
+forbidden_edges:
+- source: "agent-ix/resame-ru/src/driver.rs"
+  type: calls
+  target: "agent-ix/resame-ru/src/store.rs::Store::upsert"
+- source: "agent-ix/resame-ru/src/driver.rs"
+  type: calls
+  target: "agent-ix/resame-ru/src/other.rs::Store::upsert"

@@ -1,0 +1,13 @@
+id: re-export-barrel
+family: imports
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: re-export-same-name
+comment: >-
+  A barrel file that re-exports a declaration, and a consumer importing
+  through it. Two import edges are owed, each to the file its own specifier
+  names - and no edge from the driver straight to the store, because the
+  driver's source does not name that file. A producer that flattens the hop
+  reports a dependency the source does not state, which is how an impact
+  closure grows edges nobody wrote.

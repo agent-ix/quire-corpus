@@ -1,0 +1,12 @@
+id: generic-receiver-unknowable
+family: generics
+language: rust
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: generic-declarations
+comment: >-
+  The receiver's type is a type parameter, so the source does not determine
+  which implementation runs - the same situation as a trait object, reached
+  by a different syntax. FR-008 says no edge. Two implementors are present
+  so that a wrong answer is available to be given, and both are forbidden by
+  name.

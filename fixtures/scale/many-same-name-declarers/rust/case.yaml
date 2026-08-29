@@ -1,0 +1,15 @@
+id: many-same-name-declarers
+family: scale
+language: rust
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: name-match-call
+control_language: rust
+comment: >-
+  One method name declared by 12 types across 12 files, and one call whose
+  receiver does not resolve. Every tier is ambiguous, so the correct output
+  is no edge - and the reason this is a scale case rather than another
+  ambiguity case is that a resolver can be conservative with two candidates
+  and stop being conservative with twelve, by ranking, by picking the first,
+  or by a threshold that only trips once the candidate set is large. None of
+  that is reachable in a fixture with two files.

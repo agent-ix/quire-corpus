@@ -1,0 +1,15 @@
+id: re-export-same-name
+family: imports
+language: python
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: re-export-barrel
+comment: >-
+  Two files declare a type of the same name; the barrel re-exports exactly
+  one of them. The driver's receiver type does not resolve, so narrowing
+  falls to what its imports reach - and its import reaches a barrel, not a
+  declaration. Whether a re-export is followed decides between one candidate
+  and none, and no requirement says which, so the correct answer is the
+  conservative one: with two same-named declarers in the batch and nothing
+  that certainly narrows them, no edge. Its positive twin is the same shape
+  with one declarer, where the question does not arise.

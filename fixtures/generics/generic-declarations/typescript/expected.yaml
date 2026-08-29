@@ -1,0 +1,14 @@
+org: agent-ix
+repo: gen-ts
+# Named, not exhaustive: the point is which declarations exist, and a `T` minted
+# as a node is caught by `forbidden_node_names` rather than by listing every
+# method in the file.
+nodes:
+- {object_type: code_type, name: "agent-ix/gen-ts/src/index.ts::Persist"}
+- {object_type: code_type, name: "agent-ix/gen-ts/src/index.ts::Runner"}
+- {object_type: code_type, name: "agent-ix/gen-ts/src/index.ts::Store"}
+- {object_type: code_function, name: "agent-ix/gen-ts/src/index.ts::Runner::run"}
+exhaustive_nodes: false
+forbidden_node_names:
+- "agent-ix/gen-ts/src/index.ts::T"
+- "agent-ix/gen-ts/src/index.ts::Runner::T"

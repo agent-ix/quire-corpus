@@ -1,0 +1,20 @@
+org: agent-ix
+repo: re-ru
+# Deliberately silent about whether the *call* resolves through the
+# barrel. FR-008's import tier says "reachable through the file's
+# resolved imports" and no requirement says whether a re-export is
+# followed, so asserting either answer would be authoring truth ahead of
+# the contract. Raised as agent-ix/quire-code-rs#20.
+edges:
+- source: "agent-ix/re-ru/src/driver.rs"
+  type: imports
+  target: "agent-ix/re-ru/src/barrel.rs"
+  reason: path-resolved
+- source: "agent-ix/re-ru/src/barrel.rs"
+  type: imports
+  target: "agent-ix/re-ru/src/store.rs"
+  reason: path-resolved
+forbidden_edges:
+- source: "agent-ix/re-ru/src/driver.rs"
+  type: imports
+  target: "agent-ix/re-ru/src/store.rs"

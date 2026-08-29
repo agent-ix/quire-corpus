@@ -1,0 +1,10 @@
+org: agent-ix
+repo: macro-ts
+nodes:
+- {object_type: code_function, name: "agent-ix/macro-ts/src/index.ts::writtenLiterally"}
+exhaustive_nodes: false
+# The absence is the assertion. A producer that mints `generated` has
+# reported a declaration that exists only after a macro or a decorator
+# ran, and named a node nothing downstream can resolve.
+forbidden_node_names:
+- "agent-ix/macro-ts/src/index.ts::generated"

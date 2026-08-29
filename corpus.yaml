@@ -86,6 +86,11 @@ inventory:
     cyclic-bindings-terminate: [rust, typescript, python]
     local-rebinding-isolated: [rust, typescript, python]
     tier-rank-order: [rust]
+  generics:
+    generic-declarations: [rust, typescript, python]
+    generic-receiver-unknowable: [rust]
+  generated:
+    expansion-invisible: [rust, typescript, python]
   identity:
     inherent-and-trait-impl-collision: [rust]
     nested-path-identity: [mixed]
@@ -95,6 +100,8 @@ inventory:
     broken-relative-specifier: [rust, typescript, python]
     extensionless-specifier: [rust, typescript, python]
     index-stem-specifier: [rust, typescript, python]
+    re-export-barrel: [rust, typescript, python]
+    re-export-same-name: [rust, typescript, python]
   links:
     ix-reference: [mixed]
     spec-code-test-links: [mixed]
@@ -121,6 +128,9 @@ inventory:
     body-error-tolerated: [rust, typescript, python]
     empty-file: [rust, typescript, python]
     invalid-file-in-batch: [rust, typescript, python]
+  scale:
+    chain-beyond-the-bound: [rust]
+    many-same-name-declarers: [rust]
   surfaces:
     export-surface: [rust, typescript, python]
     private-lookalike:

@@ -1,0 +1,13 @@
+id: expansion-invisible
+family: generated
+language: rust
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: generic-declarations
+comment: >-
+  A declaration whose name exists only after expansion, beside one written
+  literally. The literal one is owed a node; the generated one must not be
+  invented, because a syntactic extractor cannot see it and guessing at it
+  produces a node no consumer can resolve. This is the only case in the
+  corpus that names what an extractor legitimately cannot do - without it,
+  every absence reads as a recall gap.

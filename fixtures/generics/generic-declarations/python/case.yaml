@@ -1,0 +1,14 @@
+id: generic-declarations
+family: generics
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: generic-receiver-unknowable
+control_language: rust
+comment: >-
+  A generic type, its bounded parameter, and a concrete type satisfying the
+  bound. The type parameter is not a declaration and must not become a node;
+  the generic type and its method are declarations and must. A producer that
+  reads the parameter list as a declaration list mints a node for `T` in
+  every generic file in a repository - and one that gives up on a generic
+  declaration entirely loses the type it was written for.

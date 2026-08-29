@@ -116,10 +116,15 @@ def audit() -> dict:
             problems.append(f"{family}/{case}/{language} has no input tree")
         if meta.get("kind") == "positive" and meta.get("control_for_pair"):
             pair = meta["control_for_pair"]
-            if (family, pair, language) not in on_disk:
+            # Same language by default. A property that is language independent
+            # may point at one control, but the case must name the language it
+            # lives in — otherwise "the control is over there somewhere" is
+            # indistinguishable from having none.
+            where = meta.get("control_language", language)
+            if (family, pair, where) not in on_disk:
                 problems.append(
-                    f"{family}/{case}/{language} names control {pair!r}, "
-                    "which does not exist"
+                    f"{family}/{case}/{language} names control {pair!r} in "
+                    f"{where}, which does not exist"
                 )
 
     return {

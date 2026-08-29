@@ -1,0 +1,44 @@
+org: agent-ix
+repo: scale-rust
+edges: []
+forbidden_edge_types: [calls]
+# Every candidate named individually as well, so a producer that picks one
+# is caught by the name it picked rather than only by a type count.
+forbidden_edges:
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod0.rs::Type0::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod1.rs::Type1::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod2.rs::Type2::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod3.rs::Type3::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod4.rs::Type4::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod5.rs::Type5::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod6.rs::Type6::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod7.rs::Type7::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod8.rs::Type8::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod9.rs::Type9::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod10.rs::Type10::handle"
+- source: "agent-ix/scale-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/scale-rust/src/mod11.rs::Type11::handle"
+ambiguous_call_sites: 1

@@ -4,6 +4,7 @@ language: typescript
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 control_for_pair: evidence-cap
+control_language: rust
 comment: >-
   Three call sites onto two edges. `first` calls once; `second` calls twice,
   and those two fold onto one edge with `count` 2 and two evidence entries

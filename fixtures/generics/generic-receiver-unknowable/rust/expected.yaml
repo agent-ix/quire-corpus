@@ -1,0 +1,9 @@
+org: agent-ix
+repo: genrecv-rust
+forbidden_edges:
+- source: "agent-ix/genrecv-rust/src/lib.rs::run"
+  type: calls
+  target: "agent-ix/genrecv-rust/src/lib.rs::Disk::save"
+- source: "agent-ix/genrecv-rust/src/lib.rs::run"
+  type: calls
+  target: "agent-ix/genrecv-rust/src/lib.rs::Memory::save"
