@@ -8,8 +8,8 @@
 # unreached.
 #
 # Refresh with `make refresh-criteria PRODUCER_SPEC=<path-to-spec>`.
-producer: agent-ix/corpus-fixes
-revision: da7415761d4a07fb2de03cdbfcc446136d240d0d
+producer: agent-ix/quire-code-rs
+revision: 184e145b57a99df2c207fe093904592cabf5dad0
 branch: fix/corpus-findings
 criteria:
 - FR-001-AC-1

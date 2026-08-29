@@ -60,7 +60,7 @@ def main() -> int:
     header = pin.read_text().split("producer:")[0] if pin.exists() else ""
     pin.write_text(
         header
-        + f"producer: agent-ix/{repo.name}\n"
+        + f"producer: agent-ix/{name}\n"
         + f"revision: {revision}\n"
         + f"branch: {branch}\n"
         + "criteria:\n"
