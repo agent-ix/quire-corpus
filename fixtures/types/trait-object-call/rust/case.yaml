@@ -1,0 +1,11 @@
+id: trait-object-call
+family: types
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two implementors are the control: they are in the tree so that a wrong answer is available to be given."
+comment: >-
+  Dynamic dispatch. The source names the interface and does not determine
+  which implementation runs, so the trait's own method is the whole of what
+  is known. Two implementors exist precisely so that picking one is visibly
+  a guess, and both are forbidden by name.

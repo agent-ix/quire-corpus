@@ -1,5 +1,16 @@
 org: agent-ix
 repo: rel-ts
+# The receiver's type is *written down*, on the parameter, so it resolves
+# to exactly one declaring type — FR-008's `receiver-typed` tier.
+#
+# Corrected 2026-08-29: the first draft bound the receiver with
+# `let store = Store;` and expected `receiver-typed`, and the producer
+# answered `import-scoped`. The producer was right. FR-008 propagates a
+# binding from a bound name, a call's declared return type, a typed field
+# access, or a method call's declared return type — a unit-struct literal
+# is none of those, so the receiver type does not resolve and the import
+# tier is the correct answer. Writing the annotation is what makes this
+# case about the tier it is named for.
 edges:
 - source: "agent-ix/rel-ts/src/driver.ts::drive"
   type: calls

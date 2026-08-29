@@ -1,0 +1,12 @@
+id: arbitrary-bytes
+family: resilience
+language: python
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: invalid-file-in-batch
+comment: >-
+  Bytes no grammar can make sense of. The file fact is still owed - a file
+  that exists is a node whatever is in it - and nothing else is. This is the
+  control for the invalid-file case: there, records survive around the
+  damage; here there are no records to survive, and the difference must not
+  be a crash in either direction.

@@ -1,0 +1,8 @@
+org: agent-ix
+repo: sig-rust
+# FR-009-AC-5: declared parameter *types* and the return type, receiver as
+# `self`. Parameter names are not part of it, so renaming one is not a
+# surface change - and neither is moving it onto its own line.
+signatures:
+  "agent-ix/sig-rust/src/plain.rs::Store::compute": "(self, u32, String) -> u32"
+  "agent-ix/sig-rust/src/reformatted.rs::Store::compute": "(self, u32, String) -> u32"

@@ -1,0 +1,7 @@
+org: agent-ix
+repo: trait-rust
+edges:
+- source: "agent-ix/trait-rust/src/lib.rs::Store"
+  type: implements_trait
+  target: "agent-ix/trait-rust/src/lib.rs::Persist"
+  reason: syntactic

@@ -1,0 +1,10 @@
+id: empty-file
+family: resilience
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The expectation is exhaustive - exactly one node - so a producer emitting anything else fails without a second tree."
+comment: >-
+  A file with no bytes. It declares nothing and it is still a node: an empty
+  file and an absent file are different facts about a repository, and a
+  graph that cannot tell them apart cannot answer what a deletion changed.

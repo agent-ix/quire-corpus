@@ -1,0 +1,5 @@
+org: agent-ix
+repo: imp-amb-ts
+edges: []
+forbidden_edge_types: [calls]
+ambiguous_call_sites: 1

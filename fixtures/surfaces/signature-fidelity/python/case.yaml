@@ -1,0 +1,11 @@
+id: signature-fidelity
+family: surfaces
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The unannotated file is the annotated one's control: same method, same arity, different information available."
+comment: >-
+  Python is the language where the rule changes: an annotated callable
+  renders its types, and an unannotated one renders parameter *names*
+  instead, because the names are the only contract there is. The two files
+  hold the same method twice so the switch is visible in one comparison.

@@ -1,0 +1,5 @@
+org: agent-ix
+repo: sig-ts
+signatures:
+  "agent-ix/sig-ts/src/plain.ts::Store::compute": "(number, string) -> number"
+  "agent-ix/sig-ts/src/reformatted.ts::Store::compute": "(number, string) -> number"

@@ -1,6 +1,5 @@
 from .store import Store
 
 
-def drive() -> None:
-    store: Store = Store()
+def drive(store: Store) -> None:
     store.upsert()

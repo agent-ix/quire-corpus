@@ -1,0 +1,7 @@
+org: agent-ix
+repo: idx-ts
+edges:
+- source: "agent-ix/idx-ts/src/driver.ts"
+  type: imports
+  target: "agent-ix/idx-ts/src/store/index.ts"
+  reason: path-resolved

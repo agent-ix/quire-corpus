@@ -1,0 +1,11 @@
+id: signature-fidelity
+family: surfaces
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two files are each other's control: identical signature, different formatting."
+comment: >-
+  The TypeScript pair. There is no receiver segment - a method takes no
+  explicit `self` - so a producer that emits one here and not in Rust has
+  made the signature language-dependent in a field consumers compare across
+  languages.

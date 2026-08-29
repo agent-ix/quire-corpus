@@ -1,0 +1,14 @@
+org: agent-ix
+repo: body-py
+edges:
+- source: "agent-ix/body-py/src/lib.py"
+  type: contains
+  target: "agent-ix/body-py/src/lib.py::outer"
+  reason: syntactic
+- source: "agent-ix/body-py/src/lib.py"
+  type: contains
+  target: "agent-ix/body-py/src/lib.py::after"
+  reason: syntactic
+diagnostics:
+  min: 1
+  codes: [parse_error]

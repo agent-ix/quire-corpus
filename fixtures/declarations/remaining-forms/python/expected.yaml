@@ -1,0 +1,13 @@
+org: agent-ix
+repo: more-py
+nodes:
+- {object_type: code_file,     name: "agent-ix/more-py/src/store.py"}
+- {object_type: code_type,     name: "agent-ix/more-py/src/store.py::Outer"}
+- {object_type: code_type,     name: "agent-ix/more-py/src/store.py::Outer::Inner"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::Outer::Inner::deep"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::Outer::static_helper"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::Outer::class_helper"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::fetch"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::decorated"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::host"}
+- {object_type: code_function, name: "agent-ix/more-py/src/store.py::host::nested"}

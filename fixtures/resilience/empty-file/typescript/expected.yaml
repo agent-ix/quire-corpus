@@ -1,0 +1,6 @@
+org: agent-ix
+repo: empty-ty
+nodes:
+- {object_type: code_file, name: "agent-ix/empty-ty/src/empty.ts"}
+diagnostics:
+  max: 0

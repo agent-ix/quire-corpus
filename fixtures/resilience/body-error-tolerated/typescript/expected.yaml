@@ -1,0 +1,14 @@
+org: agent-ix
+repo: body-ty
+edges:
+- source: "agent-ix/body-ty/src/lib.ts"
+  type: contains
+  target: "agent-ix/body-ty/src/lib.ts::outer"
+  reason: syntactic
+- source: "agent-ix/body-ty/src/lib.ts"
+  type: contains
+  target: "agent-ix/body-ty/src/lib.ts::after"
+  reason: syntactic
+diagnostics:
+  min: 1
+  codes: [parse_error]

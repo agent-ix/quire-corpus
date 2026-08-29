@@ -1,0 +1,11 @@
+org: agent-ix
+repo: heritage-ts
+edges:
+- source: "agent-ix/heritage-ts/src/index.ts::Store"
+  type: implements_trait
+  target: "agent-ix/heritage-ts/src/index.ts::Persist"
+  reason: syntactic
+- source: "agent-ix/heritage-ts/src/index.ts::Store"
+  type: extends
+  target: "agent-ix/heritage-ts/src/index.ts::Base"
+  reason: syntactic

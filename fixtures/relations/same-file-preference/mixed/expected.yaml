@@ -1,0 +1,20 @@
+org: agent-ix
+repo: samefile-mixed
+edges:
+- source: "agent-ix/samefile-mixed/src/local.rs::local_driver"
+  type: calls
+  target: "agent-ix/samefile-mixed/src/local.rs::Store::flush"
+  reason: receiver-typed
+- source: "agent-ix/samefile-mixed/src/outsider.rs::outside_driver"
+  type: calls
+  target: "agent-ix/samefile-mixed/src/outsider.rs::Store::flush"
+  reason: receiver-typed
+# Crossing is the failure this case exists for: a batch-first resolver picks
+# one declaration for both call sites and is wrong about one of them.
+forbidden_edges:
+- source: "agent-ix/samefile-mixed/src/local.rs::local_driver"
+  type: calls
+  target: "agent-ix/samefile-mixed/src/outsider.rs::Store::flush"
+- source: "agent-ix/samefile-mixed/src/outsider.rs::outside_driver"
+  type: calls
+  target: "agent-ix/samefile-mixed/src/local.rs::Store::flush"

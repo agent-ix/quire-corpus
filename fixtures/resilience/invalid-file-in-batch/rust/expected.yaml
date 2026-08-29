@@ -1,0 +1,10 @@
+org: agent-ix
+repo: res-ru
+nodes:
+- {object_type: code_file,     name: "agent-ix/res-ru/src/broken.rs"}
+- {object_type: code_file,     name: "agent-ix/res-ru/src/healthy.rs"}
+- {object_type: code_function, name: "agent-ix/res-ru/src/healthy.rs::healthy"}
+diagnostics:
+  min: 1
+  codes: [parse_error]
+  paths: ["src/broken.rs"]

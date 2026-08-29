@@ -1,0 +1,12 @@
+org: agent-ix
+repo: more-ts
+nodes:
+- {object_type: code_file,     name: "agent-ix/more-ts/src/index.ts"}
+- {object_type: code_type,     name: "agent-ix/more-ts/src/index.ts::Base"}
+- {object_type: code_function, name: "agent-ix/more-ts/src/index.ts::Base::run"}
+- {object_type: code_type,     name: "agent-ix/more-ts/src/index.ts::Mode"}
+- {object_type: code_function, name: "agent-ix/more-ts/src/index.ts::generate"}
+- {object_type: code_function, name: "agent-ix/more-ts/src/index.ts::fetchIt"}
+- {object_type: code_module,   name: "agent-ix/more-ts/src/index.ts::outer"}
+- {object_type: code_module,   name: "agent-ix/more-ts/src/index.ts::outer::inner"}
+- {object_type: code_function, name: "agent-ix/more-ts/src/index.ts::outer::inner::deep"}

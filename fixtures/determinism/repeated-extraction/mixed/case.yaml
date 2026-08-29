@@ -1,0 +1,12 @@
+id: repeated-extraction
+family: determinism
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "A second run of the same input is the control by construction: the case is a comparison, not an expectation."
+comment: >-
+  The same tree, extracted twice, must serialize to the same bytes. Nothing
+  else in this corpus can catch a hash-ordered collection, a timestamp, or
+  an absolute path in the payload: every other case compares against a set,
+  and a set does not care what order it arrived in. This one compares a run
+  against itself.

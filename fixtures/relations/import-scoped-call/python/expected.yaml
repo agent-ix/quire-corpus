@@ -1,0 +1,11 @@
+org: agent-ix
+repo: imp-scope-py
+edges:
+- source: "agent-ix/imp-scope-py/src/driver.py::drive"
+  type: calls
+  target: "agent-ix/imp-scope-py/src/store.py::Store::upsert"
+  reason: import-scoped
+forbidden_edges:
+- source: "agent-ix/imp-scope-py/src/driver.py::drive"
+  type: calls
+  target: "agent-ix/imp-scope-py/src/cache.py::Cache::upsert"

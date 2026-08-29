@@ -1,0 +1,11 @@
+id: ix-reference
+family: links
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The bare id nested inside the reference is the control: the trap is in the same string as the positive."
+comment: >-
+  A fully qualified reference. The identifier `FR-003` is inside it, so a
+  harvester that scans for bare ids as well reports two mentions of one
+  thing - and a consumer counting citations then double-counts every
+  qualified reference in the corpus.

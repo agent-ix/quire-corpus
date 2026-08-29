@@ -1,0 +1,7 @@
+org: agent-ix
+repo: nm-ts
+edges:
+- source: "agent-ix/nm-ts/src/driver.ts::drive"
+  type: calls
+  target: "agent-ix/nm-ts/src/store.ts::Store::upsert"
+  reason: name-match

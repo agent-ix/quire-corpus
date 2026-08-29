@@ -1,0 +1,14 @@
+org: agent-ix
+repo: body-ru
+edges:
+- source: "agent-ix/body-ru/src/lib.rs"
+  type: contains
+  target: "agent-ix/body-ru/src/lib.rs::outer"
+  reason: syntactic
+- source: "agent-ix/body-ru/src/lib.rs"
+  type: contains
+  target: "agent-ix/body-ru/src/lib.rs::after"
+  reason: syntactic
+diagnostics:
+  min: 1
+  codes: [parse_error]

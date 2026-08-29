@@ -1,0 +1,13 @@
+id: import-scoped-call
+family: relations
+language: python
+kind: positive
+control_for_pair: import-scoped-ambiguous
+issue_ref: agent-ix/quire-corpus#1
+comment: >-
+  The middle resolution tier, and the one nothing measured until now. Two
+  types in the batch declare `upsert` and the receiver's type does not
+  resolve, so the batch alone is ambiguous — but the calling file imports
+  exactly one of them. FR-008 says that narrows to `import-scoped`, and
+  the control next door is the same tree with the import widened, where
+  the correct output is nothing.

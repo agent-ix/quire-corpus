@@ -1,0 +1,7 @@
+org: agent-ix
+repo: ext-rust
+edges:
+- source: "agent-ix/ext-rust/src/driver.rs"
+  type: imports
+  target: "agent-ix/ext-rust/src/store.rs"
+  reason: path-resolved

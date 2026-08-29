@@ -1,0 +1,12 @@
+id: signature-fidelity
+family: surfaces
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two files are each other's control - same signature, different formatting - which is a stronger pairing than two trees because the expected value is literally the same string."
+comment: >-
+  The same signature written two ways: on one line, and split across lines
+  with a comment inside the parameter list. They must render identically,
+  because a signature that changes when somebody runs a formatter turns
+  every reformat into an export-surface change and every dependent into a
+  false positive for re-resolution.

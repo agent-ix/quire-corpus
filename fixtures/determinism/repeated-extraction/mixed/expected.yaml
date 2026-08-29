@@ -1,0 +1,11 @@
+org: agent-ix
+repo: det-mixed
+# The scorer runs the producer twice and compares the payloads byte for byte.
+deterministic: true
+# Environmental values that must never appear in a record. A timestamp or an
+# absolute path is not a wrong edge - it is output that cannot be compared
+# between two machines, which is worse, because it fails silently as drift.
+forbidden_payload_substrings:
+- "/Users/"
+- "/home/"
+- "/tmp/"

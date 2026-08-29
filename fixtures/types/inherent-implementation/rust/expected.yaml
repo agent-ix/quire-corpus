@@ -1,0 +1,4 @@
+org: agent-ix
+repo: inherent-rust
+edges: []
+forbidden_edge_types: [implements_trait]

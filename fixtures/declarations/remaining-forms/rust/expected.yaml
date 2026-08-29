@@ -1,0 +1,23 @@
+org: agent-ix
+repo: more-rust
+nodes:
+- {object_type: code_file,     name: "agent-ix/more-rust/src/lib.rs"}
+- {object_type: code_type,     name: "agent-ix/more-rust/src/lib.rs::Bits"}
+- {object_type: code_function, name: "agent-ix/more-rust/src/lib.rs::fetch"}
+- {object_type: code_module,   name: "agent-ix/more-rust/src/lib.rs::outer"}
+- {object_type: code_module,   name: "agent-ix/more-rust/src/lib.rs::outer::inner"}
+- {object_type: code_function, name: "agent-ix/more-rust/src/lib.rs::outer::inner::deep"}
+- {object_type: code_function, name: "agent-ix/more-rust/src/lib.rs::host"}
+- {object_type: code_function, name: "agent-ix/more-rust/src/lib.rs::host::nested"}
+# Every `contains` edge, not only the nested ones. `edges` is an
+# expected-present set scoped to the types it names, so naming `contains` at
+# all makes the case answerable for all of them - and a case that lists half
+# of a containment tree scores the other half as invented.
+edges:
+- {source: "agent-ix/more-rust/src/lib.rs", type: contains, target: "agent-ix/more-rust/src/lib.rs::Bits", reason: syntactic}
+- {source: "agent-ix/more-rust/src/lib.rs", type: contains, target: "agent-ix/more-rust/src/lib.rs::fetch", reason: syntactic}
+- {source: "agent-ix/more-rust/src/lib.rs", type: contains, target: "agent-ix/more-rust/src/lib.rs::outer", reason: syntactic}
+- {source: "agent-ix/more-rust/src/lib.rs", type: contains, target: "agent-ix/more-rust/src/lib.rs::host", reason: syntactic}
+- {source: "agent-ix/more-rust/src/lib.rs::outer", type: contains, target: "agent-ix/more-rust/src/lib.rs::outer::inner", reason: syntactic}
+- {source: "agent-ix/more-rust/src/lib.rs::outer::inner", type: contains, target: "agent-ix/more-rust/src/lib.rs::outer::inner::deep", reason: syntactic}
+- {source: "agent-ix/more-rust/src/lib.rs::host", type: contains, target: "agent-ix/more-rust/src/lib.rs::host::nested", reason: syntactic}

@@ -1,0 +1,10 @@
+org: agent-ix
+repo: res-py
+nodes:
+- {object_type: code_file,     name: "agent-ix/res-py/src/broken.py"}
+- {object_type: code_file,     name: "agent-ix/res-py/src/healthy.py"}
+- {object_type: code_function, name: "agent-ix/res-py/src/healthy.py::healthy"}
+diagnostics:
+  min: 1
+  codes: [parse_error]
+  paths: ["src/broken.py"]

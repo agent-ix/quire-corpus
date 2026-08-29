@@ -1,0 +1,11 @@
+id: remaining-forms
+family: declarations
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "Exhaustive over the fixture, so an over-emitting producer fails here without a second tree."
+comment: >-
+  The TypeScript forms the first pass never reached: an abstract class, an
+  enum, a generator, an async function, and a namespace nested two deep.
+  Four of the twelve entries in the language table had no fixture at all
+  before this case.

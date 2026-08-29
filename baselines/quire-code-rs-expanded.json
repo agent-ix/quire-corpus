@@ -1,0 +1,2246 @@
+{
+ "case_digests": {
+  "ambiguity/same-name-two-files/mixed": "9052c604416fa9537085e4243f75616c8bdbc4293aa28e6734d7d4b701c90d54",
+  "declarations/declaration-forms/python": "82cd8089bec5ce63055b11fbd19cb0423ade8e4dce262a61dc846a876528b028",
+  "declarations/declaration-forms/rust": "bdae95d3083211dd8d429ab13a519d207eae9cf56bb42379ae559ee520110385",
+  "declarations/declaration-forms/typescript": "8c0470f8af10e797cfcded075acd862535a9e7605aa0e30c2d683dae8ecf06f2",
+  "declarations/remaining-forms/python": "d11a9acad88fff0903e1483ec2168d207b33ab98e17fb4676b4fa66c928ff124",
+  "declarations/remaining-forms/rust": "1b7ef7f8f88108a99d6aef9e7cb12f287721d97888a5f93a517b53724b65ef97",
+  "declarations/remaining-forms/typescript": "c2870238b580977001b02a724c4b1652f30a754ee92545e274287a7264880c75",
+  "determinism/repeated-extraction/mixed": "a3ecd167be96df7613e538d501e99b98838c247c5207b2bfc6e50b83f21d0053",
+  "identity/nested-path-identity/mixed": "50e907b77f976841fd1fb907535c481502acaa6cc999184386287e0c04cdcb1b",
+  "impact/impact-closure/mixed": "680b927ea7b0a35121747edc21ce200e56cc1952c39530226d458c18b73a1249",
+  "imports/broken-relative-specifier/python": "c064c9c0f255bcbeaeefc8ed6d97907394109fc4a70ae6ca9106119b15d95690",
+  "imports/broken-relative-specifier/rust": "dfe9f45322ac82b577a4190f3d55f0f424aa53f46e04182bd09c150be02396d7",
+  "imports/broken-relative-specifier/typescript": "79c10ea7598aca5ab2ebf78a1d51e1b59b772ddfdb8c92259ce9c045c3968770",
+  "imports/extensionless-specifier/python": "690adb6041731bef9fbb373b9bbf011f115c16c7756bd85bd1fbd0ad8f9f6be5",
+  "imports/extensionless-specifier/rust": "93d9103526f8f5e42c00790f27760c329826869062e25cec1b2034a01576ab44",
+  "imports/extensionless-specifier/typescript": "76a8a0f05317b969bce5d930a687e407e9e1d220d04cce5229d72ed06176ca97",
+  "imports/index-stem-specifier/python": "fee99686f8a7255daa76cf79a7de4097574507c7a785dcf013f0ceb8632faf7c",
+  "imports/index-stem-specifier/rust": "2855095c171ea46e01b14c90fd986a47b73cfd523c3fcf36804bb5ac12e46635",
+  "imports/index-stem-specifier/typescript": "10f4d84c72f32875607a71e152229f8f3c805c7adc6488f23d24468e67e4a8f0",
+  "links/ix-reference/mixed": "4a6b0b129e6a2669f152f7d3551b234a00a8086fa3dca6efd7075931d70a672c",
+  "links/spec-code-test-links/mixed": "7d34bb4cf245f6b6191c1169ad409728b258da7c4652ce9ed10005cb51643dcc",
+  "links/string-literal-lookalike/mixed": "d63b4c05f15a4895a04e52d6ba092a93d104026d37a03f6795f88fcb2f993f85",
+  "links/tag-outside-test/mixed": "32acdab245d12efd263f0aa29440cfa863b501b0784fa99eed084ed1d107b0f0",
+  "paths/call-chain-path/mixed": "d877bc79926f46659ae9efe3b264547f09748e15357405e4ebefec53333ad90d",
+  "relations/bare-import/python": "39a8bb5ed2eb25a5963512ff1ae07b27219c7ddc5bb2f9558b5e56241177d50e",
+  "relations/bare-import/rust": "dfb8328b17a8a39fd2709a6799b9abc0c5d5b3c7b4f591936397e0acfd6491e6",
+  "relations/bare-import/typescript": "39dac23f71df0687bf248f3eb8a8ca3f18f6ad51a60fd0e400a29058ef2f2cfa",
+  "relations/import-scoped-ambiguous/python": "4bb7b5514116e25b6c4c4c423e89199985836b4f8f8f6546a27662df3dae6510",
+  "relations/import-scoped-ambiguous/rust": "2a4b6695df9a779c48c8f7249dc53a9372b80bddd4882d8e20fb4d4ecd4f2cef",
+  "relations/import-scoped-ambiguous/typescript": "83a6b6d210f358d7e2bd3cf1db60137b95ccb987204be9ac16723c1d2cdcfd03",
+  "relations/import-scoped-call/python": "bd13b1d087ea7c6038510ff287bc1db5b1c35cfa2f80f2e6c9473c2cd9197728",
+  "relations/import-scoped-call/rust": "745e94a4c664f151ecb8f5a4e60e4cb94cac581a0e437e4dcefad3d01db2d85d",
+  "relations/import-scoped-call/typescript": "c0c3f5d4cb9fa151fd5f19ad2e588c994d8aaea72a0771798c1513f4af0a932e",
+  "relations/name-match-ambiguous/python": "147a1c09f1fecbc6c30a5bae58141855bd1bbad8a7a9d64f745a8a4d101ee0e9",
+  "relations/name-match-ambiguous/rust": "41f86b4843f7f3ad0a27ee9545464c6ad945382cf071e640ea7651b93b98ee29",
+  "relations/name-match-ambiguous/typescript": "e299f9c038206f032c1bbb3a15e07fa561ed648272f6c70b58d71bafc885392c",
+  "relations/name-match-call/python": "696ed4497d295267b38b9352bad18a3c8c5b49b30872aa689dc8e0c33a0ef174",
+  "relations/name-match-call/rust": "287bf07bd537ce7765391a0d8272bd2969986cc18114ac02784d21fb457aeb76",
+  "relations/name-match-call/typescript": "044c76d7ab26afbc2c214c7bbd1f36269774ddf894161e3857961ac80ae9ca5b",
+  "relations/receiver-typed-call-ambiguous/python": "c8724be308747798370d20ef02db24229009de5b2ff4fd888a27fa9ca51ac126",
+  "relations/receiver-typed-call-ambiguous/rust": "ef707e5615e0827ab32b9b9aa00cfd5b5e3d475e6a986386c30a62a859370df7",
+  "relations/receiver-typed-call-ambiguous/typescript": "46c33c68bbf14ea43a51f4712c2ef3179981af8f6fd08da63794bf7fff580211",
+  "relations/receiver-typed-call/python": "cc9c0dd19ad84d161ebf8a4e624d3e1aa0ac315f6a4aea3d79fdd0baffb2c0b2",
+  "relations/receiver-typed-call/rust": "6cc0c02c552ce75a09017011d785224ed37ceb0a04ca09bb0292e70cf5aff11b",
+  "relations/receiver-typed-call/typescript": "9f89a95eba73d70608aecf6550ae1af2982853f646b78def5ac5fdf730b4f163",
+  "relations/same-file-preference/mixed": "68bd07992de80da0c25a46a5f71bf3383e3ee6f82b4cd146b7198f8f322ceb14",
+  "resilience/arbitrary-bytes/python": "d3d4c369228c2a36b80df347f237cf62a924e6c3f1c7ba8aa2be422a1c8f85d4",
+  "resilience/arbitrary-bytes/rust": "ca6425ab9233fde29d6070fe8de4617d09d093e58af8d7e946d90da30aaba638",
+  "resilience/arbitrary-bytes/typescript": "bc0a9da2840cec0c2cace8ff380becb64ae9ab420d02e1d524f5bcb37d25f159",
+  "resilience/body-error-tolerated/python": "474eb971ba3136596a10ae3bc3088cf9f98ef961dff81b2e89a30d5cf33f8e6b",
+  "resilience/body-error-tolerated/rust": "4fead640574cc71132ef6c6739b2f584d6bbd5f76c42e5892713cd137f0b974b",
+  "resilience/body-error-tolerated/typescript": "6ff65f368507825b213871e79273101b74aaea0ce078c8520eaf4bde3409a69a",
+  "resilience/empty-file/python": "4800407e532e1d98c340d24322b70749dcd99bfa6a21912beb12041fb4411d93",
+  "resilience/empty-file/rust": "f9980d669c174c8540972843eced9f14f5d57e6c0ab51dbd3cd9915ce4dbdd97",
+  "resilience/empty-file/typescript": "b778229e4a616c2e290f7dbc0850f344633c66629446e12c1a2facb6f5bdaf8e",
+  "resilience/invalid-file-in-batch/python": "fc4771d2bced2b59fd343548cdf8c0cac2a9b2ded859ba18673f5901b1c54eae",
+  "resilience/invalid-file-in-batch/rust": "56b0cfa38058a796cf0bd4411176bc00c3fd0342e75b31ee17695c54ca7ce0b5",
+  "resilience/invalid-file-in-batch/typescript": "cc53659d0cb2c45dedaba8679d693d166054bbdd383cf1fe2fa25ed6d96651e4",
+  "surfaces/export-surface/python": "f7afc514252797652397a20693600eb5468a249851a13d1dcdcc4a9032586c43",
+  "surfaces/export-surface/rust": "f0f239ff486cee9183b332fed485064b8a2a7e1a0b6d8cc9336b2d7015a7f9b0",
+  "surfaces/export-surface/typescript": "c78878201cd24cf557d3116a479021782c7cc331e52ecb82419cc0e69cf7b329",
+  "surfaces/private-lookalike/rust": "a986d90c014b3761868c97f913f34a89de2bc0905f612a3e0d139ec5338cf4b1",
+  "surfaces/rust-visibility-forms/rust": "0d796d1f88a19ce05e1ee60578e7b7ad0e17339ba0d2599a1cc12b324746af28",
+  "surfaces/signature-fidelity/python": "a092fbc623eeab48c2faa045657ed2162e9fda372882bd786886e1175195458b",
+  "surfaces/signature-fidelity/rust": "030eec93f7953354db7e90aa76df224bfee1e3d15fbe81b1da44762d663b5167",
+  "surfaces/signature-fidelity/typescript": "ed98a7600ab1b3974fc47e8b7f5d8e385002644ac0627d99ee8abbf6faff9778",
+  "test-selection/affected-tests/mixed": "49e26a774e8d4bc9eff49b2eec59d8cfbe8108578db6d3558c2eced9f140bab7",
+  "types/implements-and-extends/typescript": "02dda156e95392cf7a5628242f42b65ebe05ca2340ca700c95f7382f5f16caf0",
+  "types/inherent-implementation/rust": "996040e4239db2b1f8ce768748407b488177ed6897705f0a7b7556d0baf0034b",
+  "types/multiple-inheritance/python": "9983c8f0e3108d4919f1a59b5155142408c7c82fa083addcc585be6e09edf8eb",
+  "types/trait-implementation/rust": "b9354772cddcf789b545d9871acd44aba019b2cbb12a513123ea34025ac2ac96",
+  "types/trait-object-call/rust": "39ed43ca1a4c0c257128e2644d405de3ecb7d3260cfd4829b065877bcecb04e2"
+ },
+ "cases": {
+  "ambiguity/same-name-two-files/mixed": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 5
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 9,
+    "nodes_expected": 0,
+    "nodes_produced": 10
+   },
+   "tier_disagreements": [
+    {
+     "edge": [
+      "agent-ix/amb-mixed/src/alpha.rs::alpha_driver",
+      "calls",
+      "agent-ix/amb-mixed/src/alpha.rs::Handler::handle"
+     ],
+     "expected": "receiver-typed",
+     "reported": "import-scoped"
+    },
+    {
+     "edge": [
+      "agent-ix/amb-mixed/src/beta.rs::beta_driver",
+      "calls",
+      "agent-ix/amb-mixed/src/beta.rs::Handler::handle"
+     ],
+     "expected": "receiver-typed",
+     "reported": "import-scoped"
+    }
+   ]
+  },
+  "declarations/declaration-forms/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 4
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 6,
+    "edges_produced": 6,
+    "nodes_expected": 7,
+    "nodes_produced": 7
+   },
+   "tier_disagreements": []
+  },
+  "declarations/declaration-forms/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 4
+    },
+    "code_module": {
+     "module": 1
+    },
+    "code_type": {
+     "enum": 1,
+     "struct": 1,
+     "trait": 1,
+     "type_alias": 1
+    }
+   },
+   "population": {
+    "edges_expected": 9,
+    "edges_produced": 9,
+    "nodes_expected": 10,
+    "nodes_produced": 10
+   },
+   "tier_disagreements": []
+  },
+  "declarations/declaration-forms/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 3,
+     "method": 2
+    },
+    "code_module": {
+     "namespace": 1
+    },
+    "code_type": {
+     "class": 1,
+     "interface": 1,
+     "type_alias": 1
+    }
+   },
+   "population": {
+    "edges_expected": 9,
+    "edges_produced": 9,
+    "nodes_expected": 10,
+    "nodes_produced": 10
+   },
+   "tier_disagreements": []
+  },
+  "declarations/remaining-forms/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 7
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 9,
+    "nodes_expected": 10,
+    "nodes_produced": 10
+   },
+   "tier_disagreements": []
+  },
+  "declarations/remaining-forms/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 4
+    },
+    "code_module": {
+     "module": 2
+    },
+    "code_type": {
+     "union": 1
+    }
+   },
+   "population": {
+    "edges_expected": 7,
+    "edges_produced": 7,
+    "nodes_expected": 8,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "declarations/remaining-forms/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2,
+     "generator_function": 1,
+     "method": 1
+    },
+    "code_module": {
+     "namespace": 2
+    },
+    "code_type": {
+     "class": 1,
+     "enum": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 8,
+    "nodes_expected": 9,
+    "nodes_produced": 9
+   },
+   "tier_disagreements": []
+  },
+  "determinism/repeated-extraction/mixed": {
+   "census": {},
+   "derived": {},
+   "deterministic": true,
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 5
+    },
+    "code_function": {
+     "function": 3,
+     "method": 2
+    },
+    "code_type": {
+     "class": 3,
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 11,
+    "nodes_expected": 0,
+    "nodes_produced": 14
+   },
+   "tier_disagreements": []
+  },
+  "identity/nested-path-identity/mixed": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 1
+    },
+    "code_type": {
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 2,
+    "nodes_expected": 3,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "impact/impact-closure/mixed": {
+   "census": {},
+   "derived": {
+    "impact": {
+     "state": "not-computed",
+     "why": "the producer emits no such answer; an extractor is not a traversal engine, and a zero here would be a measurement nobody took"
+    }
+   },
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 6
+    },
+    "code_function": {
+     "function": 7
+    },
+    "code_type": {
+     "struct": 3
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 17,
+    "nodes_expected": 0,
+    "nodes_produced": 16
+   },
+   "tier_disagreements": []
+  },
+  "imports/broken-relative-specifier/python": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "unresolved_import"
+      ],
+      "min": 1
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 0,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "imports/broken-relative-specifier/rust": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "unresolved_import"
+      ],
+      "min": 1
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 1,
+    "nodes_expected": 0,
+    "nodes_produced": 2
+   },
+   "tier_disagreements": []
+  },
+  "imports/broken-relative-specifier/typescript": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "unresolved_import"
+      ],
+      "min": 1
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 0,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "imports/extensionless-specifier/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "imports/extensionless-specifier/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1
+    },
+    "code_type": {
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 3,
+    "nodes_expected": 0,
+    "nodes_produced": 4
+   },
+   "tier_disagreements": []
+  },
+  "imports/extensionless-specifier/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "imports/index-stem-specifier/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "imports/index-stem-specifier/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1
+    },
+    "code_type": {
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 3,
+    "nodes_expected": 0,
+    "nodes_produced": 4
+   },
+   "tier_disagreements": []
+  },
+  "imports/index-stem-specifier/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "links/ix-reference/mixed": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 2
+   },
+   "tier_disagreements": []
+  },
+  "links/spec-code-test-links/mixed": {
+   "census": {},
+   "derived": {
+    "derived_links": {
+     "state": "not-computed",
+     "why": "the producer emits no such answer; an extractor is not a traversal engine, and a zero here would be a measurement nobody took"
+    }
+   },
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 4
+    },
+    "code_function": {
+     "function": 2,
+     "method": 1
+    },
+    "code_type": {
+     "class": 1,
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 6,
+    "edges_produced": 13,
+    "nodes_expected": 0,
+    "nodes_produced": 9
+   },
+   "tier_disagreements": []
+  },
+  "links/string-literal-lookalike/mixed": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 4
+   },
+   "tier_disagreements": []
+  },
+  "links/tag-outside-test/mixed": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "paths/call-chain-path/mixed": {
+   "census": {},
+   "derived": {
+    "paths": {
+     "state": "not-computed",
+     "why": "the producer emits no such answer; an extractor is not a traversal engine, and a zero here would be a measurement nobody took"
+    }
+   },
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 6
+    },
+    "code_function": {
+     "function": 7
+    },
+    "code_type": {
+     "struct": 3
+    }
+   },
+   "population": {
+    "edges_expected": 3,
+    "edges_produced": 17,
+    "nodes_expected": 0,
+    "nodes_produced": 16
+   },
+   "tier_disagreements": [
+    {
+     "edge": [
+      "agent-ix/traversal-mixed/src/decoy.rs::decoy_entry",
+      "calls",
+      "agent-ix/traversal-mixed/src/decoy.rs::Decoy::compute"
+     ],
+     "expected": "receiver-typed",
+     "reported": "import-scoped"
+    },
+    {
+     "edge": [
+      "agent-ix/traversal-mixed/src/entry.rs::entry",
+      "calls",
+      "agent-ix/traversal-mixed/src/mid.rs::Mid::step"
+     ],
+     "expected": "receiver-typed",
+     "reported": "import-scoped"
+    },
+    {
+     "edge": [
+      "agent-ix/traversal-mixed/src/mid.rs::Mid::step",
+      "calls",
+      "agent-ix/traversal-mixed/src/leaf.rs::Leaf::compute"
+     ],
+     "expected": "receiver-typed",
+     "reported": "import-scoped"
+    }
+   ]
+  },
+  "relations/bare-import/python": {
+   "census": {
+    "diagnostics": {
+     "expected": 0,
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 1,
+    "nodes_expected": 0,
+    "nodes_produced": 2
+   },
+   "tier_disagreements": []
+  },
+  "relations/bare-import/rust": {
+   "census": {
+    "diagnostics": {
+     "expected": 0,
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 1,
+    "nodes_expected": 0,
+    "nodes_produced": 2
+   },
+   "tier_disagreements": []
+  },
+  "relations/bare-import/typescript": {
+   "census": {
+    "diagnostics": {
+     "expected": 0,
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 0,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "relations/import-scoped-ambiguous/python": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/import-scoped-ambiguous/rust": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 2,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/import-scoped-ambiguous/typescript": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 1,
+     "method": 2
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/import-scoped-call/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/import-scoped-call/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/import-scoped-call/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 1,
+     "method": 2
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/name-match-ambiguous/python": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/name-match-ambiguous/rust": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 2,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/name-match-ambiguous/typescript": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 1,
+     "method": 2
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/name-match-call/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "relations/name-match-call/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "relations/name-match-call/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1,
+     "method": 1
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "relations/receiver-typed-call-ambiguous/python": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/receiver-typed-call-ambiguous/rust": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 4
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 6,
+    "nodes_expected": 0,
+    "nodes_produced": 9
+   },
+   "tier_disagreements": []
+  },
+  "relations/receiver-typed-call-ambiguous/typescript": {
+   "census": {
+    "ambiguous_call_sites": {
+     "expected": 1,
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 3
+    },
+    "code_function": {
+     "function": 1,
+     "method": 2
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "relations/receiver-typed-call/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": [
+    {
+     "edge": [
+      "agent-ix/rel-py/src/driver.py::drive",
+      "calls",
+      "agent-ix/rel-py/src/store.py::Store::upsert"
+     ],
+     "expected": "receiver-typed",
+     "reported": "import-scoped"
+    }
+   ]
+  },
+  "relations/receiver-typed-call/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "relations/receiver-typed-call/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1,
+     "method": 1
+    },
+    "code_type": {
+     "class": 1
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "relations/same-file-preference/mixed": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 4
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 8,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "resilience/arbitrary-bytes/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 1,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "resilience/arbitrary-bytes/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 1,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "resilience/arbitrary-bytes/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 1,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "resilience/body-error-tolerated/python": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "parse_error"
+      ],
+      "min": 1
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "resilience/body-error-tolerated/rust": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "parse_error"
+      ],
+      "min": 1
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "resilience/body-error-tolerated/typescript": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "parse_error"
+      ],
+      "min": 1
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 2,
+    "nodes_expected": 0,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "resilience/empty-file/python": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "max": 0
+     },
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 1,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "resilience/empty-file/rust": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "max": 0
+     },
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 1,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "resilience/empty-file/typescript": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "max": 0
+     },
+     "reported": 0,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 0,
+    "nodes_expected": 1,
+    "nodes_produced": 1
+   },
+   "tier_disagreements": []
+  },
+  "resilience/invalid-file-in-batch/python": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "parse_error"
+      ],
+      "min": 1,
+      "paths": [
+       "src/broken.py"
+      ]
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 1,
+    "nodes_expected": 3,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "resilience/invalid-file-in-batch/rust": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "parse_error"
+      ],
+      "min": 1,
+      "paths": [
+       "src/broken.rs"
+      ]
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 1,
+    "nodes_expected": 3,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "resilience/invalid-file-in-batch/typescript": {
+   "census": {
+    "diagnostics": {
+     "expected": {
+      "codes": [
+       "parse_error"
+      ],
+      "min": 1,
+      "paths": [
+       "src/broken.ts"
+      ]
+     },
+     "reported": 1,
+     "state": "measured"
+    }
+   },
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 1,
+    "nodes_expected": 3,
+    "nodes_produced": 3
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/export-surface/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 5
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 8,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/export-surface/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 5
+    },
+    "code_type": {
+     "struct": 1,
+     "trait": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 8,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/export-surface/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "method": 6
+    },
+    "code_type": {
+     "class": 2,
+     "interface": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 10,
+    "nodes_expected": 0,
+    "nodes_produced": 10
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/private-lookalike/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "struct": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/rust-visibility-forms/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 6
+    },
+    "code_module": {
+     "module": 1
+    },
+    "code_type": {
+     "struct": 1,
+     "trait": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 10,
+    "nodes_expected": 0,
+    "nodes_produced": 10
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/signature-fidelity/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 3
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 7
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/signature-fidelity/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "struct": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 6
+   },
+   "tier_disagreements": []
+  },
+  "surfaces/signature-fidelity/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 2
+    },
+    "code_function": {
+     "method": 2
+    },
+    "code_type": {
+     "class": 2
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 6
+   },
+   "tier_disagreements": []
+  },
+  "test-selection/affected-tests/mixed": {
+   "census": {},
+   "derived": {
+    "test_selection": {
+     "state": "not-computed",
+     "why": "the producer emits no such answer; an extractor is not a traversal engine, and a zero here would be a measurement nobody took"
+    }
+   },
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 6
+    },
+    "code_function": {
+     "function": 7
+    },
+    "code_type": {
+     "struct": 3
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 17,
+    "nodes_expected": 0,
+    "nodes_produced": 16
+   },
+   "tier_disagreements": []
+  },
+  "types/implements-and-extends/typescript": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "method": 3
+    },
+    "code_type": {
+     "class": 2,
+     "interface": 1
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 8,
+    "nodes_expected": 0,
+    "nodes_produced": 7
+   },
+   "tier_disagreements": []
+  },
+  "types/inherent-implementation/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "control",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "struct": 1,
+     "trait": 1
+    }
+   },
+   "population": {
+    "edges_expected": 0,
+    "edges_produced": 4,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "types/multiple-inheritance/python": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "class": 3
+    }
+   },
+   "population": {
+    "edges_expected": 2,
+    "edges_produced": 7,
+    "nodes_expected": 0,
+    "nodes_produced": 6
+   },
+   "tier_disagreements": []
+  },
+  "types/trait-implementation/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 2
+    },
+    "code_type": {
+     "struct": 1,
+     "trait": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 5,
+    "nodes_expected": 0,
+    "nodes_produced": 5
+   },
+   "tier_disagreements": []
+  },
+  "types/trait-object-call/rust": {
+   "census": {},
+   "derived": {},
+   "findings": [],
+   "kind": "positive",
+   "kind_census": {
+    "code_file": {
+     "file": 1
+    },
+    "code_function": {
+     "function": 4
+    },
+    "code_type": {
+     "struct": 2,
+     "trait": 1
+    }
+   },
+   "population": {
+    "edges_expected": 1,
+    "edges_produced": 10,
+    "nodes_expected": 0,
+    "nodes_produced": 8
+   },
+   "tier_disagreements": []
+  }
+ },
+ "confusion": {
+  "axis_kind": {
+   "edge": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 77
+   },
+   "mention": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 3
+   },
+   "node": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 72
+   },
+   "signature": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 9
+   },
+   "visibility": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 22
+   }
+  },
+  "language": {
+   "mixed": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 19
+   },
+   "python": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 46
+   },
+   "rust": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 67
+   },
+   "typescript": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 51
+   }
+  },
+  "object_type": {
+   "code_file": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 19
+   },
+   "code_function": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 32
+   },
+   "code_module": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 6
+   },
+   "code_type": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 15
+   }
+  },
+  "relation": {
+   "calls": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 17
+   },
+   "contains": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 37
+   },
+   "extends": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 4
+   },
+   "implements_trait": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 4
+   },
+   "imports": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 9
+   },
+   "references": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 6
+   }
+  },
+  "tier": {
+   "explicit-mention": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 6
+   },
+   "import-scoped": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 9
+   },
+   "name-match": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 3
+   },
+   "path-resolved": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 9
+   },
+   "receiver-typed": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 5
+   },
+   "syntactic": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 45
+   }
+  },
+  "total": {
+   "total": {
+    "fn": 0,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "tp": 183
+   }
+  }
+ },
+ "corpus_revision": "2ee45f8f7325caf20d8a7a10b63240e3edb4a59166603b2c2dcd24c229c9b7c0",
+ "producer_invocation": "/Users/peter/dev/quire-code-rs/.gittree/corpus-fixes/target/release/examples/extract_tree --org {org} --repo {repo} {input}",
+ "provenance": {
+  "discrimination_check": {
+   "note": "Scored at the same corpus revision against the pre-fix producer (the PR #10 head, before the six defect fixes): precision 0.982, recall 0.880, 11 of 72 cases failing. A corpus that cannot separate two producers is measuring nothing, so the separation is recorded beside the number rather than assumed.",
+   "pre_fix_failing_cases": 11,
+   "pre_fix_precision": 0.981707,
+   "pre_fix_recall": 0.879781
+  },
+  "producer": "agent-ix/quire-code-rs",
+  "producer_branch": "fix/corpus-findings",
+  "producer_contract_version": 1,
+  "producer_revision": "4ee0c8c591bb6f27027bbace75f4dc649e72d6e0",
+  "recorded_for": "agent-ix/quire-corpus#1"
+ },
+ "schema_version": 1,
+ "scored_cases": 72
+}

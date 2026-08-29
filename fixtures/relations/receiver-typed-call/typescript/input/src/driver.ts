@@ -1,6 +1,5 @@
 import { Store } from './store';
 
-export function drive(): void {
-  const store: Store = new Store();
+export function drive(store: Store): void {
   store.upsert();
 }

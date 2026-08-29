@@ -1,0 +1,11 @@
+id: remaining-forms
+family: declarations
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "Exhaustive over the fixture, so a producer minting a node the file does not declare fails here without a second tree."
+comment: >-
+  The Rust forms the first pass never reached: a union, an async fn, a
+  module nested two deep, and a function declared inside another function.
+  Each is a declaration form the language table names and no fixture
+  exercised, which is the difference between a table entry and a tested one.

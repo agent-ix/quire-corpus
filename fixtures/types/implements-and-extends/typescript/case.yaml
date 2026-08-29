@@ -1,0 +1,11 @@
+id: implements-and-extends
+family: types
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The case is its own control: two relations of different types on one declaration, so collapsing them fails the assertion without a second tree."
+comment: >-
+  One declaration carrying both relations at once. They are different edges
+  and a producer that reads the heritage clause as one list emits two edges
+  of the same type - which makes an interface and a base class
+  indistinguishable to everything downstream.

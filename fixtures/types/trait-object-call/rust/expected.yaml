@@ -1,0 +1,14 @@
+org: agent-ix
+repo: dyn-rust
+edges:
+- source: "agent-ix/dyn-rust/src/lib.rs::run"
+  type: calls
+  target: "agent-ix/dyn-rust/src/lib.rs::Persist::flush"
+  reason: receiver-typed
+forbidden_edges:
+- source: "agent-ix/dyn-rust/src/lib.rs::run"
+  type: calls
+  target: "agent-ix/dyn-rust/src/lib.rs::Disk::flush"
+- source: "agent-ix/dyn-rust/src/lib.rs::run"
+  type: calls
+  target: "agent-ix/dyn-rust/src/lib.rs::Memory::flush"

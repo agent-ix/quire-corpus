@@ -1,0 +1,6 @@
+org: agent-ix
+repo: sig-py
+# FR-009-AC-5 for the annotated form, FR-009-AC-7 for the unannotated one.
+signatures:
+  "agent-ix/sig-py/src/annotated.py::Store::compute": "(self, int, str) -> int"
+  "agent-ix/sig-py/src/unannotated.py::Store::compute": "(self, id, name)"

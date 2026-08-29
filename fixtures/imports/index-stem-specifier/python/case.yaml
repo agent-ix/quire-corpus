@@ -1,0 +1,12 @@
+id: index-stem-specifier
+family: imports
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: broken-relative-specifier
+comment: >-
+  A directory import that resolves through the language's index stem —
+  `index.ts`, `mod.rs`, `__init__.py`. The specifier names the directory and
+  the file it resolves to is not named in the source at all, so a resolver
+  that matches on the literal path finds nothing and reports no diagnostic
+  either.

@@ -1,0 +1,12 @@
+id: nested-path-identity
+family: identity
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The file-level node in the same expectation is the control: if path and symbol separators were confused, the file name would carry a `::` and the assertion fails."
+comment: >-
+  A declaration three directories down. Its identity carries the repository
+  path with forward slashes and the `::` separator only between symbol
+  segments, so a consumer can split the two apart. A producer that emits the
+  host's separator makes every name on Windows a different node from the
+  same name on Linux, and the graph silently forks by operating system.

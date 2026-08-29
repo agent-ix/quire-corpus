@@ -75,7 +75,9 @@ class Tally:
         return dict(out)
 
 
-def run_producer(template: str, case_dir: pathlib.Path, expected: dict) -> dict:
+def run_producer(
+    template: str, case_dir: pathlib.Path, expected: dict
+) -> tuple[dict, str]:
     command = template.format(
         org=expected["org"],
         repo=expected["repo"],
@@ -90,14 +92,16 @@ def run_producer(template: str, case_dir: pathlib.Path, expected: dict) -> dict:
             f"{proc.stderr.strip()[:400]}"
         )
     try:
-        return json.loads(proc.stdout)
+        return json.loads(proc.stdout), proc.stdout
     except json.JSONDecodeError as exc:
         raise CorpusError(
             f"producer output on {case_dir.name} is not JSON: {exc}"
         ) from exc
 
 
-def score_case(meta: dict, expected: dict, produced: dict, tally: Tally) -> dict:
+def score_case(
+    meta: dict, expected: dict, produced: dict, tally: Tally, raw: str = ""
+) -> dict:
     language = meta["language"]
     findings: list[str] = []
     tier_disagreements: list[dict] = []
@@ -212,6 +216,38 @@ def score_case(meta: dict, expected: dict, produced: dict, tally: Tally) -> dict
                 f"{name} signature {got_signature!r}, expected {want_signature!r}"
             )
 
+    # ── mentions ─────────────────────────────────────────────────────────
+    #
+    # Graded separately from edges because the *kind* is the claim: the same
+    # identifier on a test and on production code means "this discharges it" in
+    # one place and "this refers to it" in the other, and a producer that types
+    # both the same way lets any file claim coverage by writing a comment.
+    produced_mentions = produced.get("mentions") or []
+    if "mentions" in expected:
+        want_mentions = {
+            (m["identifier"], m["kind"], m["source"]) for m in expected["mentions"]
+        }
+        got_mentions = {
+            (m.get("identifier"), m.get("kind"), m.get("source"))
+            for m in produced_mentions
+        }
+        for missing in sorted(want_mentions - got_mentions):
+            tally.add("fn", language=language, axis_kind="mention")
+            findings.append(
+                f"missing mention {missing[0]} as {missing[1]} on {missing[2]}"
+            )
+        for present in sorted(want_mentions & got_mentions):
+            tally.add("tp", language=language, axis_kind="mention")
+        # A mention the case does not name is only a false positive where the
+        # case says its list is the whole list. Elsewhere a producer is free to
+        # harvest more than one case cares about.
+        if expected.get("exhaustive_mentions"):
+            for extra in sorted(got_mentions - want_mentions):
+                tally.add("fp", language=language, axis_kind="mention")
+                findings.append(
+                    f"unexpected mention {extra[0]} as {extra[1]} on {extra[2]}"
+                )
+
     # ── censuses ─────────────────────────────────────────────────────────
     census = {}
     stats = produced.get("stats") or {}
@@ -227,6 +263,41 @@ def score_case(meta: dict, expected: dict, produced: dict, tally: Tally) -> dict
             "reported": len(produced.get("diagnostics", [])),
             "state": "measured",
         }
+
+    # A diagnostic is a claim about the *input*, so it is graded like one: a
+    # producer that reports none where the tree is broken and a producer that
+    # reports one for every bare package import are both wrong, and only a
+    # bounded expectation separates them.
+    diagnostics = produced.get("diagnostics") or []
+    want_diag = expected.get("diagnostics")
+    if isinstance(want_diag, dict):
+        census["diagnostics"] = {
+            "reported": len(diagnostics),
+            "expected": want_diag,
+            "state": "measured",
+        }
+        if "min" in want_diag and len(diagnostics) < want_diag["min"]:
+            findings.append(
+                f"expected at least {want_diag['min']} diagnostic(s), got "
+                f"{len(diagnostics)}"
+            )
+        if "max" in want_diag and len(diagnostics) > want_diag["max"]:
+            findings.append(
+                f"expected at most {want_diag['max']} diagnostic(s), got "
+                f"{len(diagnostics)}: {[d.get('code') for d in diagnostics]}"
+            )
+        for code in want_diag.get("codes", []):
+            if not any(d.get("code") == code for d in diagnostics):
+                findings.append(
+                    f"no diagnostic with code {code!r}; got "
+                    f"{sorted({d.get('code') for d in diagnostics})}"
+                )
+        for path in want_diag.get("paths", []):
+            if not any(d.get("path") == path for d in diagnostics):
+                findings.append(
+                    f"no diagnostic naming {path!r}; got "
+                    f"{sorted({d.get('path') for d in diagnostics})}"
+                )
 
     # ── derived queries: absent is not zero ──────────────────────────────
     derived = {}
@@ -245,6 +316,20 @@ def score_case(meta: dict, expected: dict, produced: dict, tally: Tally) -> dict
         else:
             derived[key] = {"state": "measured",
                             "matches": produced[payload_key] == expected[key]}
+
+    # ── payload hygiene ──────────────────────────────────────────────────
+    #
+    # Every other check compares against a set, and a set does not care what
+    # order it arrived in. Nothing else here can catch a clock reading or an
+    # absolute path in the payload - and neither is a wrong edge, which is
+    # worse: they fail silently as drift between two machines that both look
+    # green.
+    for needle in expected.get("forbidden_payload_substrings", []):
+        if needle in raw:
+            findings.append(
+                f"payload contains {needle!r} - a value that cannot be compared "
+                "between two machines"
+            )
 
     return {
         "findings": findings,
@@ -281,8 +366,16 @@ def main() -> int:
             continue
         meta = yaml.safe_load((case_dir / "case.yaml").read_text())
         expected = yaml.safe_load((case_dir / "expected.yaml").read_text())
-        produced = run_producer(args.producer, case_dir, expected)
-        result = score_case(meta, expected, produced, tally)
+        produced, raw = run_producer(args.producer, case_dir, expected)
+        result = score_case(meta, expected, produced, tally, raw)
+        if expected.get("deterministic"):
+            _, second = run_producer(args.producer, case_dir, expected)
+            result["deterministic"] = raw == second
+            if raw != second:
+                result["findings"].append(
+                    "two extractions of the same tree produced different bytes; "
+                    "the difference is in the producer, not the input"
+                )
         result["kind"] = meta.get("kind")
         cases[key] = result
         if result["findings"]:

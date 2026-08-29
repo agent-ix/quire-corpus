@@ -1,0 +1,9 @@
+org: agent-ix
+repo: vis-rust
+visibility:
+  "agent-ix/vis-rust/src/lib.rs::Persist::trait_item": public
+  "agent-ix/vis-rust/src/lib.rs::Store::trait_impl_item": public
+  "agent-ix/vis-rust/src/lib.rs::inner::super_visible": crate
+  "agent-ix/vis-rust/src/lib.rs::inner::crate_visible": crate
+  "agent-ix/vis-rust/src/lib.rs::inner::fully_public": public
+  "agent-ix/vis-rust/src/lib.rs::inner::module_private": private

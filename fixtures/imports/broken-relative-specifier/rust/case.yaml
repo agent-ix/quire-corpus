@@ -1,0 +1,13 @@
+id: broken-relative-specifier
+family: imports
+language: rust
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: extensionless-specifier
+comment: >-
+  A relative specifier naming a file the batch does not contain. Unlike a
+  bare specifier — which is a package, and silence is correct — this one
+  claims a sibling that is not there, so exactly one diagnostic is owed and
+  no edge is. The pair with `bare-import` is the point: a producer that
+  diagnoses both drowns a real repository in noise, and one that diagnoses
+  neither hides a broken tree.

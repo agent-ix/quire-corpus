@@ -1,0 +1,6 @@
+org: agent-ix
+repo: ident-mixed
+nodes:
+- {object_type: code_file,     name: "agent-ix/ident-mixed/src/deep/nested/store.rs"}
+- {object_type: code_type,     name: "agent-ix/ident-mixed/src/deep/nested/store.rs::Store"}
+- {object_type: code_function, name: "agent-ix/ident-mixed/src/deep/nested/store.rs::Store::upsert"}

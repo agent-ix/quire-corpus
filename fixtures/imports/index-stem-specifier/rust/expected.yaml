@@ -1,0 +1,7 @@
+org: agent-ix
+repo: idx-rust
+edges:
+- source: "agent-ix/idx-rust/src/driver.rs"
+  type: imports
+  target: "agent-ix/idx-rust/src/store/mod.rs"
+  reason: path-resolved

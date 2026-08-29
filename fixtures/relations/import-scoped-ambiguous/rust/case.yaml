@@ -1,0 +1,13 @@
+id: import-scoped-ambiguous
+family: relations
+language: rust
+kind: control
+control_for: import-scoped-call
+issue_ref: agent-ix/quire-corpus#1
+comment: >-
+  Byte-identical to its positive except for one added import line. Both
+  candidates are now in scope, so FR-008's "more than one candidate
+  survives narrowing" rule applies and the correct output is no edge. A
+  resolver that reaches for the first import, or the nearest declaration,
+  or the alphabetically first candidate, passes the positive and fails
+  here — which is the only reason the positive means anything.

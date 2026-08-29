@@ -1,0 +1,11 @@
+id: tag-outside-test
+family: links
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two declarations are each other's control - same text, same file, different kind - which is stronger than a second tree because nothing else varies."
+comment: >-
+  The same identifier form on two declarations: one a test, one not. A
+  tracking tag inside a test declaration is a verification claim; the
+  identical text on production code is a citation. A producer that types
+  both the same way lets any file claim coverage by writing a comment.

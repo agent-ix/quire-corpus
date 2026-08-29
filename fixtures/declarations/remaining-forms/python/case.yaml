@@ -1,0 +1,12 @@
+id: remaining-forms
+family: declarations
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "Exhaustive over the fixture, so a producer that drops a decorated or nested declaration fails here without a second tree."
+comment: >-
+  The Python shapes the first pass never reached: a nested class, a
+  staticmethod, a classmethod, an async def, a decorated function, and a
+  function inside a function. Python's table has only two node kinds, so
+  every distinction it can make lives in the naming and nesting instead -
+  which is exactly what nothing was checking.

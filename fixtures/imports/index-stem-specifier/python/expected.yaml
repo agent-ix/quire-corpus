@@ -1,0 +1,7 @@
+org: agent-ix
+repo: idx-py
+edges:
+- source: "agent-ix/idx-py/src/driver.py"
+  type: imports
+  target: "agent-ix/idx-py/src/store/__init__.py"
+  reason: path-resolved

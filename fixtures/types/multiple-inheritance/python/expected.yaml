@@ -1,0 +1,11 @@
+org: agent-ix
+repo: mi-py
+edges:
+- source: "agent-ix/mi-py/src/store.py::Store"
+  type: extends
+  target: "agent-ix/mi-py/src/store.py::Persist"
+  reason: syntactic
+- source: "agent-ix/mi-py/src/store.py::Store"
+  type: extends
+  target: "agent-ix/mi-py/src/store.py::Cacheable"
+  reason: syntactic

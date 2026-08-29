@@ -1,0 +1,14 @@
+org: agent-ix
+repo: nm-rust
+# Corrected 2026-08-29. The first draft wrote `fn drive(handle: Unknown)`
+# to mean "the receiver's type is not known". It means the opposite: the
+# type *is* written, it resolves to a type declaring no such method, and
+# FR-008 says a known receiver lacking the method does not fall back to a
+# weaker tier. The producer emitting nothing was correct. An untyped
+# local bound from a call the batch does not declare is the shape these
+# tiers are actually about.
+edges:
+- source: "agent-ix/nm-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/nm-rust/src/store.rs::Store::upsert"
+  reason: name-match

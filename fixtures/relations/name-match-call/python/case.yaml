@@ -1,0 +1,12 @@
+id: name-match-call
+family: relations
+language: python
+kind: positive
+control_for_pair: name-match-ambiguous
+issue_ref: agent-ix/quire-corpus#1
+comment: >-
+  The weakest tier FR-008 admits, and the one a resolver is most tempted
+  to over-apply. The receiver's type does not resolve and the file
+  imports nothing, so nothing narrows the batch — but exactly one type in
+  the whole batch declares `upsert`, and a single candidate is not a
+  guess. Its control adds a second declarer and nothing else.

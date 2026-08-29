@@ -1,0 +1,10 @@
+org: agent-ix
+repo: res-ty
+nodes:
+- {object_type: code_file,     name: "agent-ix/res-ty/src/broken.ts"}
+- {object_type: code_file,     name: "agent-ix/res-ty/src/healthy.ts"}
+- {object_type: code_function, name: "agent-ix/res-ty/src/healthy.ts::healthy"}
+diagnostics:
+  min: 1
+  codes: [parse_error]
+  paths: ["src/broken.ts"]

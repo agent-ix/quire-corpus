@@ -1,0 +1,7 @@
+org: agent-ix
+repo: ext-ts
+edges:
+- source: "agent-ix/ext-ts/src/driver.ts"
+  type: imports
+  target: "agent-ix/ext-ts/src/store.ts"
+  reason: path-resolved

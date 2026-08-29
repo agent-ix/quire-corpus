@@ -1,0 +1,4 @@
+org: agent-ix
+repo: junk-ru
+nodes:
+- {object_type: code_file, name: "agent-ix/junk-ru/src/junk.rs"}

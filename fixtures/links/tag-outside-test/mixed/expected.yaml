@@ -1,0 +1,9 @@
+org: agent-ix
+repo: tagkind-mixed
+mentions:
+- identifier: "TC-001"
+  kind: requirement_citation
+  source: "agent-ix/tagkind-mixed/src/store.rs::production_code"
+- identifier: "TC-002"
+  kind: tracking_tag
+  source: "agent-ix/tagkind-mixed/src/store.rs::a_real_test"

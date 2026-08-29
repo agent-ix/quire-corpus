@@ -1,0 +1,13 @@
+id: name-match-ambiguous
+family: relations
+language: typescript
+kind: control
+control_for: name-match-call
+issue_ref: agent-ix/quire-corpus#1
+comment: >-
+  One file added, nothing else changed. Two types now declare `upsert`
+  and nothing distinguishes them, so the correct output is no edge. This
+  is the pair the whole precision claim rests on: a name-matching
+  resolver with no arity check scores 100% on the positive and emits a
+  wrong edge here, and a corpus holding only the positive would call that
+  perfect.

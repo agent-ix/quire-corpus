@@ -1,0 +1,11 @@
+id: extensionless-specifier
+family: imports
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: broken-relative-specifier
+comment: >-
+  A specifier that names no extension. Every one of these three languages
+  spells the same import differently and resolves it by its own convention,
+  and a resolver that hardcodes one convention silently loses the imports of
+  the other two — which reads as a sparse graph rather than as a bug.

@@ -1,0 +1,12 @@
+id: body-error-tolerated
+family: resilience
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "Its control is `arbitrary-bytes`, where nothing is readable and no declaration node is owed - the same shape with the damage moved from the body to everything."
+comment: >-
+  A typo inside a function body. The signature is readable, so the
+  declaration's identity is too and its node is owed - along with the node
+  of the function declared after it, which a producer that gives up at the
+  first error will drop. The error is still diagnosed; tolerating it is not
+  the same as not noticing it.

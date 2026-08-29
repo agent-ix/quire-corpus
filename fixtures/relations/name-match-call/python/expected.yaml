@@ -1,0 +1,7 @@
+org: agent-ix
+repo: nm-py
+edges:
+- source: "agent-ix/nm-py/src/driver.py::drive"
+  type: calls
+  target: "agent-ix/nm-py/src/store.py::Store::upsert"
+  reason: name-match

@@ -1,0 +1,12 @@
+id: rust-visibility-forms
+family: surfaces
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: private-lookalike
+comment: >-
+  Every way Rust spells visibility, in one file: a trait item and a trait-
+  impl item that are public with no modifier at all, `pub(super)`,
+  `pub(crate)`, bare `pub`, and nothing. A classifier that greps for the
+  substring `pub` gets four of these right and the two that matter wrong,
+  because the two with no modifier are the public ones.

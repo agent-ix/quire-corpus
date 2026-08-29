@@ -1,0 +1,7 @@
+org: agent-ix
+repo: ixref-mixed
+mentions:
+- identifier: "ix://agent-ix/demo/FR-003"
+  kind: artifact_reference
+  source: "agent-ix/ixref-mixed/src/store.rs::documented"
+exhaustive_mentions: true

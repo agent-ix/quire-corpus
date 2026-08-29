@@ -28,14 +28,19 @@ contract: spec/functional/FR-001-corpus-structure.md
 languages: [rust, typescript, python, mixed]
 
 families:
-- declarations
-- relations
-- surfaces
-- links
 - ambiguity
-- paths
+- declarations
+- determinism
+- identity
 - impact
+- imports
+- links
+- paths
+- relations
+- resilience
+- surfaces
 - test-selection
+- types
 
 # Declared now, populated behind their own tickets. Reserving the name and
 # the schema slot is what keeps a later producer from inventing a parallel
@@ -68,34 +73,62 @@ producer_contract:
 # one language and not another is a GAP unless it is scoped out with a
 # reason, and "not implemented yet" is a GAP, not an exclusion.
 inventory:
+  ambiguity:
+    same-name-two-files: [mixed]
   declarations:
     declaration-forms: [rust, typescript, python]
+    remaining-forms: [rust, typescript, python]
+  determinism:
+    repeated-extraction: [mixed]
+  identity:
+    nested-path-identity: [mixed]
+  impact:
+    impact-closure: [mixed]
+  imports:
+    broken-relative-specifier: [rust, typescript, python]
+    extensionless-specifier: [rust, typescript, python]
+    index-stem-specifier: [rust, typescript, python]
+  links:
+    ix-reference: [mixed]
+    spec-code-test-links: [mixed]
+    string-literal-lookalike: [mixed]
+    tag-outside-test: [mixed]
+  paths:
+    call-chain-path: [mixed]
   relations:
+    bare-import: [rust, typescript, python]
+    import-scoped-ambiguous: [rust, typescript, python]
+    import-scoped-call: [rust, typescript, python]
+    name-match-ambiguous: [rust, typescript, python]
+    name-match-call: [rust, typescript, python]
     receiver-typed-call: [rust, typescript, python]
     receiver-typed-call-ambiguous: [rust, typescript, python]
-    bare-import: [rust, typescript, python]
+    same-file-preference: [mixed]
+  resilience:
+    arbitrary-bytes: [rust, typescript, python]
+    body-error-tolerated: [rust, typescript, python]
+    empty-file: [rust, typescript, python]
+    invalid-file-in-batch: [rust, typescript, python]
   surfaces:
     export-surface: [rust, typescript, python]
     private-lookalike:
       languages: [rust]
       out_of_scope:
         typescript: >-
-          The TypeScript positive already carries its own lookalike inside
-          one file — `NotExported` is the unexported class beside the
-          exported one — so a separate tree would duplicate the control
-          rather than add one.
+          The TypeScript positive already carries its own lookalike inside one
+          file - `NotExported` is the unexported class beside the exported one -
+          so a separate tree would duplicate the control rather than add one.
         python: >-
-          Same: the Python positive's `_crate_visible` and
-          `__private_helper` are the lookalike, in the same file as the
-          public members they must not be confused with.
-  links:
-    spec-code-test-links: [mixed]
-    string-literal-lookalike: [mixed]
-  ambiguity:
-    same-name-two-files: [mixed]
-  paths:
-    call-chain-path: [mixed]
-  impact:
-    impact-closure: [mixed]
+          Same: the Python positive's `_crate_visible` and `__private_helper`
+          are the lookalike, in the same file as the public members they must
+          not be confused with.
+    rust-visibility-forms: [rust]
+    signature-fidelity: [rust, typescript, python]
   test-selection:
     affected-tests: [mixed]
+  types:
+    implements-and-extends: [typescript]
+    inherent-implementation: [rust]
+    multiple-inheritance: [python]
+    trait-implementation: [rust]
+    trait-object-call: [rust]

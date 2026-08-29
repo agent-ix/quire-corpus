@@ -1,0 +1,11 @@
+org: agent-ix
+repo: imp-scope-ts
+edges:
+- source: "agent-ix/imp-scope-ts/src/driver.ts::drive"
+  type: calls
+  target: "agent-ix/imp-scope-ts/src/store.ts::Store::upsert"
+  reason: import-scoped
+forbidden_edges:
+- source: "agent-ix/imp-scope-ts/src/driver.ts::drive"
+  type: calls
+  target: "agent-ix/imp-scope-ts/src/cache.ts::Cache::upsert"

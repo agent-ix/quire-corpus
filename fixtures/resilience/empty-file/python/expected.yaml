@@ -1,0 +1,6 @@
+org: agent-ix
+repo: empty-py
+nodes:
+- {object_type: code_file, name: "agent-ix/empty-py/src/empty.py"}
+diagnostics:
+  max: 0

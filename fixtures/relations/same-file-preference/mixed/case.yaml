@@ -1,0 +1,14 @@
+id: same-file-preference
+family: relations
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: >-
+  The control is the second file. `outsider.rs` declares the same method name
+  and calls it from its own file; if the resolver preferred the batch over
+  the declaring file, both edges would cross and both would be wrong, so the
+  pair proves itself.
+comment: >-
+  FR-008: a call resolves against the declaration in its own file before any
+  batch-wide candidate. Two files declare `Store::flush` and each calls it;
+  the correct answer is two edges that do not cross.

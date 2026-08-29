@@ -1,0 +1,12 @@
+id: invalid-file-in-batch
+family: resilience
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: arbitrary-bytes
+comment: >-
+  One syntactically invalid file beside one healthy one. The healthy file's
+  records must be complete and the broken one must be diagnosed by path. A
+  producer that aborts the batch loses a whole repository to one bad file,
+  and one that swallows the error reports a graph quietly missing a quarter
+  of itself.

@@ -1,0 +1,7 @@
+org: agent-ix
+repo: brk-rust
+edges: []
+forbidden_edge_types: [imports]
+diagnostics:
+  min: 1
+  codes: [unresolved_import]
