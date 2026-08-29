@@ -1,0 +1,14 @@
+org: agent-ix
+repo: surf-ts
+visibility:
+  "agent-ix/surf-ts/src/index.ts::Store::exported": public
+  "agent-ix/surf-ts/src/index.ts::Store::crateVisible": crate
+  "agent-ix/surf-ts/src/index.ts::Store::privateHelper": private
+  "agent-ix/surf-ts/src/index.ts::NotExported": private
+signatures:
+  "agent-ix/surf-ts/src/index.ts::Store::exported": "(number) -> number"
+edges:
+- source: "agent-ix/surf-ts/src/index.ts::Store"
+  type: implements_trait
+  target: "agent-ix/surf-ts/src/index.ts::Persist"
+  reason: syntactic

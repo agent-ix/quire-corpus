@@ -1,0 +1,18 @@
+org: agent-ix
+repo: decl-py
+nodes:
+- {object_type: code_file,     name: "agent-ix/decl-py/src/store.py",                   kind: file}
+- {object_type: code_type,     name: "agent-ix/decl-py/src/store.py::Store",            kind: class}
+- {object_type: code_function, name: "agent-ix/decl-py/src/store.py::Store::__init__",  kind: method}
+- {object_type: code_function, name: "agent-ix/decl-py/src/store.py::Store::upsert",    kind: method}
+- {object_type: code_type,     name: "agent-ix/decl-py/src/store.py::Persist",          kind: class}
+- {object_type: code_function, name: "agent-ix/decl-py/src/store.py::Persist::save",    kind: method}
+- {object_type: code_function, name: "agent-ix/decl-py/src/store.py::free_function",    kind: function}
+forbidden_node_kinds: [module]
+edges:
+- {source: "agent-ix/decl-py/src/store.py", type: contains, target: "agent-ix/decl-py/src/store.py::Store",         reason: syntactic}
+- {source: "agent-ix/decl-py/src/store.py", type: contains, target: "agent-ix/decl-py/src/store.py::Persist",       reason: syntactic}
+- {source: "agent-ix/decl-py/src/store.py", type: contains, target: "agent-ix/decl-py/src/store.py::free_function", reason: syntactic}
+- {source: "agent-ix/decl-py/src/store.py::Store",   type: contains, target: "agent-ix/decl-py/src/store.py::Store::__init__", reason: syntactic}
+- {source: "agent-ix/decl-py/src/store.py::Store",   type: contains, target: "agent-ix/decl-py/src/store.py::Store::upsert",   reason: syntactic}
+- {source: "agent-ix/decl-py/src/store.py::Persist", type: contains, target: "agent-ix/decl-py/src/store.py::Persist::save",   reason: syntactic}

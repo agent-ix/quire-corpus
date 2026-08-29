@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rel-ts
+edges:
+- source: "agent-ix/rel-ts/src/driver.ts::drive"
+  type: calls
+  target: "agent-ix/rel-ts/src/store.ts::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/rel-ts/src/driver.ts"
+  type: imports
+  target: "agent-ix/rel-ts/src/store.ts"
+  reason: path-resolved

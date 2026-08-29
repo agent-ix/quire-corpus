@@ -1,0 +1,16 @@
+id: declaration-forms
+family: declarations
+language: typescript
+kind: positive
+no_control_reason: >-
+  The expectation is exhaustive over the fixture, so this case IS its own
+  control: a producer that mints a node the language does not declare scores
+  a false positive here without a second tree to compare against. A separate
+  lookalike would only re-test the same assertion.
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  The TypeScript counterpart. `interface` and `type` are separate kinds and a
+  producer that reports both as `type` loses the distinction a public-surface
+  diff depends on. The arrow-function const is here because it is the form
+  most often missed: it is a variable declaration whose initializer is the
+  callable.

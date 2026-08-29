@@ -1,0 +1,14 @@
+org: agent-ix
+repo: surf-py
+visibility:
+  "agent-ix/surf-py/src/store.py::Store::__init__": public
+  "agent-ix/surf-py/src/store.py::Store::exported": public
+  "agent-ix/surf-py/src/store.py::Store::_crate_visible": crate
+  "agent-ix/surf-py/src/store.py::Store::__private_helper": private
+signatures:
+  "agent-ix/surf-py/src/store.py::Store::exported": "(self, int) -> int"
+edges:
+- source: "agent-ix/surf-py/src/store.py::Store"
+  type: extends
+  target: "agent-ix/surf-py/src/store.py::Persist"
+  reason: syntactic

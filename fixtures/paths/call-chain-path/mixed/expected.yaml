@@ -1,0 +1,21 @@
+org: agent-ix
+repo: traversal-mixed
+edges:
+- {source: "agent-ix/traversal-mixed/src/entry.rs::entry",     type: calls, target: "agent-ix/traversal-mixed/src/mid.rs::Mid::step",       reason: receiver-typed}
+- {source: "agent-ix/traversal-mixed/src/mid.rs::Mid::step",   type: calls, target: "agent-ix/traversal-mixed/src/leaf.rs::Leaf::compute",  reason: receiver-typed}
+- {source: "agent-ix/traversal-mixed/src/decoy.rs::decoy_entry", type: calls, target: "agent-ix/traversal-mixed/src/decoy.rs::Decoy::compute", reason: receiver-typed}
+# A shortest path is a claim about the graph, not about the producer. It is
+# stated here so a traversal implementation can be graded without
+# reimplementing the extractor.
+paths:
+- from: "agent-ix/traversal-mixed/src/entry.rs::entry"
+  to: "agent-ix/traversal-mixed/src/leaf.rs::Leaf::compute"
+  edge_types: [calls]
+  shortest:
+  - ["agent-ix/traversal-mixed/src/entry.rs::entry", "agent-ix/traversal-mixed/src/mid.rs::Mid::step", "agent-ix/traversal-mixed/src/leaf.rs::Leaf::compute"]
+- from: "agent-ix/traversal-mixed/src/entry.rs::entry"
+  to: "agent-ix/traversal-mixed/src/decoy.rs::Decoy::compute"
+  edge_types: [calls]
+  # Two functions named `compute` exist. Only one is reachable from `entry`,
+  # and a resolver that binds by name alone will report a path here.
+  shortest: []

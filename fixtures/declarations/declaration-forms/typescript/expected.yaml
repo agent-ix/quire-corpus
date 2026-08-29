@@ -1,0 +1,23 @@
+org: agent-ix
+repo: decl-ts
+nodes:
+- {object_type: code_file,     name: "agent-ix/decl-ts/src/index.ts",                     kind: file}
+- {object_type: code_module,   name: "agent-ix/decl-ts/src/index.ts::inner",              kind: module}
+- {object_type: code_function, name: "agent-ix/decl-ts/src/index.ts::inner::nested",      kind: function}
+- {object_type: code_type,     name: "agent-ix/decl-ts/src/index.ts::Store",              kind: class}
+- {object_type: code_function, name: "agent-ix/decl-ts/src/index.ts::Store::upsert",      kind: method}
+- {object_type: code_type,     name: "agent-ix/decl-ts/src/index.ts::Persist",            kind: interface}
+- {object_type: code_function, name: "agent-ix/decl-ts/src/index.ts::Persist::save",      kind: method}
+- {object_type: code_type,     name: "agent-ix/decl-ts/src/index.ts::Handle",             kind: alias}
+- {object_type: code_function, name: "agent-ix/decl-ts/src/index.ts::freeArrow",          kind: function}
+- {object_type: code_function, name: "agent-ix/decl-ts/src/index.ts::freeFunction",       kind: function}
+edges:
+- {source: "agent-ix/decl-ts/src/index.ts", type: contains, target: "agent-ix/decl-ts/src/index.ts::inner",        reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts", type: contains, target: "agent-ix/decl-ts/src/index.ts::Store",        reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts", type: contains, target: "agent-ix/decl-ts/src/index.ts::Persist",      reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts", type: contains, target: "agent-ix/decl-ts/src/index.ts::Handle",       reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts", type: contains, target: "agent-ix/decl-ts/src/index.ts::freeArrow",    reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts", type: contains, target: "agent-ix/decl-ts/src/index.ts::freeFunction", reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts::inner",   type: contains, target: "agent-ix/decl-ts/src/index.ts::inner::nested", reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts::Store",   type: contains, target: "agent-ix/decl-ts/src/index.ts::Store::upsert", reason: syntactic}
+- {source: "agent-ix/decl-ts/src/index.ts::Persist", type: contains, target: "agent-ix/decl-ts/src/index.ts::Persist::save", reason: syntactic}

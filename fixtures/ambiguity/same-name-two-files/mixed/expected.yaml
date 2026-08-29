@@ -1,0 +1,21 @@
+org: agent-ix
+repo: amb-mixed
+edges:
+- source: "agent-ix/amb-mixed/src/alpha.rs::alpha_driver"
+  type: calls
+  target: "agent-ix/amb-mixed/src/alpha.rs::Handler::handle"
+  reason: receiver-typed
+- source: "agent-ix/amb-mixed/src/beta.rs::beta_driver"
+  type: calls
+  target: "agent-ix/amb-mixed/src/beta.rs::Handler::handle"
+  reason: receiver-typed
+# `outside.rs` names `Handler` with no import and two candidates exist. The
+# correct output is no edge from `outside_driver` at all.
+forbidden_edges:
+- source: "agent-ix/amb-mixed/src/outside.rs::outside_driver"
+  type: calls
+  target: "agent-ix/amb-mixed/src/alpha.rs::Handler::handle"
+- source: "agent-ix/amb-mixed/src/outside.rs::outside_driver"
+  type: calls
+  target: "agent-ix/amb-mixed/src/beta.rs::Handler::handle"
+ambiguous_call_sites: 1

@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rel-py
+edges:
+- source: "agent-ix/rel-py/src/driver.py::drive"
+  type: calls
+  target: "agent-ix/rel-py/src/store.py::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/rel-py/src/driver.py"
+  type: imports
+  target: "agent-ix/rel-py/src/store.py"
+  reason: path-resolved

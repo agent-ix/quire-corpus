@@ -1,0 +1,11 @@
+id: receiver-typed-call
+family: relations
+language: rust
+kind: positive
+control_for_pair: receiver-typed-call-ambiguous
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  A cross-file call whose receiver type is written down. This is the tier
+  that carries the most weight in an impact closure and the one an
+  unprincipled resolver fakes best, which is why its ambiguous twin lives
+  next door with the same call syntax and the same method name.

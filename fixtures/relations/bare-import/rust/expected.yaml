@@ -1,0 +1,5 @@
+org: agent-ix
+repo: imp-rust
+edges: []
+forbidden_edge_types: [imports]
+expect_diagnostics: 0

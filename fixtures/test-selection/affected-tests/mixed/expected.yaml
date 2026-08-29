@@ -1,0 +1,19 @@
+org: agent-ix
+repo: traversal-mixed
+# Affected-test selection over the same graph. Every selection names the
+# evidence path that justifies it: a selector that returns the right set for
+# the wrong reason is not reusable on a repository this size times a
+# thousand.
+test_selection:
+- changed: ["agent-ix/traversal-mixed/src/leaf.rs::Leaf::compute"]
+  selected:
+  - test: "agent-ix/traversal-mixed/tests/entry_test.rs::entry_returns_the_leaf_value"
+    via: ["agent-ix/traversal-mixed/src/mid.rs::Mid::step", "agent-ix/traversal-mixed/src/entry.rs::entry"]
+  not_selected:
+  - "agent-ix/traversal-mixed/tests/decoy_test.rs::decoy_is_independent"
+- changed: ["agent-ix/traversal-mixed/src/decoy.rs::Decoy::compute"]
+  selected:
+  - test: "agent-ix/traversal-mixed/tests/decoy_test.rs::decoy_is_independent"
+    via: ["agent-ix/traversal-mixed/src/decoy.rs::decoy_entry"]
+  not_selected:
+  - "agent-ix/traversal-mixed/tests/entry_test.rs::entry_returns_the_leaf_value"

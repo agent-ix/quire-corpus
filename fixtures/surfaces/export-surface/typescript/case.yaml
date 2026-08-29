@@ -1,0 +1,9 @@
+id: export-surface
+family: surfaces
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  TypeScript carries two independent axes — module `export` and class access
+  modifiers — and they disagree: a `private` method of an exported class is
+  not part of the surface even though its class is.

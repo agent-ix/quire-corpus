@@ -1,0 +1,11 @@
+id: string-literal-lookalike
+family: links
+language: mixed
+kind: control
+control_for: spec-code-test-links
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  The same identifiers, in string literals and inside longer tokens instead
+  of in comments. A harvester that greps for `TC-\d+` reports four
+  relationships here and is wrong about all four. The prefix and suffix
+  forms are separated because they fail different regexes.

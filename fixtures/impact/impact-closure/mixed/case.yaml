@@ -1,0 +1,13 @@
+id: impact-closure
+family: impact
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-rs#385
+shares_input_with: traversal-repository
+comment: >-
+  One repository, three questions. `paths`, `impact` and `test-selection`
+  are not three fixtures because they are not three graphs: they are three
+  queries over the same one, and holding them apart is how a corpus ends
+  up with an impact set that disagrees with its own paths. The decoy
+  chain exists so that "everything" is a wrong answer to every question
+  here.

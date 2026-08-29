@@ -1,0 +1,14 @@
+org: agent-ix
+repo: surf-rust
+visibility:
+  "agent-ix/surf-rust/src/lib.rs::Persist::save": public
+  "agent-ix/surf-rust/src/lib.rs::Store::exported": public
+  "agent-ix/surf-rust/src/lib.rs::Store::crate_visible": crate
+  "agent-ix/surf-rust/src/lib.rs::Store::private_helper": private
+signatures:
+  "agent-ix/surf-rust/src/lib.rs::Store::exported": "(self, u32) -> u32"
+edges:
+- source: "agent-ix/surf-rust/src/lib.rs::Store"
+  type: implements_trait
+  target: "agent-ix/surf-rust/src/lib.rs::Persist"
+  reason: syntactic

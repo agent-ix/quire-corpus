@@ -1,0 +1,24 @@
+org: agent-ix
+repo: traversal-mixed
+# Reverse impact: what a change to the seed can reach, following `calls`
+# backwards. Deterministic and closed — "everything in the repository" is
+# the answer a closure with no stopping rule gives, and the decoy chain is
+# what makes that answer visibly wrong.
+impact:
+- seed: "agent-ix/traversal-mixed/src/leaf.rs::Leaf::compute"
+  edge_types: [calls]
+  direction: reverse
+  closure:
+  - "agent-ix/traversal-mixed/src/mid.rs::Mid::step"
+  - "agent-ix/traversal-mixed/src/entry.rs::entry"
+  excluded:
+  - "agent-ix/traversal-mixed/src/decoy.rs::Decoy::compute"
+  - "agent-ix/traversal-mixed/src/decoy.rs::decoy_entry"
+- seed: "agent-ix/traversal-mixed/src/decoy.rs::Decoy::compute"
+  edge_types: [calls]
+  direction: reverse
+  closure:
+  - "agent-ix/traversal-mixed/src/decoy.rs::decoy_entry"
+  excluded:
+  - "agent-ix/traversal-mixed/src/entry.rs::entry"
+  - "agent-ix/traversal-mixed/src/mid.rs::Mid::step"

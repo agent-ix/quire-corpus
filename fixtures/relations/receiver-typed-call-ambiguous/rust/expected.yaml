@@ -1,0 +1,8 @@
+org: agent-ix
+repo: amb-rust
+# The whole expectation is an absence. `forbidden_edge_types` says the
+# correct output has no call edge at all; a producer emitting one has
+# named a target it could not know.
+edges: []
+forbidden_edge_types: [calls]
+ambiguous_call_sites: 1

@@ -1,0 +1,44 @@
+org: agent-ix
+repo: links-mixed
+# Two tiers, deliberately separated.
+#
+# `edges` is what an *extractor* owes: a mention, addressed by the identifier
+# exactly as written, attributed to the declaration that carries it. The
+# extractor does not know whether `TC-001` exists — the spec layer is another
+# producer's output — so `references` is the honest edge type and the target is
+# a bare identifier.
+#
+# `derived_links` is what an integrated *graph* owes: the same mentions resolved
+# against the spec layer and typed as `verifies` (test -> test case) and
+# `implements` (production code -> criterion). A producer that emits no such
+# answer is scored `not-computed`, never zero.
+edges:
+- source: "agent-ix/links-mixed/tests/store_test.rs::a_record_survives_a_round_trip"
+  type: references
+  target: "TC-001"
+  reason: explicit-mention
+# The TypeScript test is a call expression, not a declaration, so the file is
+# the only owner there is. That is a language fact, not a producer's licence to
+# attribute the Rust one to a file too.
+- source: "agent-ix/links-mixed/tests/store_view.test.ts"
+  type: references
+  target: "TC-001"
+  reason: explicit-mention
+- source: "agent-ix/links-mixed/src/store.rs"
+  type: references
+  target: "FR-001-AC-1"
+  reason: explicit-mention
+- source: "agent-ix/links-mixed/ui/store.ts"
+  type: references
+  target: "FR-001-AC-1"
+  reason: explicit-mention
+derived_links:
+- source: "agent-ix/links-mixed/tests/store_test.rs::a_record_survives_a_round_trip"
+  type: verifies
+  target: "TC-001"
+- source: "agent-ix/links-mixed/src/store.rs"
+  type: implements
+  target: "FR-001-AC-1"
+- source: "agent-ix/links-mixed/ui/store.ts"
+  type: implements
+  target: "FR-001-AC-1"

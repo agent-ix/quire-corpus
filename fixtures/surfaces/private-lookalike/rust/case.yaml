@@ -1,0 +1,11 @@
+id: private-lookalike
+family: surfaces
+language: rust
+kind: control
+control_for: export-surface
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  The same file with every modifier removed. Byte-similar to its positive
+  and correct only if the producer reads the modifier rather than the shape:
+  a classifier that defaults to `public` scores perfectly on the positive and
+  fails every row here.

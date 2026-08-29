@@ -1,0 +1,17 @@
+id: declaration-forms
+family: declarations
+language: rust
+kind: positive
+no_control_reason: >-
+  The expectation is exhaustive over the fixture, so this case IS its own
+  control: a producer that mints a node the language does not declare scores
+  a false positive here without a second tree to compare against. A separate
+  lookalike would only re-test the same assertion.
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  Every declaration form the Rust grammar exposes, one of each, in one file.
+  The point is not that a producer finds *a* function — it is that the
+  module, the free function, the struct, the enum, the trait, the type alias
+  and the inherent method each yield their own node with their own kind. A
+  producer that collapses `enum` onto `struct` scores identically on a
+  fixture that has only one of them.

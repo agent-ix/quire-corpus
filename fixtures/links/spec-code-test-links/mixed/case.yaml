@@ -1,0 +1,12 @@
+id: spec-code-test-links
+family: links
+language: mixed
+kind: positive
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  The whole point of an integrated corpus rather than an extractor unit
+  fixture: a requirement, the code that implements it, and the test that
+  verifies it, in three languages, joined into one graph. Nothing here is
+  checkable from a single-language fixture, because the join is what fails
+  in practice — the spec layer and the code layer are extracted by different
+  producers and meet only at the reference.

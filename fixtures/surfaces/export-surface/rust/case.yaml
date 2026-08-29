@@ -1,0 +1,10 @@
+id: export-surface
+family: surfaces
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  Visibility is what separates an exported-surface change from a body edit,
+  and therefore what decides whether a change can reach a dependent at all.
+  Rust has three states and a trait item that is public with no modifier —
+  the case that a `pub`-substring check gets wrong.

@@ -1,0 +1,101 @@
+# The shared complete-graph corpus. Contract: spec/functional/FR-001..FR-004.
+#
+# THIS FILE DECLARES INTENT. It does not record state.
+#
+# What a human writes here: the vocabularies, the producer contract, and the
+# INVENTORY — for each case, the languages it must exist in, and any cell
+# deliberately scoped out with its reason.
+#
+# What is DERIVED from the filesystem, every time, by `bounds.py`:
+#   covered  — a fixture exists for that case and language
+#   GAP      — declared applicable, no fixture, not scoped out
+#   gap_count and the sum invariant
+#
+# `gap_count` is a COUNT, never a ratio (FR-002-CON-1). A ratio falls as easy
+# cases are added, so a corpus could improve its number while the hard
+# missing case stayed missing.
+#
+# Why this corpus is separate from agent-ix/qa-corpus: that one grades
+# *detection and minting* over authored markdown, one defect per case. This
+# one grades a **complete linked graph** — declarations, relations, surfaces,
+# cross-layer links, and the traversal answers derived from them. A case here
+# is a small repository, not a snippet, because the failures being measured
+# only exist between files.
+
+schema_version: 1
+contract: spec/functional/FR-001-corpus-structure.md
+
+languages: [rust, typescript, python, mixed]
+
+families:
+- declarations
+- relations
+- surfaces
+- links
+- ambiguity
+- paths
+- impact
+- test-selection
+
+# Declared now, populated behind their own tickets. Reserving the name and
+# the schema slot is what keeps a later producer from inventing a parallel
+# format for the same thing (agent-ix/filament-ide-rs#541, #534).
+reserved_families:
+  resources:
+    issue_ref: agent-ix/filament-ide-rs#541
+    reason: >-
+      HTTP routes, SQL objects, messaging topics, FFI boundaries and
+      configuration references. Each family is measured and reviewed
+      independently before it propagates impact, so each arrives as its own
+      versioned fixture family rather than as rows bolted onto `relations`.
+  requirement-recovery:
+    issue_ref: agent-ix/filament-ide-rs#534
+    reason: >-
+      Evidence-grounded requirement candidates and unknowns. Needs a
+      disposition model before a fixture can state expected truth, because
+      the truth is a reviewer's judgement and not a graph fact.
+
+# How a producer is invoked. A producer reads one fixture's `input/` tree and
+# writes the canonical record JSON on stdout; nothing else is read, and no
+# network is available. The corpus grades the output, never the producer.
+producer_contract:
+  version: 1
+  invocation: "<producer> --org <org> --repo <repo> <input-dir>"
+  stdout: canonical-records-v1
+  documented: spec/functional/FR-003-producer-contract.md
+
+# For each case: the languages that must have a fixture. A case appearing in
+# one language and not another is a GAP unless it is scoped out with a
+# reason, and "not implemented yet" is a GAP, not an exclusion.
+inventory:
+  declarations:
+    declaration-forms: [rust, typescript, python]
+  relations:
+    receiver-typed-call: [rust, typescript, python]
+    receiver-typed-call-ambiguous: [rust, typescript, python]
+    bare-import: [rust, typescript, python]
+  surfaces:
+    export-surface: [rust, typescript, python]
+    private-lookalike:
+      languages: [rust]
+      out_of_scope:
+        typescript: >-
+          The TypeScript positive already carries its own lookalike inside
+          one file — `NotExported` is the unexported class beside the
+          exported one — so a separate tree would duplicate the control
+          rather than add one.
+        python: >-
+          Same: the Python positive's `_crate_visible` and
+          `__private_helper` are the lookalike, in the same file as the
+          public members they must not be confused with.
+  links:
+    spec-code-test-links: [mixed]
+    string-literal-lookalike: [mixed]
+  ambiguity:
+    same-name-two-files: [mixed]
+  paths:
+    call-chain-path: [mixed]
+  impact:
+    impact-closure: [mixed]
+  test-selection:
+    affected-tests: [mixed]

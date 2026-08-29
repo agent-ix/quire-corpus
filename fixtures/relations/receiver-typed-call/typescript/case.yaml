@@ -1,0 +1,7 @@
+id: receiver-typed-call
+family: relations
+language: typescript
+kind: positive
+control_for_pair: receiver-typed-call-ambiguous
+issue_ref: agent-ix/quire-rs#385
+comment: The TypeScript form — an annotated local, a relative import, one method call.

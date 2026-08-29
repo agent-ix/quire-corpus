@@ -1,0 +1,7 @@
+org: agent-ix
+repo: surf-rust-control
+visibility:
+  "agent-ix/surf-rust-control/src/lib.rs::Store": private
+  "agent-ix/surf-rust-control/src/lib.rs::Store::exported": private
+  "agent-ix/surf-rust-control/src/lib.rs::Store::crate_visible": private
+  "agent-ix/surf-rust-control/src/lib.rs::Store::private_helper": private

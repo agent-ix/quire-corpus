@@ -1,0 +1,16 @@
+id: same-name-two-files
+family: ambiguity
+language: mixed
+kind: positive
+no_control_reason: >-
+  The control is inside the fixture. `outside.rs` is the same call against the
+  same method name with no import and two candidates, and its expectation is
+  `forbidden_edges` — so the tree that proves the resolver right and the tree
+  that proves it guessing are the same tree, and a producer cannot pass one
+  while failing the other by accident.
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  One type name declared in two files, each with its own caller. The batch is
+  ambiguous and each file is not, so this separates a resolver that gives up
+  on the batch from one that resolves within the declaring file — the
+  difference between losing two true edges and inventing two false ones.

@@ -1,0 +1,12 @@
+id: bare-import
+family: relations
+language: typescript
+kind: control
+control_for: receiver-typed-call
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  A specifier that names no file in the batch. The correct output is no
+  import edge and no diagnostic: an unresolvable *bare* specifier is not
+  an error, it is a package the batch does not contain. A producer that
+  diagnoses it will drown a real repository in noise, and one that emits
+  an edge has invented a node.

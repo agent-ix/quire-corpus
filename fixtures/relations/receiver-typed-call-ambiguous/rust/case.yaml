@@ -1,0 +1,10 @@
+id: receiver-typed-call-ambiguous
+family: relations
+language: rust
+kind: control
+control_for: receiver-typed-call
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  Two types declare `upsert` and the driver never names either. A resolver that emits a call edge here has guessed. The positive twin is byte-similar and differs only in whether the
+  receiver's type is written down; a corpus that held only the positive
+  would score a name-matching resolver as perfect.

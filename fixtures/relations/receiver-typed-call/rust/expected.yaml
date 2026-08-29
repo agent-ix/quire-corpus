@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rel-rust
+edges:
+- source: "agent-ix/rel-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/rel-rust/src/store.rs::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/rel-rust/src/driver.rs"
+  type: imports
+  target: "agent-ix/rel-rust/src/store.rs"
+  reason: path-resolved

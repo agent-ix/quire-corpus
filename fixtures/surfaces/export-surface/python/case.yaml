@@ -1,0 +1,8 @@
+id: export-surface
+family: surfaces
+language: python
+kind: positive
+issue_ref: agent-ix/quire-rs#385
+comment: >-
+  Python states visibility by naming convention, and `__init__` is the case
+  that breaks a naive underscore rule: it is dunder, and it is public.
