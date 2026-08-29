@@ -31,6 +31,7 @@ Deliberately not here: detection and minting over authored markdown, which is
 | [FR-002](functional/FR-002-inventory-and-bounds.md) | Inventory, controls, and the GAP gate |
 | [FR-003](functional/FR-003-producer-contract.md) | Producer invocation contract |
 | [FR-004](functional/FR-004-scoring-contract.md) | Deterministic scoring contract |
+| [FR-005](functional/FR-005-grading-beyond-nodes-and-edges.md) | Grading beyond nodes and edges |
 | [NFR-001](non-functional/NFR-001-reproducibility.md) | Reproducibility |
 | [NFR-002](non-functional/NFR-002-truth-independence.md) | Truth independence |
 

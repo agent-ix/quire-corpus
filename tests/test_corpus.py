@@ -378,3 +378,120 @@ def test_the_truth_change_rule_is_written_down():
     text = (ROOT / "CONTRIBUTING.md").read_text()
     assert "Changing expected truth" in text
     assert "quoted" in text
+
+
+# ── grading beyond nodes and edges ───────────────────────────────────────────
+
+def _mention_case(expected_extra: dict, produced_mentions: list) -> dict:
+    tally = score.Tally()
+    expected = {"org": "o", "repo": "r", **expected_extra}
+    produced = {"nodes": [], "edges": [], "mentions": produced_mentions}
+    return score.score_case({"language": "rust"}, expected, produced, tally)
+
+
+# TC-032, FR-005-AC-1: a mention the case names and the producer omits is a
+# false negative, not a silent pass.
+def test_a_missing_mention_is_a_false_negative():
+    result = _mention_case(
+        {"mentions": [{"identifier": "TC-001", "kind": "tracking_tag",
+                       "source": "o/r/a.rs::t"}]},
+        [],
+    )
+    assert any("missing mention TC-001" in f for f in result["findings"])
+
+
+# TC-033, FR-005-AC-2: the kind is the claim, so the right identifier with the
+# wrong kind is not the mention the case asked for.
+def test_a_mention_with_the_wrong_kind_is_not_present():
+    result = _mention_case(
+        {"mentions": [{"identifier": "TC-001", "kind": "tracking_tag",
+                       "source": "o/r/a.rs::t"}]},
+        [{"identifier": "TC-001", "kind": "requirement_citation",
+          "source": "o/r/a.rs::t"}],
+    )
+    assert any("missing mention TC-001 as tracking_tag" in f
+               for f in result["findings"]), (
+        "a citation is not a verification claim, and grading them as equal "
+        "would let any file claim coverage by writing a comment")
+
+
+# TC-034, FR-005-AC-3, FR-005-CON-1: an unnamed mention is a false positive only
+# where the case says its list is the whole list.
+def test_an_unnamed_mention_is_a_false_positive_only_when_exhaustive():
+    extra = [{"identifier": "FR-002", "kind": "requirement_citation",
+              "source": "o/r/a.rs"}]
+    lenient = _mention_case({"mentions": []}, extra)
+    assert lenient["findings"] == [], (
+        "a case that says nothing about FR-002 is not entitled to an opinion "
+        "about it")
+    strict = _mention_case({"mentions": [], "exhaustive_mentions": True}, extra)
+    assert any("unexpected mention FR-002" in f for f in strict["findings"])
+
+
+# TC-035, FR-005-AC-4: diagnostic bounds are graded in both directions.
+def test_diagnostic_bounds_are_graded_both_ways():
+    tally = score.Tally()
+    too_few = score.score_case(
+        {"language": "rust"},
+        {"org": "o", "repo": "r", "diagnostics": {"min": 1}},
+        {"nodes": [], "edges": [], "diagnostics": []}, tally)
+    assert any("at least 1 diagnostic" in f for f in too_few["findings"])
+    too_many = score.score_case(
+        {"language": "rust"},
+        {"org": "o", "repo": "r", "diagnostics": {"max": 0}},
+        {"nodes": [], "edges": [],
+         "diagnostics": [{"code": "unresolved_import", "path": "src/a.rs"}]},
+        tally)
+    assert any("at most 0 diagnostic" in f for f in too_many["findings"]), (
+        "reporting a diagnostic per package import is as wrong as reporting "
+        "none over a broken tree, and only a bounded expectation separates them")
+
+
+# TC-036, FR-005-AC-5: a required code or path that nothing carries is a finding.
+def test_a_required_diagnostic_code_or_path_is_graded():
+    tally = score.Tally()
+    result = score.score_case(
+        {"language": "rust"},
+        {"org": "o", "repo": "r",
+         "diagnostics": {"codes": ["parse_error"], "paths": ["src/broken.rs"]}},
+        {"nodes": [], "edges": [],
+         "diagnostics": [{"code": "unresolved_import", "path": "src/other.rs"}]},
+        tally)
+    assert any("code 'parse_error'" in f for f in result["findings"])
+    assert any("naming 'src/broken.rs'" in f for f in result["findings"])
+
+
+# TC-037, FR-005-AC-6: two runs that disagree byte for byte are a finding.
+def test_a_nondeterministic_producer_is_a_finding():
+    with scratch() as corpus:
+        flaky = corpus / "flaky.py"
+        # Writes a different payload each run, and is otherwise a valid
+        # producer: the difference is in the producer, not the input.
+        flaky.write_text(
+            "import json, sys, itertools, pathlib\n"
+            "counter = pathlib.Path(sys.argv[3]) / '.runs'\n"
+            "n = int(counter.read_text()) if counter.exists() else 0\n"
+            "counter.write_text(str(n + 1))\n"
+            "json.dump({'nodes': [], 'edges': [], 'mentions': [],\n"
+            "           'diagnostics': [], 'run': n}, sys.stdout)\n"
+        )
+        result = scored(
+            corpus, "--case", "determinism/repeated-extraction/mixed",
+            producer=f"{sys.executable} {flaky} {{org}} {{repo}} {{input}}")
+        report = json.loads(result.stdout)
+        case = report["cases"]["determinism/repeated-extraction/mixed"]
+        assert case["deterministic"] is False
+        assert any("different bytes" in f for f in case["findings"])
+
+
+# TC-038, FR-005-AC-7: a forbidden substring in the raw payload is a finding.
+def test_a_forbidden_payload_substring_is_a_finding():
+    tally = score.Tally()
+    result = score.score_case(
+        {"language": "rust"},
+        {"org": "o", "repo": "r", "forbidden_payload_substrings": ["/Users/"]},
+        {"nodes": [], "edges": []}, tally,
+        raw='{"path": "/Users/someone/dev/repo/src/a.rs"}')
+    assert any("/Users/" in f for f in result["findings"]), (
+        "an absolute path is not a wrong edge, which is worse: it fails "
+        "silently as drift between two machines that both look green")

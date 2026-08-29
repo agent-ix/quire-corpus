@@ -28,6 +28,7 @@ gate that will pass for the wrong reason later.
 | FR-002 | FR-002-AC-1, FR-002-AC-2, FR-002-AC-3, FR-002-AC-4, FR-002-AC-5, FR-002-CON-1 | TC-010, TC-011, TC-012, TC-013, TC-014, TC-015 | ✅ |
 | FR-003 | FR-003-AC-1, FR-003-AC-2, FR-003-AC-3, FR-003-AC-4 | TC-016, TC-017, TC-018, TC-019 | ✅ |
 | FR-004 | FR-004-AC-5, FR-004-AC-1, FR-004-AC-2, FR-004-AC-3, FR-004-AC-4, FR-004-AC-6, FR-004-CON-1, FR-004-AC-7 | TC-003, TC-020, TC-021, TC-022, TC-023, TC-024, TC-025, TC-026 | ✅ |
+| FR-005 | FR-005-AC-1, FR-005-AC-2, FR-005-AC-3, FR-005-CON-1, FR-005-AC-4, FR-005-AC-5, FR-005-AC-6, FR-005-AC-7 | TC-032, TC-033, TC-034, TC-035, TC-036, TC-037, TC-038 | ✅ |
 | NFR-001 | NFR-001-AC-1, NFR-001-AC-2, NFR-001-AC-3 | TC-027, TC-028, TC-029 | ✅ |
 | NFR-002 | NFR-002-AC-1, NFR-002-AC-2 | TC-004, TC-030, TC-031 | ✅ |
 | StR-001 | StR-001-VC-1, StR-001-VC-2, StR-001-VC-3, StR-001-VC-4 | TC-001, TC-002, TC-003, TC-004, TC-024, TC-030 | ✅ |
@@ -38,37 +39,44 @@ gate that will pass for the wrong reason later.
 
 | Test ID | Title | Type | Traces To | Status |
 |---|---|---|---|---|
-| TC-001 | a run yields a comparable confusion matrix | Unit | StR-001-VC-1 | ✅ |
-| TC-002 | a truth change changes the revision | Unit | StR-001-VC-2 | ✅ |
-| TC-003 | an unanswered query is not-computed, not zero | Unit | FR-004-AC-5, StR-001-VC-3 | ✅ |
-| TC-004 | every positive has a control, or a recorded reason its positive already contains one | Unit | StR-001-VC-4, NFR-002-AC-1 | ✅ |
+| TC-001 | a run yields a confusion matrix at a stated revision | Unit | StR-001-VC-1 | ✅ |
+| TC-002 | a change to expected truth changes the revision, so scores at two revisions cannot be silently compared | Unit | StR-001-VC-2 | ✅ |
+| TC-003 | a query the producer does not answer is not-computed, and contributes no cell to any ratio | Unit | FR-004-AC-5, StR-001-VC-3 | ✅ |
+| TC-004 | every positive has a control, or a recorded reason why its own fixture already contains one | Unit | StR-001-VC-4, NFR-002-AC-1 | ✅ |
 | TC-005 | every case directory holds its three parts | Unit | FR-001-AC-1 | ✅ |
-| TC-006 | a case at the wrong depth is an error | Unit | FR-001-AC-2 | ✅ |
-| TC-007 | a case with no issue_ref fails | Unit | FR-001-AC-3 | ✅ |
-| TC-008 | every expectation names the org and repo | Unit | FR-001-AC-4 | ✅ |
-| TC-009 | a reserved family declares its owning issue | Unit | FR-001-CON-2 | ✅ |
-| TC-010 | a declared cell with no fixture is a GAP | Unit | FR-002-AC-1 | ✅ |
-| TC-011 | an undeclared fixture fails the gate | Unit | FR-002-AC-2 | ✅ |
-| TC-012 | an exclusion with no reason fails | Unit | FR-002-AC-3 | ✅ |
-| TC-013 | coverage is derived, so state is never stored | Unit | FR-002-AC-4 | ✅ |
+| TC-006 | a case at the wrong depth is an error, not a silent omission | Unit | FR-001-AC-2 | ✅ |
+| TC-007 | a case with no issue_ref fails the gate | Unit | FR-001-AC-3 | ✅ |
+| TC-008 | every expectation names the org and repo its fixture is extracted as | Unit | FR-001-AC-4 | ✅ |
+| TC-009 | a reserved family declares its owning issue and is not silently populated | Unit | FR-001-CON-2 | ✅ |
+| TC-010 | a declared cell with no fixture is a GAP and fails | Unit | FR-002-AC-1 | ✅ |
+| TC-011 | an undeclared fixture fails rather than being counted | Unit | FR-002-AC-2 | ✅ |
+| TC-012 | an exclusion with no reason fails the gate | Unit | FR-002-AC-3 | ✅ |
+| TC-013 | coverage is derived, so a fixture flips its own cell | Unit | FR-002-AC-4 | ✅ |
 | TC-014 | a positive naming a control that is gone fails | Unit | FR-002-AC-5 | ✅ |
-| TC-015 | gap_count is a count, not a ratio | Unit | FR-002-CON-1 | ✅ |
-| TC-016 | the template substitutes org, repo and input | Unit | FR-003-AC-1 | ✅ |
-| TC-017 | a non-zero exit is reported, not scored | Unit | FR-003-AC-2 | ✅ |
-| TC-018 | non-JSON output is reported, not scored | Unit | FR-003-AC-3 | ✅ |
+| TC-015 | gap_count is a count, never a ratio | Unit | FR-002-CON-1 | ✅ |
+| TC-016 | the invocation template substitutes org, repo, input | Unit | FR-003-AC-1 | ✅ |
+| TC-017 | a non-zero exit is reported, never scored as zero | Unit | FR-003-AC-2 | ✅ |
+| TC-018 | output that is not JSON is reported, never scored | Unit | FR-003-AC-3 | ✅ |
 | TC-019 | the producer contract carries a version | Unit | FR-003-AC-4 | ✅ |
-| TC-020 | kind is censused, not graded | Unit | FR-004-AC-1 | ✅ |
+| TC-020 | the grammar's kind is censused, never graded | Unit | FR-004-AC-1 | ✅ |
 | TC-021 | edges are scoped to the types the case names | Unit | FR-004-AC-2 | ✅ |
-| TC-022 | a forbidden edge type is a false positive | Unit | FR-004-AC-3 | ✅ |
-| TC-023 | an empty partition is unavailable, not 1.0 | Unit | FR-004-AC-4 | ✅ |
-| TC-024 | an unanswered query is not-computed, not zero | Unit | FR-004-AC-5, StR-001-VC-3 | ✅ |
-| TC-025 | a tier disagreement is recorded | Unit | FR-004-AC-6, FR-004-CON-1 | ✅ |
+| TC-022 | a forbidden edge type emitted is a false positive | Unit | FR-004-AC-3 | ✅ |
+| TC-023 | an empty partition is unavailable, never 1.0 | Unit | FR-004-AC-4 | ✅ |
+| TC-024 | a query the producer does not answer is not-computed, and contributes no cell to any ratio | Unit | FR-004-AC-5, StR-001-VC-3 | ✅ |
+| TC-025 | a tier disagreement is recorded and reported, never scored as a wrong edge | Unit | FR-004-AC-6, FR-004-CON-1 | ✅ |
 | TC-026 | scoring pinned inputs is deterministic | Unit | FR-004-AC-7 | ✅ |
-| TC-027 | two runs agree | Unit | NFR-001-AC-1 | ✅ |
-| TC-028 | editing a fixture byte changes the revision | Unit | NFR-001-AC-2 | ✅ |
-| TC-029 | moving a fixture changes the revision | Unit | NFR-001-AC-3 | ✅ |
-| TC-030 | every positive has a control, or a recorded reason its positive already contains one | Unit | StR-001-VC-4, NFR-002-AC-1 | ✅ |
-| TC-031 | the contributing contract states the rule that a truth change carries the clause deciding it | Unit | NFR-002-AC-2 | ✅ |
+| TC-027 | two runs on an unchanged tree agree | Unit | NFR-001-AC-1 | ✅ |
+| TC-028 | editing any fixture byte changes the revision | Unit | NFR-001-AC-2 | ✅ |
+| TC-029 | moving a fixture changes the revision even though no byte changed | Unit | NFR-001-AC-3 | ✅ |
+| TC-030 | every positive has a control, or a recorded reason why its own fixture already contains one | Unit | StR-001-VC-4, NFR-002-AC-1 | ✅ |
+| TC-031 | the rule that a truth change carries the contract clause deciding it is written down where a reviewer will meet it | Unit | NFR-002-AC-2 | ✅ |
+| TC-032 | a mention the case names and the producer omits is a false negative, not a silent pass | Unit | FR-005-AC-1 | ✅ |
+| TC-033 | the kind is the claim, so the right identifier with the wrong kind is not the mention the case asked for | Unit | FR-005-AC-2 | ✅ |
+| TC-034 | an unnamed mention is a false positive only where the case says its list is the whole list | Unit | FR-005-AC-3, FR-005-CON-1 | ✅ |
+| TC-035 | diagnostic bounds are graded in both directions | Unit | FR-005-AC-4 | ✅ |
+| TC-036 | a required code or path that nothing carries is a finding | Unit | FR-005-AC-5 | ✅ |
+| TC-037 | two runs that disagree byte for byte are a finding | Unit | FR-005-AC-6 | ✅ |
+| TC-038 | a forbidden substring in the raw payload is a finding | Unit | FR-005-AC-7 | ✅ |
 
 ---
 
