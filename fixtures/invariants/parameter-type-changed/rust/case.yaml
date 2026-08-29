@@ -4,6 +4,9 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The variant is the control: one edit that must move one field and hold another."
+criteria:
+- FR-009-AC-5
+- FR-009-AC-8
 comment: >-
   A parameter's type changed, which changes the signature and must not
   change the identifier. The two facts pull in opposite directions and both

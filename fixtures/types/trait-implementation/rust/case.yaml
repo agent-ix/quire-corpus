@@ -4,6 +4,8 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 control_for_pair: inherent-implementation
+criteria:
+- FR-008-AC-7
 comment: >-
   An `impl Trait for Type` block. The trait relation is an edge, never a
   name segment, because the method is named by its implementing type - so a

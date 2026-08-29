@@ -8,6 +8,16 @@ no_control_reason: >-
   a false positive here without a second tree to compare against. A separate
   lookalike would only re-test the same assertion.
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-001-AC-1
+- FR-001-AC-2
+- FR-001-AC-3
+- FR-001-AC-8
+- FR-002-AC-1
+- FR-002-AC-2
+- FR-002-AC-3
+- FR-003-AC-1
+- FR-003-AC-6
 comment: >-
   Python has no module *declaration* — the file is the module — so this case
   is also the negative control for `code_module`: a producer that mints one

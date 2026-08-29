@@ -2,4 +2,5 @@ org: agent-ix
 repo: imp-ts
 edges: []
 forbidden_edge_types: [imports]
-expect_diagnostics: 0
+diagnostics:
+  max: 0

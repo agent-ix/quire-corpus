@@ -4,6 +4,9 @@ language: rust
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: extensionless-specifier
+criteria:
+- FR-003-AC-3
+- FR-007-AC-2
 comment: >-
   A relative specifier naming a file the batch does not contain. Unlike a
   bare specifier — which is a package, and silence is correct — this one

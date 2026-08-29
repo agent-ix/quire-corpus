@@ -4,6 +4,9 @@ language: rust
 kind: control
 control_for: import-scoped-call
 issue_ref: agent-ix/quire-corpus#1
+criteria:
+- FR-008-AC-11
+- FR-008-CON-1
 comment: >-
   Byte-identical to its positive except for one added import line. Both
   candidates are now in scope, so FR-008's "more than one candidate

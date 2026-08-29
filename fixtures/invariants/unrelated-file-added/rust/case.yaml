@@ -4,6 +4,10 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The two runs are each other's control: identical input plus one file that shares nothing with it."
+criteria:
+- FR-007-AC-4
+- FR-008-AC-9
+- FR-008-CON-3
 comment: >-
   One file added to the batch, touching nothing the first file declares.
   Every record of the original file must be identical across the two runs -

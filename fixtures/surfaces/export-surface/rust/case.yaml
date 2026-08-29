@@ -3,6 +3,13 @@ family: surfaces
 language: rust
 kind: positive
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-008-AC-7
+- FR-009-AC-1
+- FR-009-AC-2
+- FR-009-AC-3
+- FR-009-AC-5
+- FR-009-AC-7
 comment: >-
   Visibility is what separates an exported-surface change from a body edit,
   and therefore what decides whether a change can reach a dependent at all.

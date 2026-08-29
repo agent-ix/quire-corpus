@@ -22,3 +22,8 @@ impact:
   excluded:
   - "agent-ix/traversal-mixed/src/entry.rs::entry"
   - "agent-ix/traversal-mixed/src/mid.rs::Mid::step"
+# The derived expectation above asks about traversal rather than
+# extraction, and no producer has ever answered it. Named here so the
+# report can say what is blocking rather than presenting an unmeasured
+# expectation as coverage.
+derived_blocked_by: agent-ix/filament-ide-rs#520

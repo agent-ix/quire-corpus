@@ -8,6 +8,9 @@ no_control_reason: >-
   The file is its own control: the trait method and the inherent method are two
   declarations the language keeps apart, in one file, and the assertion is only
   that the graph keeps them apart too.
+criteria:
+- FR-002-AC-2
+- FR-006-CON-1
 comment: >-
   A type carrying both an inherent `impl` and a trait `impl` of one method name.
   Rust keeps the two declarations apart; FR-002-AC-2 names a method by its type

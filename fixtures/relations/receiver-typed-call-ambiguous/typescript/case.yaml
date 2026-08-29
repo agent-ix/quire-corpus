@@ -4,6 +4,12 @@ language: typescript
 kind: control
 control_for: receiver-typed-call
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- NFR-004-AC-2
+- FR-008-AC-11
+- FR-008-AC-2
+- FR-008-CON-1
+- NFR-004-AC-4
 comment: >-
   `any` erases the receiver. The method name is unique to neither class. The positive twin is byte-similar and differs only in whether the
   receiver's type is written down; a corpus that held only the positive

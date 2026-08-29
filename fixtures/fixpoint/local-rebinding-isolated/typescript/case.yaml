@@ -4,6 +4,8 @@ language: typescript
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The two functions are each other's control: identical call syntax, identical method name, different receiver type, in one file."
+criteria:
+- FR-008-AC-5
 comment: >-
   One name, `handle`, bound to a different type inside each of two
   functions, each calling a method both types declare. FR-008 isolates

@@ -4,6 +4,8 @@ language: python
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 control_for_pair: re-export-same-name
+criteria:
+- FR-003-AC-2
 comment: >-
   A barrel file that re-exports a declaration, and a consumer importing
   through it. Two import edges are owed, each to the file its own specifier

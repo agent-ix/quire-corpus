@@ -4,6 +4,8 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The second run is the control: the same input under a different org, so any shared name is a name that ignored the org."
+criteria:
+- FR-002-AC-4
 comment: >-
   The same tree extracted under two different organisations. Every name is
   org-qualified, so the two runs must share no name at all - otherwise two

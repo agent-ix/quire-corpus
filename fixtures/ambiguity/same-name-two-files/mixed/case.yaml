@@ -9,6 +9,11 @@ no_control_reason: >-
   that proves it guessing are the same tree, and a producer cannot pass one
   while failing the other by accident.
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-008-AC-12
+- FR-008-AC-2
+- FR-008-CON-1
+- NFR-004-AC-4
 comment: >-
   One type name declared in two files, each with its own caller. The batch is
   ambiguous and each file is not, so this separates a resolver that gives up

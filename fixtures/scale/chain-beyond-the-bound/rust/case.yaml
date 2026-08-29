@@ -5,6 +5,8 @@ kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: binding-from-bound-name
 control_language: rust
+criteria:
+- FR-008-CON-2
 comment: >-
   A binding propagated through 13 assignments, past the ten-iteration bound
   the fixpoint carries. FR-008-CON-2 says reaching the bound degrades to

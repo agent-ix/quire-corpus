@@ -4,6 +4,10 @@ language: typescript
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: invalid-file-in-batch
+criteria:
+- FR-007-AC-5
+- FR-007-AC-6
+- FR-007-CON-1
 comment: >-
   Bytes no grammar can make sense of. The file fact is still owed - a file
   that exists is a node whatever is in it - and nothing else is. This is the

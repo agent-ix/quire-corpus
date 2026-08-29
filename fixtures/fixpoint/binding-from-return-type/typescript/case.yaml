@@ -4,6 +4,8 @@ language: typescript
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "Its control is `receiver-typed-call-ambiguous`, where the receiver is produced the same way and its type is genuinely unknowable."
+criteria:
+- FR-008-AC-4
 comment: >-
   The receiver's type is never written at the call site - it comes from the
   declared return type of the function that produced it. This is the

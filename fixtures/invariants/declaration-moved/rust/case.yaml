@@ -4,6 +4,9 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The variant is the control: the same file with one change that identity must ignore."
+criteria:
+- FR-002-AC-5
+- FR-006-AC-2
 comment: >-
   The same declarations, moved down the file by an added comment. Identity
   is a pure function of `(object_type, qualified_name)`, so every identifier

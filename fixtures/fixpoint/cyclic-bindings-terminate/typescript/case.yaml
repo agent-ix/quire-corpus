@@ -4,6 +4,9 @@ language: typescript
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: binding-from-bound-name
+criteria:
+- FR-008-AC-6
+- FR-008-CON-2
 comment: >-
   Three bindings that close a loop and never reach a type. The propagation
   must stop at its bound and emit the edges it resolved rather than

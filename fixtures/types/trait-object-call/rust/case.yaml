@@ -4,6 +4,9 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The two implementors are the control: they are in the tree so that a wrong answer is available to be given."
+criteria:
+- FR-008-AC-8
+- FR-008-CON-1
 comment: >-
   Dynamic dispatch. The source names the interface and does not determine
   which implementation runs, so the trait's own method is the whole of what

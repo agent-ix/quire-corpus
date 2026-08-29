@@ -4,6 +4,8 @@ language: mixed
 kind: positive
 issue_ref: agent-ix/quire-rs#385
 shares_input_with: traversal-repository
+criteria:
+- FR-005-AC-1
 comment: >-
   One repository, three questions. `paths`, `impact` and `test-selection`
   are not three fixtures because they are not three graphs: they are three

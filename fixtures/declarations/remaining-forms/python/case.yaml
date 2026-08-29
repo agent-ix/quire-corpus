@@ -4,6 +4,12 @@ language: python
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "Exhaustive over the fixture, so a producer that drops a decorated or nested declaration fails here without a second tree."
+criteria:
+- FR-001-AC-10
+- FR-001-AC-2
+- FR-001-AC-9
+- FR-003-AC-1
+- FR-003-AC-6
 comment: >-
   The Python shapes the first pass never reached: a nested class, a
   staticmethod, a classmethod, an async def, a decorated function, and a

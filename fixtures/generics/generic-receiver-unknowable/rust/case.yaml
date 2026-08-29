@@ -4,6 +4,9 @@ language: rust
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: generic-declarations
+criteria:
+- FR-008-CON-1
+- NFR-004-AC-4
 comment: >-
   The receiver's type is a type parameter, so the source does not determine
   which implementation runs - the same situation as a trait object, reached

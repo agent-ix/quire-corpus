@@ -69,6 +69,54 @@ producer_contract:
   stdout: canonical-records-v1
   documented: spec/functional/FR-003-producer-contract.md
 
+# Whose criteria this corpus is measured against. `spec_root` is read to
+# enumerate every acceptance criterion and constraint the tool declares, so
+# "which of them does the data reach?" is derived from two trees rather than
+# claimed in a README.
+#
+# `unreachable` records the criteria a corpus of this shape structurally cannot
+# reach, each with the reason. It is not an exemption list: a criterion that is
+# merely unwritten belongs in neither set and fails the gate.
+producers:
+  quire-code-rs:
+    criteria_pin: producers/quire-code-rs.criteria.yaml
+    unreachable:
+      crate-property: >-
+        A property of the tool's own source or dependency tree rather than of
+        its output. A corpus reads stdout; it cannot see a lint attribute, a
+        dependency closure, or a static audit of extraction paths.
+        FR-001-AC-7, FR-001-CON-1, FR-001-CON-2, FR-003-CON-1, FR-004-CON-1,
+        FR-005-CON-1, FR-009-CON-1, FR-009-CON-2, NFR-001-AC-4, NFR-001-AC-5,
+        NFR-002-AC-1, NFR-002-AC-2, NFR-002-AC-3
+      repo-local-evidence: >-
+        Evidence that exists only inside the tool's own repository - its golden
+        file, its own test suite, a serialized record from a previous release.
+        FR-005-AC-7, FR-006-AC-6, FR-009-AC-9
+      benchmark-lane: >-
+        A wall-clock or corpus-scale number the tool's own benchmark lane owns.
+        Measuring it here would make a correctness gate fail for reasons of host
+        speed. NFR-003-AC-1, NFR-003-AC-2, NFR-003-AC-3, NFR-003-AC-4,
+        NFR-003-AC-5, NFR-004-AC-5
+      repetition-scale: >-
+        A hundred repeated extractions and eight concurrent threads. The corpus
+        runs a producer twice, which catches an unstable ordering and not a rare
+        race. NFR-001-AC-1, NFR-001-AC-2
+      producer-binary: >-
+        The contract of the binary this corpus invokes, tested in the repository
+        that ships it - a corpus cannot be the thing that verifies the shape it
+        depends on to run at all. FR-010-AC-1, FR-010-AC-2, FR-010-AC-3,
+        FR-010-AC-4, FR-010-AC-5, FR-010-CON-1, FR-010-CON-2
+      stakeholder-validation: >-
+        A stakeholder validation criterion, discharged against what a consumer
+        of the tool observes rather than against the records the tool writes.
+        StR-001-VC-1, StR-001-VC-2, StR-001-VC-3, StR-001-VC-4, StR-002-VC-1,
+        StR-002-VC-2, StR-002-VC-3, StR-002-VC-4
+      host-dependent-input: >-
+        A criterion whose input cannot exist as a committed fixture. A path with
+        a backslash segment is not creatable on a POSIX filesystem, so a
+        Windows-style path can only be supplied through the library API.
+        FR-002-AC-6
+
 # For each case: the languages that must have a fixture. A case appearing in
 # one language and not another is a GAP unless it is scoped out with a
 # reason, and "not implemented yet" is a GAP, not an exclusion.

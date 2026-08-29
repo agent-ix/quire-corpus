@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import sys
 
 import yaml
@@ -65,6 +66,35 @@ def discover() -> dict[tuple[str, str, str], pathlib.Path]:
         family, case, language, _ = rel
         found[(family, case, language)] = case_file.parent
     return found
+
+
+def producer_criteria(manifest: dict) -> dict[str, dict]:
+    """Every criterion each declared producer states, and its reason set.
+
+    Read from the producer's own tree rather than restated here: a restated list
+    goes stale the day somebody adds a criterion, and the whole point of the
+    number is that nobody can add one without the corpus noticing it is
+    unreached.
+    """
+    out: dict[str, dict] = {}
+    for name, declared in (manifest.get("producers") or {}).items():
+        pin = ROOT / declared["criteria_pin"]
+        pinned = yaml.safe_load(pin.read_text()) if pin.exists() else None
+        criteria: set[str] = set(pinned["criteria"]) if pinned else set()
+        unreachable: dict[str, str] = {}
+        for reason, text in (declared.get("unreachable") or {}).items():
+            for identifier in re.findall(
+                r"(?:FR|NFR|StR)-\d+-(?:AC|CON|VC)-\d+", text
+            ):
+                unreachable[identifier] = reason
+        out[name] = {
+            "root": str(pin),
+            "readable": pinned is not None,
+            "revision": (pinned or {}).get("revision"),
+            "criteria": criteria,
+            "unreachable": unreachable,
+        }
+    return out
 
 
 def audit() -> dict:
@@ -127,13 +157,65 @@ def audit() -> dict:
                     f"{where}, which does not exist"
                 )
 
+    # ── criterion coverage ───────────────────────────────────────────────
+    claimed: set[str] = set()
+    for path in on_disk.values():
+        meta = yaml.safe_load((path / "case.yaml").read_text())
+        claimed |= set(meta.get("criteria") or [])
+
+    coverage: dict[str, dict] = {}
+    for name, declared in producer_criteria(manifest).items():
+        if not declared["readable"]:
+            coverage[name] = {
+                "state": "unavailable",
+                "why": f"{declared['root']} is not readable from here",
+            }
+            continue
+        reached = sorted(claimed & declared["criteria"])
+        unreachable = {
+            identifier: reason
+            for identifier, reason in declared["unreachable"].items()
+            if identifier in declared["criteria"]
+        }
+        unreached = sorted(declared["criteria"] - set(reached) - set(unreachable))
+        stale = sorted(set(declared["unreachable"]) - declared["criteria"])
+        phantom = sorted(claimed - declared["criteria"])
+        coverage[name] = {
+            "state": "measured",
+            "total": len(declared["criteria"]),
+            "reached": reached,
+            "unreachable": unreachable,
+            "unreached": unreached,
+            # An id declared unreachable that the producer no longer states, or
+            # claimed by a case and stated by nobody. Both are how a coverage
+            # number drifts away from the thing it describes.
+            "stale_unreachable": stale,
+            "claimed_but_undeclared": phantom,
+        }
+        for identifier in unreached:
+            problems.append(
+                f"{name} {identifier} is reached by no case and declared "
+                "unreachable by nothing"
+            )
+        for identifier in stale:
+            problems.append(
+                f"{name} {identifier} is declared unreachable and the producer "
+                "no longer states it"
+            )
+        for identifier in phantom:
+            problems.append(
+                f"{name} {identifier} is claimed by a case and stated by no "
+                "requirement"
+            )
+
     return {
+        "criterion_coverage": coverage,
         "covered": sorted(cells),
         "gaps": sorted(gaps),
         "gap_count": len(gaps),
         "scoped_out": sorted(scoped_out),
         "undeclared": sorted(undeclared),
-        "problems": sorted(problems),
+        "problems": sorted(set(problems)),
         "controls": sorted(c for c in controls if c[1]),
     }
 
@@ -149,6 +231,16 @@ def main() -> int:
     if "--json" in sys.argv:
         print(json.dumps(report, indent=1, sort_keys=True))
     else:
+        for name, coverage in sorted(report["criterion_coverage"].items()):
+            if coverage["state"] != "measured":
+                print(f"{name}: criteria unavailable — {coverage['why']}")
+                continue
+            print(
+                f"{name}  {len(coverage['reached'])} reached, "
+                f"{len(coverage['unreachable'])} unreachable, "
+                f"{len(coverage['unreached'])} unreached  of "
+                f"{coverage['total']}"
+            )
         print(f"covered      {len(report['covered'])}")
         print(f"gap_count    {report['gap_count']}")
         print(f"scoped out   {len(report['scoped_out'])}")

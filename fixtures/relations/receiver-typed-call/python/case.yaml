@@ -4,6 +4,10 @@ language: python
 kind: positive
 control_for_pair: receiver-typed-call-ambiguous
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-008-AC-13
+- FR-003-AC-2
+- FR-008-AC-1
 comment: >-
   The Python form uses an annotation, because Python is where a resolver is
   most tempted to guess from the method name alone.

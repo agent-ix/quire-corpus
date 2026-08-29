@@ -417,13 +417,6 @@ def score_case(
             "reported": stats.get("unresolved_calls"),
             "state": "measured" if "unresolved_calls" in stats else "not-computed",
         }
-    if "expect_diagnostics" in expected:
-        census["diagnostics"] = {
-            "expected": expected["expect_diagnostics"],
-            "reported": len(produced.get("diagnostics", [])),
-            "state": "measured",
-        }
-
     # A diagnostic is a claim about the *input*, so it is graded like one: a
     # producer that reports none where the tree is broken and a producer that
     # reports one for every bare package import are both wrong, and only a
@@ -545,6 +538,7 @@ def main() -> int:
             if not relation_findings:
                 tally.add("tp", language=meta["language"], axis_kind="relation")
         result["pending"] = meta.get("pending")
+        result["derived_blocked_by"] = expected.get("derived_blocked_by")
         if expected.get("deterministic"):
             _, second = run_producer(args.producer, case_dir, expected)
             result["deterministic"] = raw == second
@@ -589,6 +583,19 @@ def main() -> int:
               f"fn {totals.get('fn')}  "
               f"precision {totals.get('precision')}  "
               f"recall {totals.get('recall')}")
+        not_computed = sorted(
+            (key, name, r["derived_blocked_by"])
+            for key, r in cases.items()
+            for name, d in (r.get("derived") or {}).items()
+            if d.get("state") == "not-computed" and r.get("derived_blocked_by")
+        )
+        if not_computed:
+            print(
+                f"not computed {len(not_computed)} expectation(s): authored, "
+                "never answered by any producer, and out of every ratio"
+            )
+            for key, name, blocker in not_computed:
+                print(f"    {key} [{name}] blocked by {blocker}")
         pending = sum(1 for r in cases.values() if r.get("pending"))
         if pending:
             print(f"pending {pending} case(s) held against an open issue")

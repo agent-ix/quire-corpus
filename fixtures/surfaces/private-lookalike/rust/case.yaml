@@ -4,6 +4,8 @@ language: rust
 kind: control
 control_for: export-surface
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-009-AC-1
 comment: >-
   The same file with every modifier removed. Byte-similar to its positive
   and correct only if the producer reads the modifier rather than the shape:

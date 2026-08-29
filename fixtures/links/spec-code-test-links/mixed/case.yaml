@@ -3,6 +3,11 @@ family: links
 language: mixed
 kind: positive
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-005-AC-10
+- FR-005-AC-2
+- FR-005-AC-6
+- FR-005-AC-9
 comment: >-
   The whole point of an integrated corpus rather than an extractor unit
   fixture: a requirement, the code that implements it, and the test that

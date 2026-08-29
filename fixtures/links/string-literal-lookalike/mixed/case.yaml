@@ -4,6 +4,9 @@ language: mixed
 kind: control
 control_for: spec-code-test-links
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-005-AC-4
+- FR-005-AC-5
 comment: >-
   The same identifiers, in string literals and inside longer tokens instead
   of in comments. A harvester that greps for `TC-\d+` reports four

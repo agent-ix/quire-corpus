@@ -5,6 +5,9 @@ kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: name-match-call
 control_language: rust
+criteria:
+- FR-008-AC-2
+- FR-008-CON-1
 comment: >-
   One method name declared by 12 types across 12 files, and one call whose
   receiver does not resolve. Every tier is ambiguous, so the correct output

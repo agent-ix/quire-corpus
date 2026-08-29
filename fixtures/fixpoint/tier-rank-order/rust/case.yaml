@@ -4,6 +4,8 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The forbidden edge is the control: the wrong answer is available in the same tree, reachable by a resolver that consults imports first."
+criteria:
+- FR-008-AC-10
 comment: >-
   Two tiers give different answers for one call site, and FR-008 says which
   wins. The receiver is annotated `Store`; the file imports `Cache`; both

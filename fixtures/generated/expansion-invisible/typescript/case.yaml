@@ -4,6 +4,8 @@ language: typescript
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: generic-declarations
+criteria:
+- FR-001-AC-4
 comment: >-
   A declaration whose name exists only after expansion, beside one written
   literally. The literal one is owed a node; the generated one must not be

@@ -4,6 +4,10 @@ language: typescript
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The two files are each other's control: identical signature, different formatting."
+criteria:
+- FR-009-AC-5
+- FR-009-AC-6
+- FR-009-AC-7
 comment: >-
   The TypeScript pair. There is no receiver segment - a method takes no
   explicit `self` - so a producer that emits one here and not in Rust has

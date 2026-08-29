@@ -4,6 +4,8 @@ language: rust
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: trait-implementation
+criteria:
+- FR-008-AC-7
 comment: >-
   The same two declarations and the same method name, with the `for Persist`
   removed. An inherent impl implements nothing, so the correct output has no

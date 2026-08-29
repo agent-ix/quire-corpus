@@ -4,6 +4,9 @@ language: python
 kind: positive
 control_for_pair: import-scoped-ambiguous
 issue_ref: agent-ix/quire-corpus#1
+criteria:
+- FR-008-AC-13
+- FR-008-AC-10
 comment: >-
   The middle resolution tier, and the one nothing measured until now. Two
   types in the batch declare `upsert` and the receiver's type does not

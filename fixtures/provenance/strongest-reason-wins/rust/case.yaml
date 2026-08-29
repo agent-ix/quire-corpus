@@ -4,6 +4,11 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The two sites are each other's control: one edge degraded to the other's tier fails the assertion without a second tree."
+criteria:
+- FR-003-AC-5
+- FR-004-AC-3
+- FR-004-AC-6
+- FR-008-AC-10
 comment: >-
   Two call sites onto the same method from one file, resolved at different
   tiers: one receiver-typed, one import-scoped. They are different source

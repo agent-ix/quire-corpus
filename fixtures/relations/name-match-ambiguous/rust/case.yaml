@@ -4,6 +4,9 @@ language: rust
 kind: control
 control_for: name-match-call
 issue_ref: agent-ix/quire-corpus#1
+criteria:
+- FR-008-AC-11
+- FR-008-CON-1
 comment: >-
   One file added, nothing else changed. Two types now declare `upsert`
   and nothing distinguishes them, so the correct output is no edge. This

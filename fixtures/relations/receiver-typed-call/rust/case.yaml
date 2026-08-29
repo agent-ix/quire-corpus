@@ -4,6 +4,10 @@ language: rust
 kind: positive
 control_for_pair: receiver-typed-call-ambiguous
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-008-AC-13
+- FR-003-AC-2
+- FR-008-AC-1
 comment: >-
   A cross-file call whose receiver type is written down. This is the tier
   that carries the most weight in an impact closure and the one an

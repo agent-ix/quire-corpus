@@ -19,3 +19,8 @@ paths:
   # Two functions named `compute` exist. Only one is reachable from `entry`,
   # and a resolver that binds by name alone will report a path here.
   shortest: []
+# The derived expectation above asks about traversal rather than
+# extraction, and no producer has ever answered it. Named here so the
+# report can say what is blocking rather than presenting an unmeasured
+# expectation as coverage.
+derived_blocked_by: agent-ix/filament-ide-rs#522

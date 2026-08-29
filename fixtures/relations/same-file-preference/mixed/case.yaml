@@ -8,6 +8,9 @@ no_control_reason: >-
   and calls it from its own file; if the resolver preferred the batch over
   the declaring file, both edges would cross and both would be wrong, so the
   pair proves itself.
+criteria:
+- FR-008-AC-12
+- FR-008-CON-3
 comment: >-
   FR-008: a call resolves against the declaration in its own file before any
   batch-wide candidate. Two files declare `Store::flush` and each calls it;

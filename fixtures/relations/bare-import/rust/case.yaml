@@ -4,6 +4,8 @@ language: rust
 kind: control
 control_for: receiver-typed-call
 issue_ref: agent-ix/quire-rs#385
+criteria:
+- FR-003-AC-3
 comment: >-
   A specifier that names no file in the batch. The correct output is no
   import edge and no diagnostic: an unresolvable *bare* specifier is not

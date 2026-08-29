@@ -32,3 +32,27 @@ fail rather than count it.
 | ID | Constraint | Type | Validation |
 |----|------------|------|------------|
 | FR-002-CON-1 | `gap_count` SHALL be a count, never a ratio: a ratio falls as easy cases are added while the hard missing case stays missing | Maintainability | Test (TC-015) |
+
+## Criterion coverage
+
+The inventory says which cases exist. It cannot say whether they reach what the
+producer promises, and "is the corpus exhaustive?" was an opinion until it did.
+
+Each case names the criteria it asserts, in `criteria:`. The producer's own
+criteria are pinned under `producers/`, and `bounds.py` derives three sets from
+the two: **reached**, **unreachable with a recorded reason**, and **unreached**.
+The last fails the gate — so a criterion added upstream cannot arrive quietly,
+and neither can a case that claims one nobody states.
+
+The pin is a committed snapshot rather than a live read of a sibling checkout,
+because a number computed against whatever is on somebody's disk is not
+reproducible and NFR-001 says a clean runner reproduces this corpus from its own
+tree. Moving the pin is the reviewable event: it is where a new criterion
+appears and where the corpus is obliged to notice it is unreached.
+
+| ID | Criteria | Verification |
+|----|----------|--------------|
+| FR-002-AC-6 | A criterion the pin states that no case claims and no reason excuses fails the gate | Test (TC-043) |
+| FR-002-AC-7 | A criterion a case claims that the pin does not state fails the gate | Test (TC-044) |
+| FR-002-AC-8 | A criterion declared unreachable that the pin no longer states fails the gate | Test (TC-045) |
+| FR-002-AC-9 | An unreachable declaration carries the reason a corpus of this shape cannot reach it | Test (TC-046) |

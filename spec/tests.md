@@ -25,7 +25,7 @@ gate that will pass for the wrong reason later.
 | Functional Req | Acceptance Criteria | Test Cases | Coverage Status |
 |---|---|---|---|
 | FR-001 | FR-001-AC-1, FR-001-AC-2, FR-001-AC-3, FR-001-AC-4, FR-001-CON-2 | TC-005, TC-006, TC-007, TC-008, TC-009 | ✅ |
-| FR-002 | FR-002-AC-1, FR-002-AC-2, FR-002-AC-3, FR-002-AC-4, FR-002-AC-5, FR-002-CON-1 | TC-010, TC-011, TC-012, TC-013, TC-014, TC-015, TC-040 | ✅ |
+| FR-002 | FR-002-AC-1, FR-002-AC-2, FR-002-AC-3, FR-002-AC-4, FR-002-AC-5, FR-002-CON-1, FR-002-AC-6, FR-002-AC-7, FR-002-AC-8, FR-002-AC-9 | TC-010, TC-011, TC-012, TC-013, TC-014, TC-015, TC-040, TC-043, TC-044, TC-045, TC-046 | ✅ |
 | FR-003 | FR-003-AC-1, FR-003-AC-2, FR-003-AC-3, FR-003-AC-4 | TC-016, TC-017, TC-018, TC-019 | ✅ |
 | FR-004 | FR-004-AC-5, FR-004-AC-1, FR-004-AC-2, FR-004-AC-3, FR-004-AC-4, FR-004-AC-6, FR-004-CON-1, FR-004-AC-7 | TC-003, TC-020, TC-021, TC-022, TC-023, TC-024, TC-025, TC-026, TC-042 | ✅ |
 | FR-005 | FR-005-AC-1, FR-005-AC-2, FR-005-AC-3, FR-005-CON-1, FR-005-AC-4, FR-005-AC-5, FR-005-AC-6, FR-005-AC-7 | TC-032, TC-033, TC-034, TC-035, TC-036, TC-037, TC-038 | ✅ |
@@ -83,6 +83,10 @@ gate that will pass for the wrong reason later.
 | TC-040 | two orgs share no names | Unit | FR-002-AC-4 | ✅ |
 | TC-041 | an unrelated file leaves the others' records alone | Unit | FR-007-AC-4 | ✅ |
 | TC-042 | an unknown relation is reported, never treated as held | Unit | FR-004-AC-7 | ✅ |
+| TC-043 | a criterion nothing claims and nothing excuses fails | Unit | FR-002-AC-6 | ✅ |
+| TC-044 | a criterion a case claims that nobody states fails | Unit | FR-002-AC-7 | ✅ |
+| TC-045 | an unreachable declaration for a retired criterion fails | Unit | FR-002-AC-8 | ✅ |
+| TC-046 | every unreachable criterion carries a reason, and the reason is prose rather than a label | Unit | FR-002-AC-9 | ✅ |
 
 ---
 

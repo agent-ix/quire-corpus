@@ -4,6 +4,9 @@ language: rust
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: folded-call-sites
+criteria:
+- FR-004-AC-2
+- FR-004-CON-2
 comment: >-
   Thirty call sites on one triple. `count` must be 30 and `evidence` must
   hold exactly 20 entries - the cap exists so one hot edge cannot carry a

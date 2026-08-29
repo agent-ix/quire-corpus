@@ -4,6 +4,10 @@ language: typescript
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 control_for_pair: arbitrary-bytes
+criteria:
+- FR-007-AC-1
+- FR-007-AC-2
+- FR-007-AC-3
 comment: >-
   One syntactically invalid file beside one healthy one. The healthy file's
   records must be complete and the broken one must be diagnosed by path. A

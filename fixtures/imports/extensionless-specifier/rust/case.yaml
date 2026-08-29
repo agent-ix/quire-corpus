@@ -4,6 +4,10 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 control_for_pair: broken-relative-specifier
+criteria:
+- FR-003-AC-2
+- FR-003-AC-4
+- FR-003-AC-5
 comment: >-
   A specifier that names no extension. Every one of these three languages
   spells the same import differently and resolves it by its own convention,

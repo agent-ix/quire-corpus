@@ -4,6 +4,8 @@ language: typescript
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The case is its own control: two relations of different types on one declaration, so collapsing them fails the assertion without a second tree."
+criteria:
+- FR-008-AC-7
 comment: >-
   One declaration carrying both relations at once. They are different edges
   and a producer that reads the heritage clause as one list emits two edges

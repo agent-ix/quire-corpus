@@ -4,6 +4,8 @@ language: python
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: receiver-typed-call
+criteria:
+- FR-006-AC-7
 comment: >-
   A recursive method and a recursive free function. Neither may yield a
   `calls` edge to itself. The rule is not aesthetic: the consumer's graph

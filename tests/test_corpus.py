@@ -549,3 +549,58 @@ def test_an_unknown_relation_is_reported():
     findings = score.compare_runs("wishful", _payload([]), _payload([]), {})
     assert any("unknown relation" in f for f in findings), (
         "a relation nobody implemented must not read as a relation that held")
+
+
+# ── criterion coverage ───────────────────────────────────────────────────────
+
+def _coverage(corpus: pathlib.Path) -> dict:
+    out = run(corpus, "bounds.py", "--json")
+    return json.loads(out.stdout)["criterion_coverage"]["quire-code-rs"]
+
+
+# TC-043, FR-002-AC-6: a criterion nothing claims and nothing excuses fails.
+def test_an_unreached_criterion_fails_the_gate():
+    with scratch() as corpus:
+        pin = corpus / "producers" / "quire-code-rs.criteria.yaml"
+        pin.write_text(pin.read_text() + "- FR-999-AC-1\n")
+        result = run(corpus, "bounds.py")
+        assert result.returncode != 0
+        assert "FR-999-AC-1 is reached by no case" in result.stdout
+
+
+# TC-044, FR-002-AC-7: a criterion a case claims that nobody states fails.
+def test_a_claimed_but_undeclared_criterion_fails_the_gate():
+    with scratch() as corpus:
+        case = corpus / "fixtures/resilience/empty-file/rust/case.yaml"
+        case.write_text(case.read_text().replace(
+            "criteria:\n", "criteria:\n- FR-998-AC-1\n", 1))
+        result = run(corpus, "bounds.py")
+        assert result.returncode != 0
+        assert "FR-998-AC-1 is claimed by a case and stated by no" in result.stdout
+
+
+# TC-045, FR-002-AC-8: an unreachable declaration for a retired criterion fails.
+def test_a_stale_unreachable_declaration_fails_the_gate():
+    with scratch() as corpus:
+        manifest = corpus / "corpus.yaml"
+        manifest.write_text(manifest.read_text().replace(
+            "      host-dependent-input: >-",
+            "      retired: >-\n        A criterion that no longer exists. FR-997-AC-1\n"
+            "      host-dependent-input: >-", 1))
+        result = run(corpus, "bounds.py")
+        assert result.returncode != 0
+        assert "FR-997-AC-1 is declared unreachable" in result.stdout
+
+
+# TC-046, FR-002-AC-9: every unreachable criterion carries a reason, and the
+# reason is prose rather than a label.
+def test_every_unreachable_criterion_carries_a_reason():
+    coverage = _coverage(ROOT)
+    assert coverage["unreachable"], "nothing is claimed unreachable"
+    manifest = bounds.load_manifest()
+    reasons = manifest["producers"]["quire-code-rs"]["unreachable"]
+    for identifier, reason in coverage["unreachable"].items():
+        assert reason in reasons, f"{identifier} names an undeclared reason"
+        assert len(reasons[reason].split()) >= 12, (
+            f"{reason} is a label, not a reason: a one-line excuse is how an "
+            "exemption list grows")

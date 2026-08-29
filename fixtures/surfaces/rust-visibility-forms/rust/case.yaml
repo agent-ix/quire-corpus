@@ -4,6 +4,9 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 control_for_pair: private-lookalike
+criteria:
+- FR-009-AC-1
+- FR-009-AC-4
 comment: >-
   Every way Rust spells visibility, in one file: a trait item and a trait-
   impl item that are public with no modifier at all, `pub(super)`,

@@ -4,6 +4,10 @@ language: mixed
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "A second run of the same input is the control by construction: the case is a comparison, not an expectation."
+criteria:
+- FR-006-AC-3
+- FR-006-AC-5
+- NFR-001-AC-3
 comment: >-
   The same tree, extracted twice, must serialize to the same bytes. Nothing
   else in this corpus can catch a hash-ordered collection, a timestamp, or

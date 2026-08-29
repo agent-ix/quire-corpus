@@ -4,6 +4,8 @@ language: rust
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The variant is the control: one added declaration that the export set must not notice."
+criteria:
+- FR-006-AC-2
 comment: >-
   A non-exported declaration added to a file. Every identifier already
   present must survive: FR-074's export-set tiering skips dependent re-

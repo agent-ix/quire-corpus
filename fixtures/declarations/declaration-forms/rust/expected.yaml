@@ -23,3 +23,9 @@ edges:
 - {source: "agent-ix/decl-rust/src/lib.rs::inner",   type: contains, target: "agent-ix/decl-rust/src/lib.rs::inner::nested", reason: syntactic}
 - {source: "agent-ix/decl-rust/src/lib.rs::Persist", type: contains, target: "agent-ix/decl-rust/src/lib.rs::Persist::save", reason: syntactic}
 - {source: "agent-ix/decl-rust/src/lib.rs::Store",   type: contains, target: "agent-ix/decl-rust/src/lib.rs::Store::upsert", reason: syntactic}
+# One-based and inclusive (FR-001-AC-5). Graded on two declarations rather than
+# all ten: an off-by-one is a property of the span calculation, not of a
+# particular declaration, and it is invisible to every set comparison above.
+spans:
+  "agent-ix/decl-rust/src/lib.rs::Store": {start: 5, end: 7}
+  "agent-ix/decl-rust/src/lib.rs::free_function": {start: 23, end: 23}

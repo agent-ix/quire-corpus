@@ -4,6 +4,8 @@ language: rust
 kind: control
 issue_ref: agent-ix/quire-corpus#1
 control_for: re-export-barrel
+criteria:
+- FR-008-CON-1
 comment: >-
   Two files declare a type of the same name; the barrel re-exports exactly
   one of them. The driver's receiver type does not resolve, so narrowing

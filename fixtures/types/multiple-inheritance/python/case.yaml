@@ -4,6 +4,8 @@ language: python
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "Exhaustive on the relation: exactly two edges, so emitting one or three fails here without a second tree."
+criteria:
+- FR-008-AC-7
 comment: >-
   Two bases, two edges. Python spells its supertypes as a bare argument
   list, so a producer reading only TypeScript's clause keywords finds none

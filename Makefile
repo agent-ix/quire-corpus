@@ -5,13 +5,22 @@ PRODUCER ?=
 
 .PHONY: help
 help:
-	@echo "  make bounds     - inventory vs the tree; fails on a GAP or an undeclared fixture"
+	@echo "  make bounds     - inventory, criterion coverage, and the GAP gate"
+	@echo "  make refresh-criteria PRODUCER_SPEC=<repo> - re-pin a producer's criteria"
 	@echo "  make digest     - corpus revision and per-case digests"
 	@echo "  make score      - score a producer:  make score PRODUCER='<cmd> --org {org} --repo {repo} {input}'"
 	@echo "  make test       - the corpus's own gates, and the guards that keep them able to fail"
 	@echo "  make coverage   - Test Matrix rows vs the suite (quire coverage)"
 	@echo "  make verify     - bounds + digest + test, then score when PRODUCER is set"
 	@echo "  make ci         - verify + coverage"
+
+# Re-pin a producer's criteria from its spec tree. The reviewable event: it is
+# where a new criterion appears and where the corpus is obliged to notice it is
+# unreached.
+.PHONY: refresh-criteria
+refresh-criteria:
+	@test -n "$(PRODUCER_SPEC)" || { echo "set PRODUCER_SPEC=<path to the producer's repo>"; exit 2; }
+	python3 scripts/refresh_criteria.py "$(PRODUCER_SPEC)"
 
 .PHONY: bounds
 bounds:

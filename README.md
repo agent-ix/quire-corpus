@@ -77,12 +77,34 @@ spec/                                        the contract
 
 AGPL-3.0-or-later.
 
+## How much of the producer it reaches
+
+`bounds.py` answers it from two trees rather than from a claim here:
+
+```
+quire-code-rs  84 reached, 40 unreachable, 0 unreached  of 124
+```
+
+Each case names the criteria it asserts. The producer's own criteria are pinned
+under `producers/`. A criterion the pin states that no case claims and no reason
+excuses **fails the gate**, so one added upstream cannot arrive quietly — and
+neither can a case claiming one nobody states.
+
+The 40 are not an exemption list. Each carries the reason a corpus of this shape
+structurally cannot reach it: a property of the tool's own source rather than
+its output, evidence that exists only in the tool's repository, a wall-clock
+number its benchmark lane owns, an input that cannot exist as a committed
+fixture. A criterion that is merely unwritten belongs in neither set.
+
 ## When the corpus goes green
 
-A corpus every producer passes has stopped discriminating. The first producer
-scored 0.974/0.864 here; after the six defects it found were fixed it scores
-1.0/1.0, which is the moment to add harder cases rather than the moment to
-celebrate. The controls still fail on a regression — that is what they are for —
-but nothing currently open is telling anyone something they did not know.
+A corpus every producer passes has stopped discriminating, and the number above
+is not a score — it is the denominator. What keeps the data honest is that it
+still separates two producers: at one revision the pre-fix extractor scores
+0.982/0.880 with eleven failing cases where the current one scores 1.0/1.0, and
+both runs are retained in `baselines/`.
 
-Tracked as [#1](https://github.com/agent-ix/quire-corpus/issues/1).
+Four expectations are authored and have never been answered by anything — the
+`paths`, `impact`, `test_selection` and `derived_links` families ask about
+traversal rather than extraction. The report names them and their blocking
+issue on every run rather than letting them read as coverage.

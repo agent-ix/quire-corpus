@@ -4,6 +4,8 @@ language: mixed
 kind: positive
 issue_ref: agent-ix/quire-corpus#1
 no_control_reason: "The bare id nested inside the reference is the control: the trap is in the same string as the positive."
+criteria:
+- FR-005-AC-3
 comment: >-
   A fully qualified reference. The identifier `FR-003` is inside it, so a
   harvester that scans for bare ids as well reports two mentions of one

@@ -4,6 +4,9 @@ language: typescript
 kind: positive
 control_for_pair: name-match-ambiguous
 issue_ref: agent-ix/quire-corpus#1
+criteria:
+- FR-008-AC-13
+- FR-008-AC-10
 comment: >-
   The weakest tier FR-008 admits, and the one a resolver is most tempted
   to over-apply. The receiver's type does not resolve and the file
