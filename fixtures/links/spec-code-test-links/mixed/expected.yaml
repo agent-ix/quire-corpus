@@ -12,23 +12,36 @@ repo: links-mixed
 # against the spec layer and typed as `verifies` (test -> test case) and
 # `implements` (production code -> criterion). A producer that emits no such
 # answer is scored `not-computed`, never zero.
+#
+# Attribution corrected 2026-08-29 against quire-code-rs FR-005-AC-9, which says
+# a comment above a declaration's attributes belongs to that declaration. The
+# first draft expected the *file* for the two `Implements:` markers, reading
+# FR-005-AC-2's "attributed to the file's code fact" as the rule for citations.
+# AC-9 is the more specific statement and it names this exact shape, so the
+# declaration wins. The `.test.ts` case is unchanged: its `test('renders', …)`
+# is a call expression, so the file is the only owner there is.
 edges:
 - source: "agent-ix/links-mixed/tests/store_test.rs::a_record_survives_a_round_trip"
   type: references
   target: "TC-001"
   reason: explicit-mention
-# The TypeScript test is a call expression, not a declaration, so the file is
-# the only owner there is. That is a language fact, not a producer's licence to
-# attribute the Rust one to a file too.
+- source: "agent-ix/links-mixed/tests/store_test.rs::a_record_survives_a_round_trip"
+  type: references
+  target: "FR-001-AC-1"
+  reason: explicit-mention
 - source: "agent-ix/links-mixed/tests/store_view.test.ts"
   type: references
   target: "TC-001"
   reason: explicit-mention
-- source: "agent-ix/links-mixed/src/store.rs"
+- source: "agent-ix/links-mixed/tests/store_view.test.ts"
   type: references
   target: "FR-001-AC-1"
   reason: explicit-mention
-- source: "agent-ix/links-mixed/ui/store.ts"
+- source: "agent-ix/links-mixed/src/store.rs::Store"
+  type: references
+  target: "FR-001-AC-1"
+  reason: explicit-mention
+- source: "agent-ix/links-mixed/ui/store.ts::StoreView"
   type: references
   target: "FR-001-AC-1"
   reason: explicit-mention
@@ -36,9 +49,9 @@ derived_links:
 - source: "agent-ix/links-mixed/tests/store_test.rs::a_record_survives_a_round_trip"
   type: verifies
   target: "TC-001"
-- source: "agent-ix/links-mixed/src/store.rs"
+- source: "agent-ix/links-mixed/src/store.rs::Store"
   type: implements
   target: "FR-001-AC-1"
-- source: "agent-ix/links-mixed/ui/store.ts"
+- source: "agent-ix/links-mixed/ui/store.ts::StoreView"
   type: implements
   target: "FR-001-AC-1"

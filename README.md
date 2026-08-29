@@ -76,3 +76,13 @@ spec/                                        the contract
 ## License
 
 AGPL-3.0-or-later.
+
+## When the corpus goes green
+
+A corpus every producer passes has stopped discriminating. The first producer
+scored 0.974/0.864 here; after the six defects it found were fixed it scores
+1.0/1.0, which is the moment to add harder cases rather than the moment to
+celebrate. The controls still fail on a regression — that is what they are for —
+but nothing currently open is telling anyone something they did not know.
+
+Tracked as [#1](https://github.com/agent-ix/quire-corpus/issues/1).
