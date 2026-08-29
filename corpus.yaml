@@ -81,6 +81,7 @@ inventory:
   determinism:
     repeated-extraction: [mixed]
   identity:
+    inherent-and-trait-impl-collision: [rust]
     nested-path-identity: [mixed]
   impact:
     impact-closure: [mixed]
@@ -93,6 +94,10 @@ inventory:
     spec-code-test-links: [mixed]
     string-literal-lookalike: [mixed]
     tag-outside-test: [mixed]
+  provenance:
+    evidence-cap: [rust]
+    folded-call-sites: [rust, typescript, python]
+    strongest-reason-wins: [rust]
   paths:
     call-chain-path: [mixed]
   relations:
@@ -103,6 +108,7 @@ inventory:
     name-match-call: [rust, typescript, python]
     receiver-typed-call: [rust, typescript, python]
     receiver-typed-call-ambiguous: [rust, typescript, python]
+    recursive-call: [rust, typescript, python]
     same-file-preference: [mixed]
   resilience:
     arbitrary-bytes: [rust, typescript, python]

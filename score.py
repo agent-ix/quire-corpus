@@ -136,6 +136,23 @@ def score_case(
         for name, object_type in sorted(want & got):
             tally.add("tp", language=language, object_type=object_type, axis_kind="node")
 
+    # Two nodes with one name are one node to any consumer keying on identity,
+    # so the second is silently lost on write. Asserted as an invariant rather
+    # than as two expected names, because what the two names *should* be is a
+    # contract decision the corpus does not get to make.
+    if expected.get("unique_node_names"):
+        seen: dict[tuple[str, str], int] = defaultdict(int)
+        for node in nodes:
+            seen[(node["object_type"], node["name"])] += 1
+        for (object_type, name), count in sorted(seen.items()):
+            if count > 1:
+                tally.add("fp", language=language, object_type=object_type,
+                          axis_kind="node")
+                findings.append(
+                    f"{count} nodes share the name {name} ({object_type}); a "
+                    "consumer keying on identity keeps one of them"
+                )
+
     for kind in expected.get("forbidden_node_kinds", []):
         for node in nodes:
             if node["data"].get("kind") == kind:
@@ -160,6 +177,47 @@ def score_case(
             continue
         tally.add("tp", language=language, relation=triple[1],
                   tier=got.get("reason"), axis_kind="edge")
+
+        # Provenance: `confidence`, `count` and `evidence` are the metadata a
+        # consumer reads to decide what a change can reach, and nothing graded
+        # any of it. Compared only where the case names a value, so a case about
+        # resolution is not answerable for a count it never mentioned.
+        for field in ("confidence", "count"):
+            if field in want and got.get(field) != want[field]:
+                tally.add("fp", language=language, axis_kind="provenance")
+                findings.append(
+                    f"edge {triple[0]} -{triple[1]}-> {triple[2]} has {field} "
+                    f"{got.get(field)!r}, expected {want[field]!r}"
+                )
+            elif field in want:
+                tally.add("tp", language=language, axis_kind="provenance")
+        if "evidence" in want:
+            got_evidence = [
+                {"file": e.get("file"), "line": e.get("line")}
+                for e in got.get("evidence", [])
+            ]
+            want_evidence = [
+                {"file": e["file"], "line": e["line"]} for e in want["evidence"]
+            ]
+            if got_evidence == want_evidence:
+                tally.add("tp", language=language, axis_kind="provenance")
+            else:
+                tally.add("fp", language=language, axis_kind="provenance")
+                findings.append(
+                    f"edge {triple[0]} -{triple[1]}-> {triple[2]} evidence is "
+                    f"{got_evidence}, expected {want_evidence}"
+                )
+        if "evidence_len" in want:
+            actual = len(got.get("evidence", []))
+            if actual == want["evidence_len"]:
+                tally.add("tp", language=language, axis_kind="provenance")
+            else:
+                tally.add("fp", language=language, axis_kind="provenance")
+                findings.append(
+                    f"edge {triple[0]} -{triple[1]}-> {triple[2]} carries "
+                    f"{actual} evidence entries, expected {want['evidence_len']}"
+                )
+
         # The edge is the truth; the tier is the producer's account of how it got
         # there. No contract states a rank order between `import-scoped` and
         # `receiver-typed` where both apply, so a disagreement is recorded and
@@ -185,9 +243,17 @@ def score_case(
     for forbidden in expected.get("forbidden_edges", []):
         triple = _expected_triple(forbidden)
         if triple in got_edges:
+            # Tallied, not merely reported. A named absence is an expectation
+            # like any other, and counting it only as a finding let precision
+            # read 1.0 while three cases failed on emitted forbidden edges.
+            tally.add("fp", language=language, relation=triple[1],
+                      tier=got_edges[triple].get("reason"), axis_kind="edge")
             findings.append(
                 f"forbidden edge emitted: {triple[0]} -{triple[1]}-> {triple[2]}"
             )
+        else:
+            tally.add("tp", language=language, relation=triple[1],
+                      axis_kind="edge")
 
     # ── field fidelity ───────────────────────────────────────────────────
     for name, want_visibility in (expected.get("visibility") or {}).items():
@@ -368,6 +434,7 @@ def main() -> int:
         expected = yaml.safe_load((case_dir / "expected.yaml").read_text())
         produced, raw = run_producer(args.producer, case_dir, expected)
         result = score_case(meta, expected, produced, tally, raw)
+        result["pending"] = meta.get("pending")
         if expected.get("deterministic"):
             _, second = run_producer(args.producer, case_dir, expected)
             result["deterministic"] = raw == second
@@ -378,7 +445,18 @@ def main() -> int:
                 )
         result["kind"] = meta.get("kind")
         cases[key] = result
-        if result["findings"]:
+        if result["pending"]:
+            # A pending case holds truth the producer does not meet yet. Its
+            # findings are reported and do not fail the run — but a pending case
+            # that PASSES does fail, because a marker nobody removes is how a
+            # corpus quietly stops asserting the thing it was written for.
+            if not result["findings"]:
+                print(
+                    f"  STALE {key}: pending on {result['pending']} and passing; "
+                    "remove the marker"
+                )
+                failed = True
+        elif result["findings"]:
             failed = True
 
     report = {
@@ -401,8 +479,13 @@ def main() -> int:
               f"fn {totals.get('fn')}  "
               f"precision {totals.get('precision')}  "
               f"recall {totals.get('recall')}")
+        pending = sum(1 for r in cases.values() if r.get("pending"))
+        if pending:
+            print(f"pending {pending} case(s) held against an open issue")
         for key, result in cases.items():
-            mark = "FAIL" if result["findings"] else "ok  "
+            mark = "ok  "
+            if result["findings"]:
+                mark = "PEND" if result.get("pending") else "FAIL"
             print(f"  {mark} {key}")
             for finding in result["findings"]:
                 print(f"       {finding}")

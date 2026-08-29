@@ -1,0 +1,21 @@
+org: agent-ix
+repo: fold-py
+edges:
+- source: "agent-ix/fold-py/src/store.py::first"
+  type: calls
+  target: "agent-ix/fold-py/src/store.py::Store::upsert"
+  count: 1
+  confidence: 0.9
+  evidence:
+  - {file: "src/store.py", line: 7}
+- source: "agent-ix/fold-py/src/store.py::second"
+  type: calls
+  target: "agent-ix/fold-py/src/store.py::Store::upsert"
+  count: 2
+  confidence: 0.9
+  evidence:
+  - {file: "src/store.py", line: 11}
+  - {file: "src/store.py", line: 12}
+node_identity: true
+edge_type_vocabulary: [contains, imports, calls, implements_trait, extends, references]
+record_order: true

@@ -1,0 +1,13 @@
+id: recursive-call
+family: relations
+language: typescript
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: receiver-typed-call
+comment: >-
+  A recursive method and a recursive free function. Neither may yield a
+  `calls` edge to itself. The rule is not aesthetic: the consumer's graph
+  has a database CHECK constraint rejecting self-edges, so one emitted edge
+  fails a whole reindex run rather than adding a wrong row (filament-ide-rs
+  FR-072). A self-loop also carries no traversal information - every impact
+  closure that reaches the node already has it.

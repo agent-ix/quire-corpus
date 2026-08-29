@@ -105,6 +105,11 @@ def audit() -> dict:
         meta = yaml.safe_load((path / "case.yaml").read_text())
         if not str(meta.get("issue_ref", "")).strip():
             problems.append(f"{family}/{case}/{language} has no issue_ref")
+        if "pending" in meta and not str(meta.get("pending", "")).strip():
+            problems.append(
+                f"{family}/{case}/{language} is pending on nothing; a marker "
+                "with no issue is a case nobody comes back to"
+            )
         if not (path / "expected.yaml").exists():
             problems.append(f"{family}/{case}/{language} has no expected.yaml")
         if not (path / "input").is_dir():

@@ -1,0 +1,21 @@
+org: agent-ix
+repo: fold-ts
+edges:
+- source: "agent-ix/fold-ts/src/index.ts::first"
+  type: calls
+  target: "agent-ix/fold-ts/src/index.ts::Store::upsert"
+  count: 1
+  confidence: 0.9
+  evidence:
+  - {file: "src/index.ts", line: 6}
+- source: "agent-ix/fold-ts/src/index.ts::second"
+  type: calls
+  target: "agent-ix/fold-ts/src/index.ts::Store::upsert"
+  count: 2
+  confidence: 0.9
+  evidence:
+  - {file: "src/index.ts", line: 10}
+  - {file: "src/index.ts", line: 11}
+node_identity: true
+edge_type_vocabulary: [contains, imports, calls, implements_trait, extends, references]
+record_order: true

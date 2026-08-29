@@ -1,0 +1,21 @@
+id: inherent-and-trait-impl-collision
+family: identity
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-code-rs#18
+pending: agent-ix/quire-code-rs#18
+no_control_reason: >-
+  The file is its own control: the trait method and the inherent method are two
+  declarations the language keeps apart, in one file, and the assertion is only
+  that the graph keeps them apart too.
+comment: >-
+  A type carrying both an inherent `impl` and a trait `impl` of one method name.
+  Rust keeps the two declarations apart; FR-002-AC-2 names a method by its type
+  "for both inherent and trait `impl` blocks", so both are named
+  `Store::save` - one name, two declarations. Node identity is a pure function
+  of `(object_type, qualified_name)` (FR-006-CON-1), so they hash to one id, and
+  the consumer's graph is `UNIQUE (object_type_id, container_id, name)` - one of
+  the two is silently dropped on write. The self-edge this produces was
+  previously the only visible symptom, and dropping self-edges hid it.
+  Pending: fixing it is a change to the identity contract, which the consumer's
+  pin is bound to, not a change the corpus can make on its own.

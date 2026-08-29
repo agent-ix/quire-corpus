@@ -1,0 +1,7 @@
+org: agent-ix
+repo: collide-rust
+# Stated as an invariant, not as two expected names: what the two names *should*
+# be is a contract decision (a disambiguating segment, a trait-qualified parent,
+# something else), and the corpus does not get to make it. What it can say is
+# that two declarations must not become one node.
+unique_node_names: true

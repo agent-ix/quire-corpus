@@ -1,0 +1,13 @@
+id: evidence-cap
+family: provenance
+language: rust
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: folded-call-sites
+comment: >-
+  Thirty call sites on one triple. `count` must be 30 and `evidence` must
+  hold exactly 20 entries - the cap exists so one hot edge cannot carry a
+  kilobyte of provenance, and the count exists so capping the evidence does
+  not also lose the magnitude. A producer that caps both reports a thirty-
+  site dependency as a twenty-site one; a producer that caps neither makes
+  every large repository's payload unbounded.

@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rec-rust
+# The whole expectation is an absence, and it is an absence with a
+# consumer that breaks on its presence.
+forbidden_edges:
+- source: "agent-ix/rec-rust/src/lib.rs::Store::recurse"
+  type: calls
+  target: "agent-ix/rec-rust/src/lib.rs::Store::recurse"
+- source: "agent-ix/rec-rust/src/lib.rs::plain_recursion"
+  type: calls
+  target: "agent-ix/rec-rust/src/lib.rs::plain_recursion"

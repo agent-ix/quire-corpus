@@ -1,0 +1,18 @@
+org: agent-ix
+repo: reason-rust
+edges:
+- source: "agent-ix/reason-rust/src/driver.rs::typed"
+  type: calls
+  target: "agent-ix/reason-rust/src/store.rs::Store::upsert"
+  reason: receiver-typed
+  confidence: 0.9
+- source: "agent-ix/reason-rust/src/driver.rs::untyped"
+  type: calls
+  target: "agent-ix/reason-rust/src/store.rs::Store::upsert"
+  reason: import-scoped
+  confidence: 0.7
+- source: "agent-ix/reason-rust/src/driver.rs"
+  type: imports
+  target: "agent-ix/reason-rust/src/store.rs"
+  reason: path-resolved
+  confidence: 1.0

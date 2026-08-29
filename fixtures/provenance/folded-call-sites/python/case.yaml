@@ -1,0 +1,13 @@
+id: folded-call-sites
+family: provenance
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: evidence-cap
+comment: >-
+  Three call sites onto two edges. `first` calls once; `second` calls twice,
+  and those two fold onto one edge with `count` 2 and two evidence entries
+  ordered by file then line. The count is what tells a consumer how much of
+  a change's blast radius runs through one relationship, and nothing
+  measured it: an edge that reports count 1 for twenty call sites reads as a
+  weak dependency when it is the strongest one in the repository.

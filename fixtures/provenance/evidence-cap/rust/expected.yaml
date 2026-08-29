@@ -1,0 +1,8 @@
+org: agent-ix
+repo: cap-rust
+edges:
+- source: "agent-ix/cap-rust/src/lib.rs::hammer"
+  type: calls
+  target: "agent-ix/cap-rust/src/lib.rs::Store::upsert"
+  count: 30
+  evidence_len: 20

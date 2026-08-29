@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rec-ts
+# The whole expectation is an absence, and it is an absence with a
+# consumer that breaks on its presence.
+forbidden_edges:
+- source: "agent-ix/rec-ts/src/index.ts::Store::recurse"
+  type: calls
+  target: "agent-ix/rec-ts/src/index.ts::Store::recurse"
+- source: "agent-ix/rec-ts/src/index.ts::plainRecursion"
+  type: calls
+  target: "agent-ix/rec-ts/src/index.ts::plainRecursion"

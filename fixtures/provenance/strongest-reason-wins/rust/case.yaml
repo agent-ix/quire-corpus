@@ -1,0 +1,13 @@
+id: strongest-reason-wins
+family: provenance
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two sites are each other's control: one edge degraded to the other's tier fails the assertion without a second tree."
+comment: >-
+  Two call sites onto the same method from one file, resolved at different
+  tiers: one receiver-typed, one import-scoped. They are different source
+  functions so they stay two edges, and each must carry its own tier's
+  confidence rather than the file's best or the file's worst. A producer
+  that stamps one reason per file reports a guess with the confidence of a
+  certainty.

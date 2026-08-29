@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rec-py
+# The whole expectation is an absence, and it is an absence with a
+# consumer that breaks on its presence.
+forbidden_edges:
+- source: "agent-ix/rec-py/src/store.py::Store::recurse"
+  type: calls
+  target: "agent-ix/rec-py/src/store.py::Store::recurse"
+- source: "agent-ix/rec-py/src/store.py::plain_recursion"
+  type: calls
+  target: "agent-ix/rec-py/src/store.py::plain_recursion"

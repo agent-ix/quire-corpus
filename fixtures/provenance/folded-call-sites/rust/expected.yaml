@@ -1,0 +1,21 @@
+org: agent-ix
+repo: fold-rust
+edges:
+- source: "agent-ix/fold-rust/src/lib.rs::first"
+  type: calls
+  target: "agent-ix/fold-rust/src/lib.rs::Store::upsert"
+  count: 1
+  confidence: 0.9
+  evidence:
+  - {file: "src/lib.rs", line: 8}
+- source: "agent-ix/fold-rust/src/lib.rs::second"
+  type: calls
+  target: "agent-ix/fold-rust/src/lib.rs::Store::upsert"
+  count: 2
+  confidence: 0.9
+  evidence:
+  - {file: "src/lib.rs", line: 12}
+  - {file: "src/lib.rs", line: 13}
+node_identity: true
+edge_type_vocabulary: [contains, imports, calls, implements_trait, extends, references]
+record_order: true
