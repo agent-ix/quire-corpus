@@ -1,0 +1,15 @@
+org: agent-ix
+repo: ret-py
+# Two edges, not one. The call to the factory is itself a dependency, and
+# leaving it out of an `edges` list that names `calls` made a true edge score as
+# invented — the corpus's error, corrected 2026-08-29. `make` is a free function
+# unique in the batch, so `name-match` is its correct tier under FR-008.
+edges:
+- source: "agent-ix/ret-py/src/store.py::drive"
+  type: calls
+  target: "agent-ix/ret-py/src/store.py::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/ret-py/src/store.py::drive"
+  type: calls
+  target: "agent-ix/ret-py/src/store.py::make"
+  reason: name-match

@@ -1,0 +1,19 @@
+id: cyclic-bindings-terminate
+family: fixpoint
+language: python
+kind: control
+issue_ref: agent-ix/quire-corpus#1
+control_for: binding-from-bound-name
+comment: >-
+  Three bindings that close a loop and never reach a type. The propagation
+  must stop at its bound and emit the edges it resolved rather than
+  iterating forever, and here it resolved none - so the whole expectation is
+  termination plus an absence. This is the case that separates 'bounded'
+  from 'usually terminates': it cannot be observed from output alone in any
+  fixture whose bindings converge.
+  A second type declaring the same method is in the tree deliberately,
+  and the case did not work without it: with one declarer, the weaker
+  tiers correctly rescued the call after the cycle defeated
+  receiver-typed resolution, so the fixture measured the fallback rather
+  than the bound. Two declarers make every tier ambiguous, which leaves
+  termination as the only thing the case is about.

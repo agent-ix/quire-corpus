@@ -80,6 +80,12 @@ inventory:
     remaining-forms: [rust, typescript, python]
   determinism:
     repeated-extraction: [mixed]
+  fixpoint:
+    binding-from-bound-name: [rust, typescript, python]
+    binding-from-return-type: [rust, typescript, python]
+    cyclic-bindings-terminate: [rust, typescript, python]
+    local-rebinding-isolated: [rust, typescript, python]
+    tier-rank-order: [rust]
   identity:
     inherent-and-trait-impl-collision: [rust]
     nested-path-identity: [mixed]

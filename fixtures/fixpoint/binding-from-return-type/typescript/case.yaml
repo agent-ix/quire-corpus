@@ -1,0 +1,12 @@
+id: binding-from-return-type
+family: fixpoint
+language: typescript
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "Its control is `receiver-typed-call-ambiguous`, where the receiver is produced the same way and its type is genuinely unknowable."
+comment: >-
+  The receiver's type is never written at the call site - it comes from the
+  declared return type of the function that produced it. This is the
+  ordinary shape of real code, where a factory or constructor stands between
+  the declaration and the use, and a resolver that only reads annotations
+  finds nothing here while finding everything in the simpler cases.

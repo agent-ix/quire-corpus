@@ -1,0 +1,18 @@
+org: agent-ix
+repo: rebind-ts
+edges:
+- source: "agent-ix/rebind-ts/src/index.ts::narrow"
+  type: calls
+  target: "agent-ix/rebind-ts/src/index.ts::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/rebind-ts/src/index.ts::other"
+  type: calls
+  target: "agent-ix/rebind-ts/src/index.ts::Cache::upsert"
+  reason: receiver-typed
+forbidden_edges:
+- source: "agent-ix/rebind-ts/src/index.ts::narrow"
+  type: calls
+  target: "agent-ix/rebind-ts/src/index.ts::Cache::upsert"
+- source: "agent-ix/rebind-ts/src/index.ts::other"
+  type: calls
+  target: "agent-ix/rebind-ts/src/index.ts::Store::upsert"

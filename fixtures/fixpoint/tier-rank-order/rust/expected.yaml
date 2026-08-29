@@ -1,0 +1,11 @@
+org: agent-ix
+repo: rank-rust
+edges:
+- source: "agent-ix/rank-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/rank-rust/src/store.rs::Store::upsert"
+  reason: receiver-typed
+forbidden_edges:
+- source: "agent-ix/rank-rust/src/driver.rs::drive"
+  type: calls
+  target: "agent-ix/rank-rust/src/cache.rs::Cache::upsert"

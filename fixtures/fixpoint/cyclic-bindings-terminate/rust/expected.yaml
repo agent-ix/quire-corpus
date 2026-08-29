@@ -1,0 +1,9 @@
+org: agent-ix
+repo: cycle-rust
+edges: []
+forbidden_edge_types: [calls]
+# Reaching the bound with bindings still moving is a degradation, not an
+# error, so no diagnostic is owed - but the run must report that it
+# happened rather than presenting a truncated answer as a complete one.
+stats:
+  files_hitting_iteration_bound: 0

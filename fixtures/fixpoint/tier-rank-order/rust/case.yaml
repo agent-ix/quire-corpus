@@ -1,0 +1,13 @@
+id: tier-rank-order
+family: fixpoint
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The forbidden edge is the control: the wrong answer is available in the same tree, reachable by a resolver that consults imports first."
+comment: >-
+  Two tiers give different answers for one call site, and FR-008 says which
+  wins. The receiver is annotated `Store`; the file imports `Cache`; both
+  declare `upsert`. Receiver-typed outranks import-scoped, so the answer is
+  `Store::upsert` and `Cache::upsert` is forbidden by name. Every other tier
+  case in this corpus is one where only one tier applies, which tests that
+  each tier works and not that they are ordered.

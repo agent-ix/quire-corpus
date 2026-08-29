@@ -1,0 +1,18 @@
+org: agent-ix
+repo: rebind-rust
+edges:
+- source: "agent-ix/rebind-rust/src/lib.rs::narrow"
+  type: calls
+  target: "agent-ix/rebind-rust/src/lib.rs::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/rebind-rust/src/lib.rs::other"
+  type: calls
+  target: "agent-ix/rebind-rust/src/lib.rs::Cache::upsert"
+  reason: receiver-typed
+forbidden_edges:
+- source: "agent-ix/rebind-rust/src/lib.rs::narrow"
+  type: calls
+  target: "agent-ix/rebind-rust/src/lib.rs::Cache::upsert"
+- source: "agent-ix/rebind-rust/src/lib.rs::other"
+  type: calls
+  target: "agent-ix/rebind-rust/src/lib.rs::Store::upsert"

@@ -1,0 +1,13 @@
+id: local-rebinding-isolated
+family: fixpoint
+language: python
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+no_control_reason: "The two functions are each other's control: identical call syntax, identical method name, different receiver type, in one file."
+comment: >-
+  One name, `handle`, bound to a different type inside each of two
+  functions, each calling a method both types declare. FR-008 isolates
+  bindings introduced inside a callable from the file-level environment, so
+  the two calls must resolve to different targets. A resolver with one
+  environment per file resolves both to whichever binding it saw last - and
+  the failure is invisible in any fixture where the two functions agree.

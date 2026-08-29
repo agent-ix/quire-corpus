@@ -1,0 +1,7 @@
+org: agent-ix
+repo: chain-rust
+edges:
+- source: "agent-ix/chain-rust/src/lib.rs::drive"
+  type: calls
+  target: "agent-ix/chain-rust/src/lib.rs::Store::upsert"
+  reason: receiver-typed

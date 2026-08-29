@@ -1,0 +1,7 @@
+org: agent-ix
+repo: chain-py
+edges:
+- source: "agent-ix/chain-py/src/store.py::drive"
+  type: calls
+  target: "agent-ix/chain-py/src/store.py::Store::upsert"
+  reason: receiver-typed

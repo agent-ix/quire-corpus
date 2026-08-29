@@ -1,0 +1,18 @@
+org: agent-ix
+repo: rebind-py
+edges:
+- source: "agent-ix/rebind-py/src/store.py::narrow"
+  type: calls
+  target: "agent-ix/rebind-py/src/store.py::Store::upsert"
+  reason: receiver-typed
+- source: "agent-ix/rebind-py/src/store.py::other"
+  type: calls
+  target: "agent-ix/rebind-py/src/store.py::Cache::upsert"
+  reason: receiver-typed
+forbidden_edges:
+- source: "agent-ix/rebind-py/src/store.py::narrow"
+  type: calls
+  target: "agent-ix/rebind-py/src/store.py::Cache::upsert"
+- source: "agent-ix/rebind-py/src/store.py::other"
+  type: calls
+  target: "agent-ix/rebind-py/src/store.py::Store::upsert"

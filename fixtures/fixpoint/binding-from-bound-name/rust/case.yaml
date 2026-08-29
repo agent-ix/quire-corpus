@@ -1,0 +1,12 @@
+id: binding-from-bound-name
+family: fixpoint
+language: rust
+kind: positive
+issue_ref: agent-ix/quire-corpus#1
+control_for_pair: cyclic-bindings-terminate
+comment: >-
+  A type that arrives three assignments away from the call. FR-008
+  propagates a binding from a bound name and iterates until nothing new
+  appears, so the chain must close - a resolver that reads only the
+  immediately preceding assignment resolves the first hop and loses the
+  rest, which in real code is most of them.

@@ -1,0 +1,7 @@
+org: agent-ix
+repo: chain-ts
+edges:
+- source: "agent-ix/chain-ts/src/index.ts::drive"
+  type: calls
+  target: "agent-ix/chain-ts/src/index.ts::Store::upsert"
+  reason: receiver-typed
