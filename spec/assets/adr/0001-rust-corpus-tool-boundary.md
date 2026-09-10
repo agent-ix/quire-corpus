@@ -9,9 +9,9 @@ status: accepted
 
 ## Context
 
-`bounds.py`, `digest.py`, and `score.py` jointly define corpus completeness,
+Before this decision, three Python commands jointly defined corpus completeness,
 revision identity, and producer grading. Separate Python runners and inline
-shell-embedded Python qualify that behavior. The source-language repositories
+shell-embedded Python qualified that behavior. The source-language repositories
 under `fixtures/**/input`, by contrast, are deliberately multilingual test data.
 
 The historical score interface interpolates placeholders into one string and

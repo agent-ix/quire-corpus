@@ -20,7 +20,7 @@ a score green destroys the only measurement the corpus was built to take.
 
 ## Adding a case
 
-1. **File the issue first** and put its reference in `case.yaml`. `bounds.py`
+1. **File the issue first** and put its reference in `case.yaml`. `quire-corpus bounds`
    rejects a case without one: a fixture whose reason has been forgotten
    cannot be re-adjudicated later.
 2. **Author the fixture as a repository**, not a snippet. If the behaviour
@@ -32,7 +32,7 @@ a score green destroys the only measurement the corpus was built to take.
 4. **Declare it in `corpus.yaml`.** A fixture the inventory does not declare
    is an error, not a bonus: it means the matrix under-reports its own
    denominator.
-5. **Run `make verify`.** `bounds.py` must be green before the score means
+5. **Run `make verify`.** `quire-corpus bounds` must be green before the score means
    anything.
 
 ## Scoping a language out
