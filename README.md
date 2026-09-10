@@ -25,10 +25,14 @@ needs is actually written down.
 ## Using it
 
 ```bash
-python3 bounds.py                  # inventory vs the tree; the GAP gate
-python3 digest.py                  # corpus revision + per-case digests
-python3 score.py --producer '<cmd> --org {org} --repo {repo} {input}'
-make verify                        # all three
+cargo +1.98.1 run --locked -- --root . bounds
+cargo +1.98.1 run --locked -- --root . digest
+cargo +1.98.1 run --locked -- --root . score \
+  --producer /path/to/producer \
+  --producer-arg=--org --producer-arg='{org}' \
+  --producer-arg=--repo --producer-arg='{repo}' \
+  --producer-arg='{input}'
+make verify
 ```
 
 A producer reads one fixture's `input/` tree and writes canonical records on
@@ -69,7 +73,8 @@ fixtures/<family>/<case>/<language>/
     case.yaml                                what this case is for, and its issue
     input/                                   the fixture repository
     expected.yaml                            hand-authored truth
-bounds.py  digest.py  score.py               derived state, never stored
+src/                                        typed Rust library and CLI adapter
+tests/                                      Rust qualification with ix-trace-rs
 spec/                                        the contract
 ```
 
@@ -79,7 +84,7 @@ AGPL-3.0-or-later.
 
 ## How much of the producer it reaches
 
-`bounds.py` answers it from two trees rather than from a claim here:
+`quire-corpus bounds` answers it from two trees rather than from a claim here:
 
 ```
 quire-code-rs  84 reached, 40 unreachable, 0 unreached  of 124

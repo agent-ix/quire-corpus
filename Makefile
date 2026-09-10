@@ -1,55 +1,59 @@
-# The corpus is static files. These targets derive state from them and never
-# write any back — a stored count is a number that can go stale.
-
+CARGO ?= cargo +1.98.1
+ROOT ?= .
 PRODUCER ?=
+PRODUCER_ARGS ?=
+QUIRE ?= quire
+MODULE ?=
+
+RUN = CARGO_BUILD_JOBS=2 $(CARGO) run --locked --quiet --bin quire-corpus -- --root "$(ROOT)"
 
 .PHONY: help
 help:
-	@echo "  make bounds     - inventory, criterion coverage, and the GAP gate"
-	@echo "  make refresh-criteria PRODUCER_SPEC=<repo> - re-pin a producer's criteria"
-	@echo "  make digest     - corpus revision and per-case digests"
-	@echo "  make score      - score a producer:  make score PRODUCER='<cmd> --org {org} --repo {repo} {input}'"
-	@echo "  make test       - the corpus's own gates, and the guards that keep them able to fail"
-	@echo "  make coverage   - Test Matrix rows vs the suite (quire coverage)"
-	@echo "  make verify     - bounds + digest + test, then score when PRODUCER is set"
-	@echo "  make ci         - verify + coverage"
-
-# Re-pin a producer's criteria from its spec tree. The reviewable event: it is
-# where a new criterion appears and where the corpus is obliged to notice it is
-# unreached.
-.PHONY: refresh-criteria
-refresh-criteria:
-	@test -n "$(PRODUCER_SPEC)" || { echo "set PRODUCER_SPEC=<path to the producer's repo>"; exit 2; }
-	python3 scripts/refresh_criteria.py "$(PRODUCER_SPEC)"
+	@echo "  make bounds      - inventory, criterion coverage, and the GAP gate"
+	@echo "  make digest      - corpus revision and per-case digests"
+	@echo "  make score PRODUCER=<path> PRODUCER_ARGS='<repeated --producer-arg flags>'"
+	@echo "  make refresh-criteria PRODUCER_REPO=<repo> - re-pin producer criteria"
+	@echo "  make test        - Rust qualification suite"
+	@echo "  make coverage    - Test Matrix rows vs the Rust suite"
+	@echo "  make audit       - locked dependency license and advisory gates"
+	@echo "  make verify      - local bounds, digest, tests, and optional score"
+	@echo "  make qualify     - all local qualification gates"
 
 .PHONY: bounds
 bounds:
-	python3 bounds.py
+	$(RUN) bounds
 
 .PHONY: digest
 digest:
-	python3 digest.py
+	$(RUN) digest
 
 .PHONY: score
 score:
-	@test -n "$(PRODUCER)" || { echo "set PRODUCER='<cmd> --org {org} --repo {repo} {input}'"; exit 2; }
-	python3 score.py --producer '$(PRODUCER)'
+	@test -n "$(PRODUCER)" || { echo "set PRODUCER=<executable> and repeat --producer-arg in PRODUCER_ARGS"; exit 2; }
+	$(RUN) score --producer "$(PRODUCER)" $(PRODUCER_ARGS)
+
+.PHONY: refresh-criteria
+refresh-criteria:
+	@test -n "$(PRODUCER_REPO)" || { echo "set PRODUCER_REPO=<path to producer repository>"; exit 2; }
+	$(RUN) refresh-criteria --producer-repo "$(PRODUCER_REPO)"
 
 .PHONY: test
 test:
-	python3 tests/run.py
+	CARGO_BUILD_JOBS=2 $(CARGO) test --locked -- --test-threads=2
 
-# Every matrix row is backed by a tagged test, or its own declared verification
-# method says why no symbol can exist. Needs `quire` on PATH and a module path
-# declaring the traceability model.
 .PHONY: coverage
 coverage:
-	bash scripts/check_coverage.sh
+	@test -n "$(MODULE)" || { echo "set MODULE=<exact Quire module directory>"; exit 2; }
+	$(RUN) check-coverage --quire "$(QUIRE)" --module "$(MODULE)"
+
+.PHONY: audit
+audit:
+	cargo deny check
+	cargo audit
 
 .PHONY: verify
 verify: bounds digest test
-	@if [ -n "$(PRODUCER)" ]; then python3 score.py --producer '$(PRODUCER)'; \
-	else echo "no PRODUCER set — inventory and digests checked, nothing scored"; fi
+	@if [ -n "$(PRODUCER)" ]; then $(RUN) score --producer "$(PRODUCER)" $(PRODUCER_ARGS); else echo "no PRODUCER set — corpus state verified without a producer score"; fi
 
-.PHONY: ci
-ci: verify coverage
+.PHONY: qualify
+qualify: verify coverage audit

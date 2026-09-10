@@ -6,7 +6,7 @@
 # INVENTORY — for each case, the languages it must exist in, and any cell
 # deliberately scoped out with its reason.
 #
-# What is DERIVED from the filesystem, every time, by `bounds.py`:
+# What is DERIVED from the filesystem, every time, by `quire-corpus bounds`:
 #   covered  — a fixture exists for that case and language
 #   GAP      — declared applicable, no fixture, not scoped out
 #   gap_count and the sum invariant
@@ -64,8 +64,10 @@ reserved_families:
 # writes the canonical record JSON on stdout; nothing else is read, and no
 # network is available. The corpus grades the output, never the producer.
 producer_contract:
-  version: 1
-  invocation: "<producer> --org <org> --repo <repo> <input-dir>"
+  version: 2
+  invocation:
+    executable: "<producer>"
+    arguments: ["--org", "{org}", "--repo", "{repo}", "{input}"]
   stdout: canonical-records-v1
   documented: spec/functional/FR-003-producer-contract.md
 
