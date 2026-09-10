@@ -6,11 +6,16 @@ type: FR
 
 # FR-002 — Inventory, controls, and the GAP gate
 
+## Description
+
+The corpus inventory declares the required fixture cells, control relationships,
+and producer-criterion reachability that the bounds gate derives from the tree.
+
 ## Behavior
 
-`corpus.yaml` SHALL declare, for each case, the languages it must exist in.
-The coverage state SHALL be derived from the filesystem on every run and
-never stored.
+`corpus.yaml` SHALL declare, for each case, its required languages.
+`quire-corpus bounds` SHALL derive the coverage state from the filesystem on
+every run and SHALL NOT store that state.
 
 WHEN a declared cell has no fixture, the corpus SHALL report a GAP and fail.
 
@@ -39,7 +44,7 @@ The inventory says which cases exist. It cannot say whether they reach what the
 producer promises, and "is the corpus exhaustive?" was an opinion until it did.
 
 Each case names the criteria it asserts, in `criteria:`. The producer's own
-criteria are pinned under `producers/`, and `bounds.py` derives three sets from
+criteria are pinned under `producers/`, and `quire-corpus bounds` derives three sets from
 the two: **reached**, **unreachable with a recorded reason**, and **unreached**.
 The last fails the gate — so a criterion added upstream cannot arrive quietly,
 and neither can a case that claims one nobody states.
@@ -56,3 +61,10 @@ appears and where the corpus is obliged to notice it is unreached.
 | FR-002-AC-7 | A criterion a case claims that the pin does not state fails the gate | Test (TC-044) |
 | FR-002-AC-8 | A criterion declared unreachable that the pin no longer states fails the gate | Test (TC-045) |
 | FR-002-AC-9 | An unreachable declaration carries the reason a corpus of this shape cannot reach it | Test (TC-046) |
+
+## Dependencies
+
+- **Upstream:** FR-001 defines the case-directory structure inspected by the
+  bounds gate.
+- **Downstream:** FR-004 scoring and NFR-001 revision identity consume only
+  fixtures admitted by this inventory boundary.

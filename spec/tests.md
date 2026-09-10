@@ -26,14 +26,16 @@ gate that will pass for the wrong reason later.
 |---|---|---|---|
 | FR-001 | FR-001-AC-1, FR-001-AC-2, FR-001-AC-3, FR-001-AC-4, FR-001-CON-2 | TC-005, TC-006, TC-007, TC-008, TC-009 | ✅ |
 | FR-002 | FR-002-AC-1, FR-002-AC-2, FR-002-AC-3, FR-002-AC-4, FR-002-AC-5, FR-002-CON-1, FR-002-AC-6, FR-002-AC-7, FR-002-AC-8, FR-002-AC-9 | TC-010, TC-011, TC-012, TC-013, TC-014, TC-015, TC-040, TC-043, TC-044, TC-045, TC-046 | ✅ |
-| FR-003 | FR-003-AC-1, FR-003-AC-2, FR-003-AC-3, FR-003-AC-4 | TC-016, TC-017, TC-018, TC-019 | ✅ |
+| FR-003 | FR-003-AC-1, FR-003-AC-2, FR-003-AC-3, FR-003-AC-4, FR-003-AC-5 | TC-016, TC-017, TC-018, TC-019, TC-058, TC-061 | ✅ |
 | FR-004 | FR-004-AC-5, FR-004-AC-1, FR-004-AC-2, FR-004-AC-3, FR-004-AC-4, FR-004-AC-6, FR-004-CON-1, FR-004-AC-7 | TC-003, TC-020, TC-021, TC-022, TC-023, TC-024, TC-025, TC-026, TC-042 | ✅ |
 | FR-005 | FR-005-AC-1, FR-005-AC-2, FR-005-AC-3, FR-005-CON-1, FR-005-AC-4, FR-005-AC-5, FR-005-AC-6, FR-005-AC-7 | TC-032, TC-033, TC-034, TC-035, TC-036, TC-037, TC-038 | ✅ |
-| FR-006 | FR-006-AC-2 | TC-039 | ✅ |
-| FR-007 | FR-007-AC-4 | TC-041 | ✅ |
+| FR-006 | FR-006-AC-1, FR-006-AC-2, FR-006-AC-3, FR-006-AC-4, FR-006-CON-1 | TC-039, TC-040, TC-041, TC-042 | ✅ |
+| FR-007 | FR-007-AC-1, FR-007-AC-2, FR-007-AC-3, FR-007-AC-4, FR-007-AC-5, FR-007-AC-6, FR-007-CON-1, FR-007-CON-2 | TC-047, TC-049, TC-050, TC-051, TC-052, TC-053, TC-054, TC-055 | ✅ |
 | NFR-001 | NFR-001-AC-1, NFR-001-AC-2, NFR-001-AC-3 | TC-027, TC-028, TC-029 | ✅ |
 | NFR-002 | NFR-002-AC-1, NFR-002-AC-2 | TC-004, TC-030, TC-031 | ✅ |
+| NFR-003 | NFR-003-AC-1, NFR-003-AC-2, NFR-003-AC-3, NFR-003-AC-4, NFR-003-AC-5, NFR-003-AC-6 | TC-048, TC-056, TC-057, TC-058, TC-059, TC-060 | ✅ |
 | StR-001 | StR-001-VC-1, StR-001-VC-2, StR-001-VC-3, StR-001-VC-4 | TC-001, TC-002, TC-003, TC-004, TC-024, TC-030 | ✅ |
+| StR-002 | StR-002-VC-1, StR-002-VC-2, StR-002-VC-3 | TC-047, TC-048, TC-049 | ✅ |
 
 ---
 
@@ -87,15 +89,30 @@ gate that will pass for the wrong reason later.
 | TC-044 | a criterion a case claims that nobody states fails | Unit | FR-002-AC-7 | ✅ |
 | TC-045 | an unreachable declaration for a retired criterion fails | Unit | FR-002-AC-8 | ✅ |
 | TC-046 | every unreachable criterion carries a reason, and the reason is prose rather than a label | Unit | FR-002-AC-9 | ✅ |
+| TC-047 | one Rust library owns every corpus behavior behind the CLI | Compile | StR-002-VC-1, FR-007-AC-1 | ✅ |
+| TC-048 | frozen Python and candidate Rust observations agree over the committed corpus before Python removal | Integration | StR-002-VC-2, NFR-003-AC-4 | ✅ |
+| TC-049 | the port changes no source-language fixture input and never interprets it inside the corpus tool | Inspection | StR-002-VC-3, FR-007-CON-1 | ✅ |
+| TC-050 | all five CLI subcommands operate from an explicit repository root | Integration | FR-007-AC-2 | ✅ |
+| TC-051 | bounds, digest and score JSON output is deterministic | Integration | FR-007-AC-3 | ✅ |
+| TC-052 | every rejected input exits non-zero with context and no success-shaped observation | Integration | FR-007-AC-4 | ✅ |
+| TC-053 | criteria refresh derives one deterministic pin from the producer remote and exact revision | Integration | FR-007-AC-5 | ✅ |
+| TC-054 | coverage validation rejects every false-green class named by the contract | Unit | FR-007-AC-6 | ✅ |
+| TC-055 | Make contains orchestration only and no corpus assertion implementation | Static | FR-007-CON-2 | ✅ |
+| TC-056 | exact Rust 1.98.1 and locked local commands resist selector mutations | Static | NFR-003-AC-1 | ✅ |
+| TC-057 | producer execution cannot spawn a shell | Integration | NFR-003-AC-2, FR-003-CON-2 | ✅ |
+| TC-058 | producer arguments with spaces, metacharacters and placeholder-looking text remain literal | Integration | NFR-003-AC-3, FR-003-AC-1 | ✅ |
+| TC-059 | every implemented matrix row has a canonical `ix-trace-rs` test binding | Static | NFR-003-AC-5 | ✅ |
+| TC-060 | the locked Rust graph passes license and advisory review | Static | NFR-003-AC-6 | ✅ |
+| TC-061 | contract version 2 records structured invocation identity and refuses compatibility with version 1 | Integration | FR-003-AC-5 | ✅ |
 
 ---
 
 ## Coverage Notes
 
-- **Status legend**: ⬜ Planned (row authored, test not yet written),
+- **Status legend**: 🚧 Planned (row authored, test not yet written),
   ✅ Complete (test written, tagged and green).
-- `make test` runs the whole matrix. It needs no producer: the scorer's own
-  behaviour is tested against `tests/stub_producer.py`, which finds nothing.
+- `make test` runs the whole matrix. It needs no external producer: the scorer's
+  own behaviour is tested against the Rust-native test producer, which finds nothing.
   A corpus whose tests need the tool it grades cannot test the grading.
 - TC-031 is an `Analysis`-shaped assertion made testable: the rule that a
   truth change carries the contract clause deciding it lives in
