@@ -3,4 +3,5 @@ __pycache__/
 
 target/
 *-target/
+target-*/
 .worktrees/
