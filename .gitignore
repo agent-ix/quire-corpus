@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+target/
+*-target/
+target-*/
+.worktrees/
