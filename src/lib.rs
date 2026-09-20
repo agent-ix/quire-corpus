@@ -5,6 +5,7 @@
 //! a selected producer; it does not interpret their source languages.
 
 #![forbid(unsafe_code)]
+#![warn(missing_docs)]
 
 pub mod bounds;
 pub mod coverage;

@@ -22,7 +22,9 @@ pub struct ProducerInvocation {
 /// Parsed JSON plus the producer's exact standard-output bytes as UTF-8 text.
 #[derive(Clone, Debug)]
 pub struct ProducerObservation {
+    /// The producer's standard output, parsed as JSON.
     pub value: Value,
+    /// The producer's standard output, as the exact UTF-8 text it wrote.
     pub raw: String,
 }
 
