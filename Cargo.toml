@@ -22,16 +22,22 @@ path = "src/bin/test-producer.rs"
 doc = false
 
 [dependencies]
+# The shared CLI foundation: exit taxonomy, stream discipline, canonical JSON,
+# version provenance, config precedence. Consumed by git-rev pin — one rev
+# string, no vendoring and no tag pin, so the dependency presents as one cargo
+# source everywhere it appears (see agent-ix/quire-rs#425 for the alternative).
+ix-cli-kit = { git = "https://github.com/agent-ix/ix-cli-kit", rev = "911666e4e316faa77e6e23d4f9f95f1ecb0f0def" }
 blake2 = "=0.10.6"
 clap = { version = "=4.6.0", features = ["derive"] }
 regex = "=1.12.3"
-serde = { version = "=1.0.228", features = ["derive"] }
-serde_json = { version = "=1.0.150", features = ["preserve_order"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = { version = "=1.0.151", features = ["preserve_order"] }
 serde_yaml = { package = "yaml_serde", version = "=0.10.7" }
-thiserror = "=2.0.18"
+thiserror = "=2.0.20"
 walkdir = "=2.5.0"
 
 [dev-dependencies]
+ix-cli-kit = { git = "https://github.com/agent-ix/ix-cli-kit", rev = "911666e4e316faa77e6e23d4f9f95f1ecb0f0def" }
 ix-trace-rs = { version = "=0.1.0", git = "https://github.com/agent-ix/ix-trace-rs", rev = "2ce4ebf47f726b9d76388220545cd0abda8a5cfb" }
 tempfile = "=3.27.0"
 
