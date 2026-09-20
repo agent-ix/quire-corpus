@@ -15,8 +15,11 @@ use crate::{CorpusError, Result};
 /// The deterministic digest observation emitted by `digest`.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize)]
 pub struct DigestReport {
+    /// The report's own schema version, for forward compatibility.
     pub schema_version: u32,
+    /// The whole-corpus BLAKE2b-256 digest, over `corpus.yaml` and every fixture file.
     pub corpus_revision: String,
+    /// Per-case BLAKE2b-256 digests, keyed by slash-separated case name.
     pub cases: BTreeMap<String, String>,
 }
 

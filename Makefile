@@ -16,6 +16,8 @@ help:
 	@echo "  make test        - Rust qualification suite"
 	@echo "  make coverage    - Test Matrix rows vs the Rust suite"
 	@echo "  make audit       - locked dependency license and advisory gates"
+	@echo "  make lint        - clippy, denying warnings"
+	@echo "  make docs        - cargo doc, denying warnings (broken intra-doc links)"
 	@echo "  make verify      - local bounds, digest, tests, and optional score"
 	@echo "  make qualify     - all local qualification gates"
 
@@ -51,9 +53,17 @@ audit:
 	cargo deny check
 	cargo audit
 
+.PHONY: lint
+lint:
+	$(CARGO) clippy --workspace --all-targets --all-features --locked -- -D warnings
+
+.PHONY: docs
+docs:
+	RUSTDOCFLAGS="-D warnings" $(CARGO) doc --locked --no-deps --all-features
+
 .PHONY: verify
 verify: bounds digest test
 	@if [ -n "$(PRODUCER)" ]; then $(RUN) score --producer "$(PRODUCER)" $(PRODUCER_ARGS); else echo "no PRODUCER set — corpus state verified without a producer score"; fi
 
 .PHONY: qualify
-qualify: verify coverage audit
+qualify: verify coverage audit lint docs

@@ -30,8 +30,10 @@ pub enum DeclaredCell {
     Languages(Vec<String>),
     /// Required languages plus explicitly reasoned exclusions.
     Detailed {
+        /// Languages this case must still cover.
         #[serde(default)]
         languages: Vec<String>,
+        /// Languages this case will never cover, keyed to why.
         #[serde(default)]
         out_of_scope: BTreeMap<String, String>,
     },
@@ -120,14 +122,23 @@ pub struct CaseMetadata {
 #[serde(tag = "state", rename_all = "kebab-case")]
 pub enum CriterionCoverage {
     /// The committed pin could not be read.
-    Unavailable { why: String },
+    Unavailable {
+        /// Human-readable reason the pin file could not be loaded.
+        why: String,
+    },
     /// Coverage was derived from the pin and fixture claims.
     Measured {
+        /// Total criteria declared by the pin.
         total: usize,
+        /// Criteria claimed by at least one fixture.
         reached: Vec<String>,
+        /// Criteria declared unreachable, keyed to why.
         unreachable: BTreeMap<String, String>,
+        /// Criteria reached by no fixture and declared unreachable by nothing.
         unreached: Vec<String>,
+        /// Criteria declared unreachable that the pin no longer states.
         stale_unreachable: Vec<String>,
+        /// Criteria claimed by a fixture but absent from the pin.
         claimed_but_undeclared: Vec<String>,
     },
 }
@@ -135,13 +146,21 @@ pub enum CriterionCoverage {
 /// Complete derived bounds report.
 #[derive(Clone, Debug, Serialize)]
 pub struct BoundsReport {
+    /// Per-producer criterion coverage, keyed by producer name.
     pub criterion_coverage: BTreeMap<String, CriterionCoverage>,
+    /// Declared cases that exist on disk.
     pub covered: Vec<CaseKey>,
+    /// Declared cases missing from disk.
     pub gaps: Vec<CaseKey>,
+    /// The number of entries in `gaps`.
     pub gap_count: usize,
+    /// `(family, case, language, reason)` tuples excluded from scope.
     pub scoped_out: Vec<(String, String, String, String)>,
+    /// Cases found on disk but not declared in the manifest.
     pub undeclared: Vec<CaseKey>,
+    /// Human-readable descriptions of every inventory or coverage defect found.
     pub problems: Vec<String>,
+    /// Positive cases named as the target of a control case.
     pub controls: Vec<CaseKey>,
 }
 
