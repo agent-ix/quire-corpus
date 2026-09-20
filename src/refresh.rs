@@ -71,9 +71,13 @@ fn repository_name(remote: &str) -> Result<String> {
 /// Result of refreshing one producer criterion pin.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct RefreshOutcome {
+    /// The producer repository name the pin was refreshed for.
     pub producer: String,
+    /// The producer's `HEAD` commit at refresh time.
     pub revision: String,
+    /// The number of criteria written into the refreshed pin.
     pub criteria: usize,
+    /// The pin file that was written.
     pub path: PathBuf,
 }
 
