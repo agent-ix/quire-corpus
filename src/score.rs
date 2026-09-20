@@ -51,8 +51,11 @@ fn triple(edge: &Value, produced: bool) -> Result<Triple> {
 /// One confusion-matrix population.
 #[derive(Clone, Debug, Default, Serialize)]
 pub struct Counts {
+    /// True positives: correctly reported.
     pub tp: u64,
+    /// False positives: reported but not expected.
     pub fp: u64,
+    /// False negatives: expected but not reported.
     pub fn_: u64,
 }
 

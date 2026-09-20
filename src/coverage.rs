@@ -38,10 +38,15 @@ struct CoverageReport {
 /// Coverage gate outcome with human-readable evidence.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CoverageOutcome {
+    /// Test Matrix rows backed by a real tracking tag.
     pub backed: u64,
+    /// Total Test Matrix rows reconciled.
     pub total: u64,
+    /// Count of rows with no backing tag.
     pub unbacked: usize,
+    /// Count of unbacked rows whose verification method explains the gap.
     pub explained: usize,
+    /// Human-readable descriptions of every false-green condition found.
     pub problems: Vec<String>,
 }
 
