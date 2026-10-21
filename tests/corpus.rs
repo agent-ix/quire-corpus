@@ -670,7 +670,7 @@ fn payload(nodes: &[(&str, &str)]) -> Value {
     json!({"nodes": nodes.iter().map(|(name,id)| json!({"name":name,"object_type":"code_function","id":id,"data":{"kind":"function","path":"src/lib.rs"}})).collect::<Vec<_>>(), "edges":[]})
 }
 
-#[trace("TC-039", "FR-006-AC-2")]
+#[trace("TC-039", "FR-006-AC-1")]
 #[test]
 fn moved_declaration_keeps_identifier() {
     let first = payload(&[("o/r/a.rs::f", "aaa")]);
@@ -692,7 +692,7 @@ fn moved_declaration_keeps_identifier() {
     );
 }
 
-#[trace("TC-040", "FR-002-AC-4")]
+#[trace("TC-040", "FR-006-AC-2")]
 #[test]
 fn org_names_are_disjoint() {
     let first = payload(&[("agent-ix/r/a.rs::f", "aaa")]);
@@ -719,7 +719,7 @@ fn org_names_are_disjoint() {
     );
 }
 
-#[trace("TC-041", "FR-007-AC-4")]
+#[trace("TC-041", "FR-006-AC-3")]
 #[test]
 fn identical_except_ignores_only_named_records() {
     let first = payload(&[("o/r/a.rs::f", "aaa")]);
@@ -741,7 +741,7 @@ fn identical_except_ignores_only_named_records() {
     );
 }
 
-#[trace("TC-042", "FR-004-AC-7")]
+#[trace("TC-042", "FR-006-AC-4")]
 #[test]
 fn unknown_relation_is_not_held() {
     assert!(
