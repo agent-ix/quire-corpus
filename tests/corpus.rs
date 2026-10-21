@@ -670,7 +670,7 @@ fn payload(nodes: &[(&str, &str)]) -> Value {
     json!({"nodes": nodes.iter().map(|(name,id)| json!({"name":name,"object_type":"code_function","id":id,"data":{"kind":"function","path":"src/lib.rs"}})).collect::<Vec<_>>(), "edges":[]})
 }
 
-#[trace("TC-039", "FR-006-AC-2")]
+#[trace("TC-039", "FR-006-AC-1")]
 #[test]
 fn moved_declaration_keeps_identifier() {
     let first = payload(&[("o/r/a.rs::f", "aaa")]);
@@ -692,7 +692,7 @@ fn moved_declaration_keeps_identifier() {
     );
 }
 
-#[trace("TC-040", "FR-002-AC-4")]
+#[trace("TC-040", "FR-006-AC-2")]
 #[test]
 fn org_names_are_disjoint() {
     let first = payload(&[("agent-ix/r/a.rs::f", "aaa")]);
@@ -719,7 +719,7 @@ fn org_names_are_disjoint() {
     );
 }
 
-#[trace("TC-041", "FR-007-AC-4")]
+#[trace("TC-041", "FR-006-AC-3")]
 #[test]
 fn identical_except_ignores_only_named_records() {
     let first = payload(&[("o/r/a.rs::f", "aaa")]);
@@ -741,7 +741,7 @@ fn identical_except_ignores_only_named_records() {
     );
 }
 
-#[trace("TC-042", "FR-004-AC-7")]
+#[trace("TC-042", "FR-006-AC-4")]
 #[test]
 fn unknown_relation_is_not_held() {
     assert!(
@@ -895,6 +895,11 @@ fn cli_exposes_all_commands_and_explicit_root() {
 #[trace("TC-051", "FR-007-AC-3")]
 #[test]
 fn json_commands_are_deterministic() {
+    let bounds = run_cli(root(), &["bounds", "--json"]);
+    let text = String::from_utf8(bounds.stdout).unwrap();
+    assert!(text.starts_with("{\n  \"controls\":"));
+    assert!(text.ends_with("\n}\n"));
+    assert!(!text.ends_with("\n}\n\n"));
     for arguments in [vec!["bounds", "--json"], vec!["digest", "--json"]] {
         assert_eq!(
             run_cli(root(), &arguments).stdout,
@@ -924,9 +929,15 @@ fn json_commands_are_deterministic() {
 #[trace("TC-052", "FR-007-AC-4")]
 #[test]
 fn rejected_input_has_context_and_no_report() {
+    let (_temporary, corpus) = scratch();
+    fs::remove_dir_all(corpus.join("fixtures/relations/bare-import/python")).unwrap();
+    let findings = run_cli(&corpus, &["bounds", "--json"]);
+    assert_eq!(findings.status.code(), Some(1));
+    assert!(!findings.stdout.is_empty());
+
     let temporary = tempfile::tempdir().unwrap();
     let output = run_cli(temporary.path(), &["bounds", "--json"]);
-    assert!(!output.status.success());
+    assert_eq!(output.status.code(), Some(4));
     assert!(output.stdout.is_empty());
     assert!(
         String::from_utf8(output.stderr)
@@ -1124,8 +1135,9 @@ fn producer_arguments_remain_literal() {
 #[trace("TC-059", "NFR-003-AC-5")]
 #[test]
 fn every_matrix_row_has_canonical_trace() {
-    let source = fs::read_to_string(file!()).unwrap();
-    for number in 1..=61 {
+    let source = fs::read_to_string(file!()).unwrap()
+        + &fs::read_to_string(root().join("tests/version_agreement.rs")).unwrap();
+    for number in 1..=62 {
         let identifier = format!("TC-{number:03}");
         assert!(
             source.contains(&format!("#[trace(\"{identifier}\""))

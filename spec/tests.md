@@ -30,7 +30,7 @@ gate that will pass for the wrong reason later.
 | FR-004 | FR-004-AC-5, FR-004-AC-1, FR-004-AC-2, FR-004-AC-3, FR-004-AC-4, FR-004-AC-6, FR-004-CON-1, FR-004-AC-7 | TC-003, TC-020, TC-021, TC-022, TC-023, TC-024, TC-025, TC-026, TC-042 | ✅ |
 | FR-005 | FR-005-AC-1, FR-005-AC-2, FR-005-AC-3, FR-005-CON-1, FR-005-AC-4, FR-005-AC-5, FR-005-AC-6, FR-005-AC-7 | TC-032, TC-033, TC-034, TC-035, TC-036, TC-037, TC-038 | ✅ |
 | FR-006 | FR-006-AC-1, FR-006-AC-2, FR-006-AC-3, FR-006-AC-4, FR-006-CON-1 | TC-039, TC-040, TC-041, TC-042 | ✅ |
-| FR-007 | FR-007-AC-1, FR-007-AC-2, FR-007-AC-3, FR-007-AC-4, FR-007-AC-5, FR-007-AC-6, FR-007-CON-1, FR-007-CON-2 | TC-047, TC-049, TC-050, TC-051, TC-052, TC-053, TC-054, TC-055 | ✅ |
+| FR-007 | FR-007-AC-1, FR-007-AC-2, FR-007-AC-3, FR-007-AC-4, FR-007-AC-5, FR-007-AC-6, FR-007-AC-7, FR-007-CON-1, FR-007-CON-2 | TC-047, TC-049, TC-050, TC-051, TC-052, TC-053, TC-054, TC-055, TC-062 | ✅ |
 | NFR-001 | NFR-001-AC-1, NFR-001-AC-2, NFR-001-AC-3 | TC-027, TC-028, TC-029 | ✅ |
 | NFR-002 | NFR-002-AC-1, NFR-002-AC-2 | TC-004, TC-030, TC-031 | ✅ |
 | NFR-003 | NFR-003-AC-1, NFR-003-AC-2, NFR-003-AC-3, NFR-003-AC-4, NFR-003-AC-5, NFR-003-AC-6 | TC-048, TC-056, TC-057, TC-058, TC-059, TC-060 | ✅ |
@@ -104,6 +104,7 @@ gate that will pass for the wrong reason later.
 | TC-059 | every implemented matrix row has a canonical `ix-trace-rs` test binding | Static | NFR-003-AC-5 | ✅ |
 | TC-060 | the locked Rust graph passes license and advisory review | Static | NFR-003-AC-6 | ✅ |
 | TC-061 | contract version 2 records structured invocation identity and refuses compatibility with version 1 | Integration | FR-003-AC-5 | ✅ |
+| TC-062 | the built CLI's version surfaces agree with its package version and release tag | Integration | FR-007-AC-7 | ✅ |
 
 ---
 
