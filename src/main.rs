@@ -5,6 +5,8 @@ use std::path::PathBuf;
 use std::process::ExitCode;
 
 use clap::{Parser, Subcommand};
+use ix_cli_kit::streams::{ColorChoice, Diagnostics, DiagnosticsFormat, Record};
+use ix_cli_kit::{Outcome, json as kit_json};
 use serde::Serialize;
 use serde_json::Value;
 
@@ -72,38 +74,19 @@ enum Command {
     },
 }
 
+/// Emit a report as canonical JSON on stdout.
+///
+/// The recursive key-sort and the encoder both moved to `ix-cli-kit`: three
+/// repositories had written the same canonicaliser, and it cannot be replaced
+/// by `BTreeMap` ordering because this crate enables `serde_json`'s
+/// `preserve_order` feature while `quoin-core` deliberately does not.
 fn print_json(value: &impl Serialize) -> Result<()> {
-    let mut value = serde_json::to_value(value).map_err(|source| CorpusError::Json {
+    let encoded = kit_json::encode_canonical(value, true).map_err(|error| CorpusError::Json {
         context: "corpus report".to_owned(),
-        source,
+        source: error.source,
     })?;
-    sort_json(&mut value);
-    let mut bytes = Vec::new();
-    let formatter = serde_json::ser::PrettyFormatter::with_indent(b" ");
-    let mut serializer = serde_json::Serializer::with_formatter(&mut bytes, formatter);
-    value
-        .serialize(&mut serializer)
-        .map_err(|source| CorpusError::Json {
-            context: "corpus report".to_owned(),
-            source,
-        })?;
-    println!("{}", String::from_utf8_lossy(&bytes));
+    ix_cli_kit::streams::emit_result(&encoded);
     Ok(())
-}
-
-fn sort_json(value: &mut Value) {
-    match value {
-        Value::Object(object) => {
-            let mut entries = std::mem::take(object).into_iter().collect::<Vec<_>>();
-            entries.sort_by(|left, right| left.0.cmp(&right.0));
-            for (_, value) in &mut entries {
-                sort_json(value);
-            }
-            object.extend(entries);
-        }
-        Value::Array(values) => values.iter_mut().for_each(sort_json),
-        _ => {}
-    }
 }
 
 fn run(cli: Cli) -> Result<bool> {
@@ -243,12 +226,18 @@ fn display_json(value: &Value) -> String {
 }
 
 fn main() -> ExitCode {
-    match run(Cli::parse()) {
-        Ok(false) => ExitCode::SUCCESS,
-        Ok(true) => ExitCode::FAILURE,
+    // Findings present and the run itself breaking were both exit 1 here. They
+    // are different facts and a caller could not tell them apart: a `Partial`
+    // run produced a complete report on stdout, an `Internal` one produced
+    // nothing. The shared taxonomy (ix-cli-kit) spells the difference.
+    let outcome = match run(Cli::parse()) {
+        Ok(false) => Outcome::Ok,
+        Ok(true) => Outcome::Partial,
         Err(error) => {
-            eprintln!("quire-corpus: {error}");
-            ExitCode::FAILURE
+            let out = Diagnostics::resolved(DiagnosticsFormat::Human, ColorChoice::Auto);
+            Record::error("quire-corpus", &error.to_string()).emit(out);
+            Outcome::Internal
         }
-    }
+    };
+    outcome.into()
 }

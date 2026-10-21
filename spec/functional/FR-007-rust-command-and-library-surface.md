@@ -26,6 +26,12 @@ directory.
 modes. A failure SHALL return a non-zero status and identify the rejected
 artifact or producer observation without reporting a successful score.
 
+The CLI SHALL use the shared CLI kit to encode deterministic JSON reports and
+write one result line. A completed report containing findings SHALL exit 1;
+an internal failure with no report SHALL exit 4 and emit a diagnostic on stderr.
+The built CLI's `--version` and `--help` version surfaces SHALL agree with the
+package version, and with a release tag when the checkout is on that clean tag.
+
 WHEN `check-coverage` runs, the CLI SHALL invoke the selected `quire` executable
 directly with `coverage --scope <root> --json` and the selected module path.
 WHEN Quire fails or writes malformed JSON, the CLI SHALL report that failure
@@ -37,10 +43,11 @@ without applying coverage assertions to a partial observation.
 |----|----------|--------------|
 | FR-007-AC-1 | The library exposes typed bounds, digest, producer-execution, scoring, run-relation, coverage-validation, and producer-pin operations | Compile + inspection (TC-047) |
 | FR-007-AC-2 | The CLI exposes all five required subcommands and derives repository loci from an explicit root | Integration test (TC-050) |
-| FR-007-AC-3 | Bounds, digest, and score emit deterministic JSON output in addition to human-readable output | Integration test (TC-051) |
-| FR-007-AC-4 | Errors are non-zero, name their failing context, and never emit a success-shaped observation | Integration test (TC-052) |
+| FR-007-AC-3 | Bounds, digest, and score emit deterministic, canonically ordered JSON output with one trailing newline in addition to human-readable output | Integration test (TC-051) |
+| FR-007-AC-4 | A completed report with findings exits 1; an internal error exits 4, names its failing context on stderr, and emits no report | Integration test (TC-052) |
 | FR-007-AC-5 | Criteria refresh writes only `producers/<remote-repository-name>.criteria.yaml`, using the producer's exact revision and deterministically sorted criteria | Integration test (TC-053) |
 | FR-007-AC-6 | Coverage validation rejects empty reconciliation, status lies, unexplained unbacked rows, and the five named hollow-declaration diagnostics; the CLI obtains the report by directly invoking the selected Quire executable | Unit + integration test (TC-054) |
+| FR-007-AC-7 | The built CLI's version and help surfaces agree with the package version, and with a release tag when checked out at that clean tag | Integration test (TC-062) |
 
 ## Constraints
 
