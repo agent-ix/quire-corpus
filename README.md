@@ -115,3 +115,5 @@ Four expectations are authored and have never been answered by anything — the
 `paths`, `impact`, `test_selection` and `derived_links` families ask about
 traversal rather than extraction. The report names them and their blocking
 issue on every run rather than letting them read as coverage.
+
+<!-- STD-30 language-boundary canary: inert README change. -->
