@@ -1,6 +1,7 @@
 # quire-corpus
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?logo=discord&logoColor=white)](https://discord.gg/k8DVhuYBR2)
+[![Quire](https://img.shields.io/badge/Quire-Specification%20Language-1F6FEB)](https://github.com/agent-ix/quire-spec-language)
 
 The shared **complete-graph** truth set for the Filament/Quire ecosystem.
 Static files, read in place, producer-agnostic. Contract: [`spec/`](spec/).
