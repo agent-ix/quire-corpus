@@ -28,9 +28,9 @@ needs is actually written down.
 ## Using it
 
 ```bash
-cargo +1.98.1 run --locked -- --root . bounds
-cargo +1.98.1 run --locked -- --root . digest
-cargo +1.98.1 run --locked -- --root . score \
+cargo +1.100.0 run --locked -- --root . bounds
+cargo +1.100.0 run --locked -- --root . digest
+cargo +1.100.0 run --locked -- --root . score \
   --producer /path/to/producer \
   --producer-arg=--org --producer-arg='{org}' \
   --producer-arg=--repo --producer-arg='{repo}' \

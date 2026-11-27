@@ -98,7 +98,7 @@ gate that will pass for the wrong reason later.
 | TC-053 | criteria refresh derives one deterministic pin from the producer remote and exact revision | Integration | FR-007-AC-5 | ✅ |
 | TC-054 | coverage validation rejects every false-green class named by the contract | Unit | FR-007-AC-6 | ✅ |
 | TC-055 | Make contains orchestration only and no corpus assertion implementation | Static | FR-007-CON-2 | ✅ |
-| TC-056 | exact Rust 1.98.1 and locked local commands resist selector mutations | Static | NFR-003-AC-1 | ✅ |
+| TC-056 | exact Rust 1.100.0 and locked local commands resist selector mutations | Static | NFR-003-AC-1 | ✅ |
 | TC-057 | producer execution cannot spawn a shell | Integration | NFR-003-AC-2, FR-003-CON-2 | ✅ |
 | TC-058 | producer arguments with spaces, metacharacters and placeholder-looking text remain literal | Integration | NFR-003-AC-3, FR-003-AC-1 | ✅ |
 | TC-059 | every implemented matrix row has a canonical `ix-trace-rs` test binding | Static | NFR-003-AC-5 | ✅ |

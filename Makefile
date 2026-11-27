@@ -1,4 +1,4 @@
-CARGO ?= cargo +1.98.1
+CARGO ?= cargo +1.100.0
 ROOT ?= .
 PRODUCER ?=
 PRODUCER_ARGS ?=
