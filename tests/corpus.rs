@@ -1093,7 +1093,7 @@ fn exact_rust_and_locked_commands_are_declared() {
     assert_eq!(
         fs::read_to_string(root().join("rust-toolchain.toml"))
             .unwrap()
-            .matches("1.98.1")
+            .matches("1.100.0")
             .count(),
         1
     );

@@ -21,7 +21,7 @@ syntax and makes literal paths or values depend on quoting rules.
 ## Decision
 
 One AGPL-3.0-or-later Rust package in this repository owns the corpus library and
-`quire-corpus` CLI. It uses exact Rust 1.98.1. Bounds, digest, score,
+`quire-corpus` CLI. It uses exact Rust 1.100.0. Bounds, digest, score,
 run-relation, coverage validation, and criteria refresh are library operations;
 the CLI is a thin adapter.
 

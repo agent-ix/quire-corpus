@@ -9,7 +9,7 @@ quality_attribute: security
 
 ## Statement
 
-The corpus tool SHALL build with exact Rust 1.98.1. The producer invocation
+The corpus tool SHALL build with exact Rust 1.100.0. The producer invocation
 layer SHALL use a structured executable-and-arguments interface. The producer
 invocation layer SHALL pass shell metacharacters, whitespace, and
 placeholder-looking values literally. The producer invocation layer SHALL NOT
@@ -25,7 +25,7 @@ invocation-identity fields. Every other difference is a port defect.
 
 | ID | Criteria | Verification |
 |----|----------|--------------|
-| NFR-003-AC-1 | `Cargo.toml` and `rust-toolchain.toml` select exact Rust 1.98.1 and local build commands use locked dependency resolution | Static mutation test (TC-056) |
+| NFR-003-AC-1 | `rust-toolchain.toml` selects exact Rust 1.100.0, `Cargo.toml` retains the declared minimum Rust version and local build commands use locked dependency resolution | Static mutation test (TC-056) |
 | NFR-003-AC-2 | Producer execution invokes an executable with an argument vector and never invokes a shell | Unit + process trace (TC-057) |
 | NFR-003-AC-3 | Spaces, shell metacharacters, and placeholder-looking text arrive at the producer as literal arguments | Integration test (TC-058) |
 | NFR-003-AC-4 | The Rust candidate and frozen Python baseline produce exact bounds and digest observations and score observations differing only in the versioned invocation-identity fields; error and metamorphic-relation behavior also agrees over the committed corpus before baseline removal | Differential test (TC-048) |
@@ -44,5 +44,5 @@ invocation-identity fields. Every other difference is a port defect.
 
 The repository SHALL verify the port with `ix-trace-rs`-marked Rust unit,
 integration, static-mutation, differential, and process-trace tests. Local
-qualification SHALL use exact Rust 1.98.1, locked dependency resolution, and
+qualification SHALL use exact Rust 1.100.0, locked dependency resolution, and
 `CARGO_BUILD_JOBS=2`; it SHALL NOT dispatch hosted CI.
